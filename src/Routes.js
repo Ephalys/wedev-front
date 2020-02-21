@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route, withRouter } from "react-router-dom";
-import Login from "./pages/login";
-import Register from "./pages/register";
-import Home from "./pages/home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
 
 export class Routes extends Component {
   render() {

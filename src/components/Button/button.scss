@@ -1,6 +1,11 @@
 @import "../../assets/sass/colors.scss";
 
 .btn {
+    transition: all .3s;
+    &:hover {
+        transition: all .3s;
+    }
+
     &__large {
         padding: 12px 40px;
     }
@@ -22,6 +27,11 @@
         background-color: $emeraud;
         border: 2px solid $emeraud;
         border-radius: 3px;
+
+        &:hover {
+            color: $emeraud;
+            background-color: transparent;
+        }
     }
 
     &__red {
