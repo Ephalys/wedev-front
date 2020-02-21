@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Input from "../../components/Input";
 import './login.scss'
 
-class Index extends Component {
+class Login extends Component {
     render() {
         return (
             <div className="login">
@@ -19,4 +19,4 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default Login;

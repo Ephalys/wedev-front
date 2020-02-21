@@ -1,0 +1,57 @@
+@import "../../assets/sass/colors.scss";
+@import "../../assets/sass/breakpoints.scss";
+
+.register {
+    background-color: $darkblue;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__form {
+        background-color: $white;
+        -webkit-box-shadow: 0px 0px 39px 1px rgba(0,0,0,0.35);
+        -moz-box-shadow: 0px 0px 39px 1px rgba(0,0,0,0.35);
+        box-shadow: 0px 0px 39px 1px rgba(0,0,0,0.35);
+
+        @media (max-width: $screen-max-xs) {
+            width: 90%;
+        }
+
+        @media (min-width: $screen-min-xs) and (max-width: $screen-max-sm) {
+            width: 70%;
+        }
+
+        @media (min-width: $screen-min-sm) and (max-width: $screen-max-md) {
+            width: 50%;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 30px 50px 50px;
+
+            @media (max-width: $screen-max-xs) {
+                padding: 30px;
+            }
+
+            .form-group {
+                width: 100%;
+            }
+
+            h1 {
+                margin-bottom: 40px;
+                text-align: left;
+            }
+
+            .btn {
+                padding: 8px 40px;
+                margin-top: 10px;
+                cursor: pointer;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
