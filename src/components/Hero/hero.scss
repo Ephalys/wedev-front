@@ -2,5 +2,7 @@
 @import '../../assets/sass/breakpoints';
 
 .hero {
-
+    background: url(/static/media/hero.b78bab4e.png);
+    background-size: cover;
+    height: 112vh;
 }

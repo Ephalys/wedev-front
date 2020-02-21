@@ -10,8 +10,6 @@ export class Routes extends Component {
   render() {
     return (
       <div>
-        <Route exact path="/" component={Header} />
-        <Route exact path="/presentation" component={Presentation} />
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
