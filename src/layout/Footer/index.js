@@ -10,7 +10,7 @@ class Header extends Component {
             <footer className="footer">
                 <div className="footer__content">
                     <div className="footer__content-logo">
-                        <img src="logoFooter" alt="logo-footer"/>
+                        <img src={logoFooter} alt="logo-footer"/>
                     </div>
                     <div className="footer__content-copyright">
                         <p>copyright 2020</p>
