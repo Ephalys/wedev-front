@@ -1,3 +1,54 @@
-@import '../assets/sass/variables.scss';
+@import "../../assets/sass/colors.scss";
 
-.btn {}
+.btn {
+    &__large {
+        padding: 12px 40px;
+    }
+
+    &__medium {
+        padding: 10px 20px;
+    }
+
+    &__letter-spacing {
+        letter-spacing: 4px;
+    }
+
+    &__rounded {
+        border-radius: 30px;
+    }
+
+    &__green {
+        color: $white;
+        background-color: $emeraud;
+        border: 2px solid $emeraud;
+        border-radius: 3px;
+    }
+
+    &__red {
+        color: $white;
+        background-color: $red;
+        border: 2px solid $red;
+        border-radius: 3px;
+    }
+
+    &__green-sea {
+        color: $greensea;
+        background-color: $white;
+        border: 2px solid $greensea;
+        border-radius: 3px;
+    }
+
+    &__light-grey {
+        color: $black;
+        background-color: $white;
+        border: 2px solid $greensea;
+        border-radius: 3px;
+    }
+
+    &__black {
+        color: $black;
+        background-color: $white;
+        border: 2px solid $black;
+        text-transform: uppercase;
+    }
+}
