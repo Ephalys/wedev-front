@@ -1,6 +1,34 @@
-@import '../../assets/sass/variables.scss';
+@import '../../assets/sass/colors';
 
-footer {
-    padding:30px;
+.footer {
+    padding: 40px;
     background-color: $darkblue;
+    color: $white;
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-copyright {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 13px;
+        }
+
+        &-socials {
+            display: flex;
+            flex-direction: row;
+            &-link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 5px;
+                color: $white;
+                width: 30px;
+                height: 30px;
+                border: 1px solid white;
+                border-radius: 50%;
+            }
+        }
+    }
 }
