@@ -1,0 +1,43 @@
+@import '../../assets/sass/colors.scss';
+
+.presentation {
+    color: $white;
+    background-color: $blue;
+    height: 100vh;
+    text-align: center;
+    padding: 3%;
+
+    h3 {
+        box-sizing: border-box;
+        height: 63px;
+        width: 301px;
+        border: 4px solid $white;
+        margin: auto;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 65px;
+        margin: 4% 10%;
+        letter-spacing: 10px;
+        text-transform: uppercase;
+    }
+
+    p {
+        width: 70%;
+        margin: auto;
+        line-height: 30px;
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 3%;
+
+        li {
+            list-style: none;
+            width: 13%;
+            margin: 2%;
+        }
+    }
+}
