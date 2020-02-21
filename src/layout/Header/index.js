@@ -10,7 +10,7 @@ class Header extends Component {
         <img src={logo} alt="logo" className="header__img" />
         <Button
           classes="btn btn__black btn__large btn__rounded btn__letter-spacing fwb"
-          text="Login"
+          text="Index"
         />
       </header>
     );

@@ -1,0 +1,31 @@
+@import "../../assets/sass/colors.scss";
+@import "../../assets/sass/breakpoints.scss";
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 10px;
+
+    label {
+        margin-bottom: 10px;
+    }
+
+    input{
+        padding: 10px;
+        background-color: #f1f1f1;
+        border-top: none;
+        border-bottom: none;
+        border-right: none;
+        border-left: 2px solid transparent;
+        transition: all .3s;
+
+        &:focus {
+            outline: none;
+            border-left: 2px solid $darkblue;
+            background-color: #e8e8e8;
+            transition: all .3s;
+            padding-left: 15px;
+        }
+    }
+}
