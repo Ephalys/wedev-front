@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './footer.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faTwitter, faLinkedinIn } from "@fortawesome/free-brands-svg-icons"
+import Socials from "../../components/Socials";
 import logoFooter from '../../assets/images/logo-footer.svg'
 
 class Header extends Component {
@@ -15,17 +14,7 @@ class Header extends Component {
                     <div className="footer__content-copyright">
                         <p>copyright 2020</p>
                     </div>
-                    <div className="footer__content-socials">
-                        <a href="www.facebook.com" className="footer__content-socials-link">
-                            <FontAwesomeIcon icon={faFacebookF} />
-                        </a>
-                        <a href="www.facebook.com" className="footer__content-socials-link">
-                            <FontAwesomeIcon icon={faTwitter} />
-                        </a>
-                        <a href="www.facebook.com" className="footer__content-socials-link">
-                            <FontAwesomeIcon icon={faLinkedinIn} />
-                        </a>
-                    </div>
+                    <Socials classes="footer__content-"/>
                 </div>
             </footer>
         );
