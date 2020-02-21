@@ -1,20 +1,17 @@
-@import '../../assets/sass/colors.scss';
+@import "../../assets/sass/colors.scss";
+@import "../../assets/sass/breakpoints.scss";
 
-header {
+.header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 
-    img {
-        height: 36px;
-        width: 189px;
-        margin: 23px 32px;
-    }
+    &__img {
+        width: 180px;
 
-    Button {
-        height: 55px;
-        width: 199px;
-        margin: 24px 29px;
-        border: solid 2px $darkblue;
-
+        @media (max-width: $screen-max-xs) {
+            width: 100px;
+        }
     }
 }

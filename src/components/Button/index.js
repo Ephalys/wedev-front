@@ -1,9 +1,10 @@
 import React from "react";
+import "./button.scss";
 
 const button = props => {
   return (
-    <a href="" className="btn">
-      {props.value}
+    <a href="#" className={props.classes}>
+      {props.text}
     </a>
   );
 };
