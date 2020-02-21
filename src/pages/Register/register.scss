@@ -3,7 +3,7 @@
 
 .register {
     background-color: $darkblue;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -25,6 +25,10 @@
 
         @media (min-width: $screen-min-sm) and (max-width: $screen-max-md) {
             width: 50%;
+        }
+
+        @media (min-width: $screen-min-md) {
+            width: 40%;
         }
 
         form {
