@@ -1,3 +1,20 @@
-header {
+@import '../../assets/sass/variables.scss';
 
+header {
+    display: flex;
+    justify-content: space-between;
+
+    img {
+        height: 36px;
+        width: 189px;
+        margin: 23px 32px;
+    }
+
+    Button {
+        height: 55px;
+        width: 199px;
+        margin: 24px 29px;
+        border: solid 2px $darkblue;
+
+    }
 }
