@@ -10,7 +10,7 @@
     }
 
     &.light {
-        &-link {
+        .socials-link {
             color: $white;
             border: 1px solid white;
 
@@ -22,7 +22,7 @@
     }
 
     &.dark {
-        &-link {
+        .socials-link {
             color: $darkblue;
             border: 1px solid white;
 
