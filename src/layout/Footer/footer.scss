@@ -1,4 +1,5 @@
 @import '../../assets/sass/colors';
+@import '../../assets/sass/breakpoints';
 
 .footer {
     padding: 40px;
@@ -8,16 +9,33 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @media (max-width: $screen-max-xs) {
+            flex-direction: column;
+        }
+
+        &-logo {
+            @media (max-width: $screen-max-xs) {
+                margin:5px 0;
+            }
+        }
 
         &-copyright {
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 13px;
+
+            @media (max-width: $screen-max-xs) {
+                margin:5px 0;
+            }
         }
 
         &-socials {
             display: flex;
             flex-direction: row;
+
+            @media (max-width: $screen-max-xs) {
+                margin:5px 0;
+            }
             &-link {
                 display: flex;
                 justify-content: center;
