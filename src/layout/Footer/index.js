@@ -14,7 +14,7 @@ class Header extends Component {
                     <div className="footer__content-copyright">
                         <p>copyright 2020</p>
                     </div>
-                    <Socials classes="footer__content-"/>
+                    <Socials theme="light"/>
                 </div>
             </footer>
         );

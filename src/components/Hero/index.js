@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Socials from "../../components/Socials";
 
 class Index extends Component {
     render() {
@@ -8,7 +9,7 @@ class Index extends Component {
 
                 </div>
                 <div className="hero__footer">
-                    <Socials classes="hero__footer-"/>
+                    <Socials theme="dark"/>
                 </div>
             </div>
         );

@@ -1,0 +1,51 @@
+@import '../../assets/sass/colors';
+@import '../../assets/sass/breakpoints';
+
+.socials {
+    display: flex;
+    flex-direction: row;
+
+    @media (max-width: $screen-max-xs) {
+        margin:5px 0;
+    }
+
+    &.light {
+        &-link {
+            color: $white;
+            border: 1px solid white;
+
+            &:hover {
+                color: $emeraud;
+                border-color: $emeraud;
+            }
+        }
+    }
+
+    &.dark {
+        &-link {
+            color: $darkblue;
+            border: 1px solid white;
+
+            &:hover {
+                color: $emeraud;
+                border-color: $darkblue;
+            }
+        }
+    }
+
+    &-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 5px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        transition: all .3s;
+
+        &:hover {
+            transform: rotate(360deg);
+            transition: all .3s;
+        }
+    }
+}
