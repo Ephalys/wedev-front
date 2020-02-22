@@ -12,6 +12,8 @@ const customStyles = {
         backgroundColor: '#f1f1f1',
         borderColor: 'transparent',
         cursor: 'pointer',
+        fontSize: '11px',
+        color: '1a9a9a9',
         '&:hover': {
             borderColor: 'transparent',
         }
