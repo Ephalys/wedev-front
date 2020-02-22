@@ -2,7 +2,29 @@
 @import '../../assets/sass/breakpoints';
 
 .hero {
-    background: url(/static/media/hero.b78bab4e.png);
     background-size: cover;
-    height: 112vh;
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 50px;
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 50%;
+        text-align: left;
+    }
+
+    &__footer {
+        position: absolute;
+        bottom: 50px;
+        left: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: calc(100% - 100px);
+    }
 }

@@ -10,9 +10,9 @@ class Presentation extends Component {
   render() {
     return (
       <div className="presentation">
-        <h3>Voici WeDev</h3>
-        <h1>Application de gestion de projet pour les dev</h1>
-        <p>
+        <p className="presentation__label fwb">Voici WeDev</p>
+        <h2>Application de gestion de projet pour les dev</h2>
+        <p className="presentation__text">
           Commodo aliqua consequat officia et aliqua sit enim eiusmod dolor in
           eu do. Aute elit ut Lorem dolor ea. Commodo velit nisi ex ut laboris
           aute dolor. Consectetur tempor sunt aliqua exercitation proident
