@@ -23,7 +23,7 @@ class Index extends Component {
                 <div className="hero__footer">
                     <Socials theme="dark" />
                     <Button
-                        classes="btn btn__black btn__large btn__rounded btn__letter-spacing fwb"
+                        classes="btn btn__white btn__large btn__rounded btn__letter-spacing fwb"
                         text="Explore"
                     />
                 </div>
