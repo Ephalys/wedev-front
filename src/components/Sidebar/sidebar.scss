@@ -1,0 +1,32 @@
+@import "../../assets/sass/colors.scss";
+
+.sidebar {
+    width: 30%;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top:0;
+    box-shadow: 7px 0 60px rgba(0,0,0,0.05);
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        margin: 50px 20px;
+        list-style: none;
+        padding: 0;
+        text-align: left;
+
+        li {
+            margin: 5px 0;
+            a {
+                padding: 10px;
+                display: block;
+                color: #333;
+                &:hover {
+                    background-color: $blue;
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+}

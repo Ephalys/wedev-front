@@ -1,0 +1,9 @@
+.dashboard {
+    display: flex;
+    &__content {
+        width: 70%;
+        margin-left: 30%;
+        text-align: left;
+        padding: 30px 50px 50px;
+    }
+}

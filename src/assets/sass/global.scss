@@ -21,6 +21,10 @@ code {
 a {
   display: block;
   text-decoration: none;
+  transition: all .3s;
+  &:hover {
+    transition: all .3s;
+  }
 }
 
 ul {
