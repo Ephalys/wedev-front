@@ -1,0 +1,30 @@
+@import "../../assets/sass/colors.scss";
+
+.listblock {
+    display: flex;
+    padding: 50px;
+    text-align: left;
+
+    &__left {
+        padding-right: 50px;
+        .title-label {
+            text-transform: uppercase;
+            font-size: 11px;
+            color: $darkgrey;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 30px;
+            color: #434242;
+        }
+
+        .text {
+            line-height: 24px;
+        }
+    }
+    &__right {
+        padding-left: 50px;
+    }
+}

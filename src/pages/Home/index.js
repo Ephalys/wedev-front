@@ -3,6 +3,7 @@ import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Presentation from "../../components/Presentation";
 import Hero from "../../components/Hero";
+import ListBlock from "../../components/ListBlock";
 
 class Index extends Component {
   render() {
@@ -11,6 +12,7 @@ class Index extends Component {
         <Header />
         <Hero />
         <Presentation />
+        <ListBlock />
         <Footer />
       </main>
     );
