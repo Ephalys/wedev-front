@@ -28,6 +28,12 @@ class Register extends Component {
     });
   };
 
+  onSelectChange = (event, name) => {
+    this.setState({
+      [name]: event.value
+    });
+  };
+
   handleSubmit = event => {
     event.preventDefault();
 
@@ -39,9 +45,6 @@ class Register extends Component {
   };
 
   render() {
-    console.log(
-        this.state
-    );
     return (
       <div className="register">
         <div className="register__form">
@@ -84,7 +87,7 @@ class Register extends Component {
             />
             <Select nameField="profile"
                     values={profileList} label="Profile"
-                    changed={this.onInputChange}
+                    changed={this.onSelectChange}
             />
             <Input
               nameField="companyName"
@@ -104,7 +107,7 @@ class Register extends Component {
               nameField="companyStatus"
               values={companyStatus}
               label="Company Status"
-              changed={this.onInputChange}
+              changed={this.onSelectChange}
             />
             <input
               type="submit"

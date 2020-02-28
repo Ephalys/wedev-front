@@ -38,6 +38,9 @@ class Select extends Component {
                         }
                     })}
                     options={this.props.values}
+                    onChange={(event => {
+                        this.props.changed(event, this.props.nameField)
+                    })}
                 />
             </div>
         );
