@@ -20,6 +20,7 @@ const companyStatus = [
 ];
 
 class Register extends Component {
+  state={};
 
   onInputChange = (event) => {
     this.setState({
@@ -30,11 +31,7 @@ class Register extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const user = {
-      firstName: event.target.value,
-    };
-
-    axios.post(`http://10.92.4.45:3000/register`, { firstName: user.firstName })
+    axios.post(`https://7b561c39.ngrok.io/register`, this.state)
         .then(res => {
           console.log(res);
           console.log(res.data);
@@ -60,9 +57,16 @@ class Register extends Component {
             <Input
               nameField="lastName"
               label="Lastname"
-              type="email"
+              type="text"
               placeholder="Doe"
               changed={this.onInputChange}
+            />
+            <Input
+                nameField="mail"
+                label="Mail"
+                type="email"
+                placeholder="example@gmail.com"
+                changed={this.onInputChange}
             />
             <Input
               nameField="plainPassword"
@@ -85,14 +89,14 @@ class Register extends Component {
             <Input
               nameField="companyName"
               label="Company name"
-              type="phone"
+              type="text"
               placeholder="WeDev"
               changed={this.onInputChange}
             />
             <Input
               nameField="companySiret"
               label="SIRET"
-              type="phone"
+              type="text"
               placeholder="example@gmail.com"
               changed={this.onInputChange}
             />
