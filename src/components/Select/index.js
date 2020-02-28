@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import ReactSelect from 'react-select'
+import colors from '../../../src/assets/sass/colors.scss';
+
 const customStyles = {
     indicatorsContainer: () => ({
         // none of react-select's styles are passed to <Control />
@@ -31,7 +33,7 @@ class Select extends Component {
                         ...theme,
                         colors: {
                             ...theme.colors,
-                            primary: '#2ECC71',
+                            primary: colors.emeraud,
                         },
                     })}
                     options={this.props.values}
