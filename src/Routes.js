@@ -7,7 +7,7 @@ import Dashboard from "./pages/Dashboard";
 
 export class Routes extends Component {
   render() {
-    const isLoggedIn = false;
+    const isLoggedIn = true;
     return (
       <div>
         {isLoggedIn ? (
