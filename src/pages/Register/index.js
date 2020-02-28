@@ -37,11 +37,15 @@ class Register extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    axios.post(`https://7b561c39.ngrok.io/register`, this.state)
+    axios.post(`http://7704840a.ngrok.io/register`, this.state)
         .then(res => {
-          console.log(res);
-          console.log(res.data);
-        })
+          const token = res.data.token;
+          if(res.status = 200) {
+            //user connecté
+          }
+        }).catch(err => {
+      console.log(err.response.data.error)
+    })
   };
 
   render() {
