@@ -22,6 +22,7 @@ a {
   display: block;
   text-decoration: none;
   transition: all .3s;
+
   &:hover {
     transition: all .3s;
   }
@@ -33,4 +34,8 @@ ul {
 
 .fwb {
   font-weight: bold;
+}
+
+.upr {
+  text-transform: uppercase;
 }

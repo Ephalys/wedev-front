@@ -3,8 +3,14 @@
 .btn {
     text-align: center;
     transition: all .3s;
+
     &:hover {
         transition: all .3s;
+    }
+
+    &__std-width {
+        margin: auto;
+        width: 50%;
     }
 
     &__large {
@@ -21,6 +27,10 @@
 
     &__rounded {
         border-radius: 30px;
+    }
+
+    &__bwr {
+        border-radius: 10px;
     }
 
     &__green {
@@ -42,12 +52,8 @@
         border-radius: 3px;
     }
 
-    &__green-sea {
-        color: $greensea;
-        background-color: $white;
-        border: 2px solid $greensea;
-        border-radius: 3px;
-    }
+
+
 
     &__light-grey {
         color: $black;
@@ -60,15 +66,18 @@
         color: $black;
         border: 2px solid $black;
         text-transform: uppercase;
+
         &:hover {
             background-color: $black;
             color: $white;
         }
     }
+
     &__white {
         color: $white;
         border: 2px solid $white;
         text-transform: uppercase;
+
         &:hover {
             background-color: $white;
             color: $black;
