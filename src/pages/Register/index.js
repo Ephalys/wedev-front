@@ -21,9 +21,9 @@ const companyStatus = [
 
 class Register extends Component {
 
-  onInputChange = (event, field) => {
+  onInputChange = (event) => {
     this.setState({
-      field: event.target.value
+      [event.target.name]: event.target.value
     });
   };
 
@@ -32,12 +32,6 @@ class Register extends Component {
 
     const user = {
       firstName: event.target.value,
-      lastName: this.state.lastName,
-      mail: this.state.mail,
-      plainPassword: this.state.lastName,
-      lastName: this.state.lastName,
-      lastName: this.state.lastName,
-      lastName: this.state.lastName,
     };
 
     axios.post(`http://10.92.4.45:3000/register`, { firstName: user.firstName })
@@ -48,6 +42,9 @@ class Register extends Component {
   };
 
   render() {
+    console.log(
+        this.state
+    );
     return (
       <div className="register">
         <div className="register__form">
@@ -58,52 +55,52 @@ class Register extends Component {
               label="Firstname"
               type="text"
               placeholder="John"
-              changed={this.onInputChange(event, 'firstName')}
+              changed={this.onInputChange}
             />
             <Input
               nameField="lastName"
               label="Lastname"
               type="email"
               placeholder="Doe"
-              changed={this.onInputChange(event, 'lastName')}
+              changed={this.onInputChange}
             />
             <Input
               nameField="plainPassword"
               label="Password"
               type="password"
               placeholder="Must have at least 6 characters"
-              changed={this.onInputChange(event, 'plainPassword')}
+              changed={this.onInputChange}
             />
             <Input
               nameField="phone"
               label="Phone"
               type="phone"
               placeholder="01 23 45 67 89"
-              changed={this.onInputChange(event, 'phone')}
+              changed={this.onInputChange}
             />
             <Select nameField="profile"
                     values={profileList} label="Profile"
-                    changed={this.onInputChange(event, 'profile')}
+                    changed={this.onInputChange}
             />
             <Input
               nameField="companyName"
               label="Company name"
               type="phone"
               placeholder="WeDev"
-              changed={this.onInputChange(event, 'companyName')}
+              changed={this.onInputChange}
             />
             <Input
               nameField="companySiret"
               label="SIRET"
               type="phone"
               placeholder="example@gmail.com"
-              changed={this.onInputChange(event, 'companySiret')}
+              changed={this.onInputChange}
             />
             <Select
               nameField="companyStatus"
               values={companyStatus}
               label="Company Status"
-              changed={this.onInputChange(event, 'companyStatus')}
+              changed={this.onInputChange}
             />
             <input
               type="submit"
