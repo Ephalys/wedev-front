@@ -1,22 +1,65 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import Input from "../../components/Input";
-import './login.scss'
+import "./login.scss";
+import axios from "axios";
 
 class Login extends Component {
-    render() {
-        return (
-            <div className="login">
-                <div className="login__form">
-                    <form action="">
-                        <h1>Login</h1>
-                        <Input label="Mail" type="email" placeholder="example@gmail.com"/>
-                        <Input label="Password" type="password" placeholder="Must have at least 6 characters"/>
-                        <input type="submit" value="Login" className="btn btn__rounded btn__green btn__letter-spacing fwb"/>
-                    </form>
-                </div>
-            </div>
-        );
-    }
+  state = {};
+
+  onInputChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    axios
+      .post(`https://jiraf-back.herokuapp.com/login`, this.state)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+      })
+      .catch(err => {
+        alert(err.response.data.error);
+      });
+  };
+
+  render() {
+    console.log(this.state);
+
+    return (
+      <div className="login">
+        <div className="login__form">
+          <form action="">
+            <h1>Login</h1>
+            <Input
+              nameField="mail"
+              label="Mail"
+              type="email"
+              placeholder="example@gmail.com"
+              changed={this.onInputChange}
+            />
+            <Input
+              nameField="plainPassword"
+              label="Password"
+              type="password"
+              placeholder="Must have at least 6 characters"
+              changed={this.onInputChange}
+            />
+            <input
+              onClick={this.handleSubmit}
+              type="submit"
+              value="Login"
+              className="btn btn__rounded btn__green btn__letter-spacing fwb"
+            />
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Login;

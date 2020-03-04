@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Input from "../../components/Input";
 import "./register.scss";
 import Select from "../../components/Select";
-import axios from 'axios';
+import axios from "axios";
 
 const profileList = [
   { value: "back", label: "Back-end" },
@@ -14,15 +14,15 @@ const profileList = [
 const companyStatus = [
   { value: "sas", label: "SAS" },
   { value: "SASU", label: "SASU" },
-  { value: "autoentrepeneur", label: "Auto entrepreneur" },
+  { value: "autoentrepreneur", label: "Auto entrepreneur" },
   { value: "EURL", label: "EURL" },
   { value: "SARL", label: "SARL" }
 ];
 
 class Register extends Component {
-  state={};
+  state = {};
 
-  onInputChange = (event) => {
+  onInputChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -37,15 +37,17 @@ class Register extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    axios.post(`http://7704840a.ngrok.io/register`, this.state)
-        .then(res => {
-          const token = res.data.token;
-          if(res.status = 200) {
-            //user connecté
-          }
-        }).catch(err => {
-      console.log(err.response.data.error)
-    })
+    axios
+      .post(`https://jiraf-back.herokuapp.com/register`, this.state)
+      .then(res => {
+        const token = res.data.token;
+        if ((res.status = 200)) {
+          //user connecté
+        }
+      })
+      .catch(err => {
+        console.log(err.response.data.error);
+      });
   };
 
   render() {
@@ -69,11 +71,11 @@ class Register extends Component {
               changed={this.onInputChange}
             />
             <Input
-                nameField="mail"
-                label="Mail"
-                type="email"
-                placeholder="example@gmail.com"
-                changed={this.onInputChange}
+              nameField="mail"
+              label="Mail"
+              type="email"
+              placeholder="example@gmail.com"
+              changed={this.onInputChange}
             />
             <Input
               nameField="plainPassword"
@@ -89,9 +91,11 @@ class Register extends Component {
               placeholder="01 23 45 67 89"
               changed={this.onInputChange}
             />
-            <Select nameField="profile"
-                    values={profileList} label="Profile"
-                    changed={this.onSelectChange}
+            <Select
+              nameField="profile"
+              values={profileList}
+              label="Profile"
+              changed={this.onSelectChange}
             />
             <Input
               nameField="companyName"

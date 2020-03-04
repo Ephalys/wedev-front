@@ -4,6 +4,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
+import Projects from "./pages/Projects/Projects";
+import CreateProject from "./pages/Projects/create";
+import CreateClient from "./pages/Clients/CreateClient";
 
 export class Routes extends Component {
   render() {
@@ -17,6 +20,10 @@ export class Routes extends Component {
         )}
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/projects" component={Projects} />
+
+        <Route exact path="/projects/create" component={CreateProject} />
+        <Route exact path="/client/create" component={CreateClient} />
       </div>
     );
   }
