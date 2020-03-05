@@ -12,7 +12,7 @@ class Projects extends Component {
       });
   }
   render() {
-    return <div>oui</div>;
+    return <div>Projects</div>;
   }
 }
 

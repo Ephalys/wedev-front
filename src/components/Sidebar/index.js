@@ -7,6 +7,7 @@ class Sidebar extends Component {
     this.state = {
       //   menu: ["Dashboard", "Clients", "Blahblah"]
       menu: [
+        { name: "Dashboard", link: "/" },
         { name: "Create Project", link: "/projects/create" },
         { name: "Create client", link: "/client/create" },
         { name: "Fetch my projects", link: "/projects" },
@@ -20,8 +21,6 @@ class Sidebar extends Component {
       <div className="sidebar">
         <ul>
           {this.state.menu.map(function(item, i) {
-            console.log(item);
-
             return (
               <li key={i}>
                 <a href={item.link}>{item.name}</a>
