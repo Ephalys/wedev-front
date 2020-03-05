@@ -3,15 +3,10 @@
 
 .listblock {
     display: flex;
-    padding: 50px;
     text-align: left;
 
     @media (max-width: $screen-max-md) {
         flex-direction: column;
-    }
-
-    @media (max-width: $screen-max-md) {
-     padding: 20px;
     }
 
     &__left {

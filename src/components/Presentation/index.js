@@ -11,7 +11,7 @@ import { Element } from 'react-scroll'
 class Presentation extends Component {
   render() {
     return (
-        <Element className="presentation" name="presentation">
+        <Element className="presentation container" name="presentation">
           <p className="presentation__label fwb">Voici WeDev</p>
           <h2>Application de gestion de projet pour les dev</h2>
           <p className="presentation__text">

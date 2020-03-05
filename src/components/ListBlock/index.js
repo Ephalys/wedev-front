@@ -4,7 +4,7 @@ import './listblock.scss'
 class ListBlock extends Component {
     render() {
         return (
-            <div className="listblock">
+            <div className="listblock container">
                 <div className="listblock__left">
                     <p className="title-label">comment ça marche ?</p>
                     <h3 className="title">
