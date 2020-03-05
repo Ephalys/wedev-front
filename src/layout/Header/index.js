@@ -11,6 +11,7 @@ class Header extends Component {
         <Button
           classes="btn btn__black btn__large btn__rounded btn__letter-spacing fwb"
           text="Login"
+          href="/login"
         />
       </header>
     );

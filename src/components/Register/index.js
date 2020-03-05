@@ -19,6 +19,7 @@ class Register extends Component {
           <Button
             classes="btn btn__green btn__bwr btn__large upr fwb btn__std-width"
             text="Je m'inscris"
+            href="/register"
           ></Button>
         </div>
       </div>
