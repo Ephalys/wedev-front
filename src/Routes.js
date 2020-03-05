@@ -10,7 +10,7 @@ import CreateClient from "./pages/Clients/CreateClient";
 
 export class Routes extends Component {
   render() {
-    const isLoggedIn = false;
+    const isLoggedIn = true;
     return (
       <div>
         {isLoggedIn ? (
