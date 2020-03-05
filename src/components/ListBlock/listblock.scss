@@ -3,7 +3,6 @@
 
 .listblock {
     display: flex;
-    padding: 50px;
     text-align: left;
 
     @media (max-width: $screen-max-md) {
@@ -12,6 +11,11 @@
 
     &__left {
         padding-right: 50px;
+
+        @media (max-width: $screen-max-md) {
+            padding: 0;
+        }
+
         .title-label {
             text-transform: uppercase;
             font-size: 11px;
@@ -31,5 +35,9 @@
     }
     &__right {
         padding-left: 50px;
+
+        @media (max-width: $screen-max-md) {
+            padding: 0;
+        }
     }
 }

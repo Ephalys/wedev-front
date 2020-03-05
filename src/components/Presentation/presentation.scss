@@ -1,10 +1,10 @@
 @import '../../assets/sass/colors.scss';
+@import '../../assets/sass/breakpoints.scss';
 
 .presentation {
     color: $white;
     background-color: $blue;
     text-align: center;
-    padding: 3%;
 
     &__label {
         font-size: 25px;
@@ -23,17 +23,28 @@
         width: 70%;
         margin: auto;
         line-height: 30px;
+
+        @media (max-width: $screen-max-sm) {
+            width: 100%;
+        }
     }
 
-    ul {
+    &__icons {
         display: flex;
-        justify-content: space-evenly;
-        margin: 3%;
+        margin: 70px 0 50px;
 
-        li {
-            list-style: none;
-            width: 13%;
-            margin: 2%;
+        @media (max-width: $screen-max-sm) {
+            flex-direction: column;
+            margin: 50px 0 30px;
+        }
+
+        &-block {
+            flex-basis: 100%;
+            padding: 0 15px;
+
+            @media (max-width: $screen-max-sm) {
+                padding: 10px 0;
+            }
         }
     }
 }
