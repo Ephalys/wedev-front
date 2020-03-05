@@ -38,7 +38,7 @@ class Register extends Component {
     event.preventDefault();
 
     axios
-      .post(`/register`)
+      .post(`/register`, this.state)
       .then(res => {
         // const token = res.data.token;
         if ((res.status = 200)) {
@@ -51,6 +51,8 @@ class Register extends Component {
   };
 
   render() {
+    console.log(this.state);
+
     return (
       <div className="register">
         <div className="register__form">
