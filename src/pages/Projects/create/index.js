@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Input from "../../../components/Input/index";
-import axios from "axios";
+import axios from "../../../axios-config";
 
 class Create extends Component {
   state = {};
@@ -15,13 +15,13 @@ class Create extends Component {
     event.preventDefault();
 
     axios
-      .post(`https://4bd2d8e5.ngrok.io/project`, this.state, {
+      .post(`/project`, this.state, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
         console.log(res.data);
 
-        const token = res.data.token;
+        // const token = res.data.token;
         if ((res.status = 200)) {
           //user connecté
         }
