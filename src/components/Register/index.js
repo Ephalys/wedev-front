@@ -7,11 +7,11 @@ class Register extends Component {
   render() {
     return (
       <div
-        className="Register"
+        className="register"
         style={{ backgroundImage: `url(${background})` }}
       >
-        <div className="Container">
-          <h3 className="upr btn__letter-spacing">Offre de lancement</h3>
+        <div className="container">
+          <h3 className="text-uppercase btn__letter-spacing">Offre de lancement</h3>
           <p className="fwb">
             inscrivez-vous et recevez prochainement un accès premium à
             l'application WeAreData
@@ -20,7 +20,7 @@ class Register extends Component {
             classes="btn btn__green btn__bwr btn__large upr fwb btn__std-width"
             text="Je m'inscris"
             href="/register"
-          ></Button>
+          />
         </div>
       </div>
     );
