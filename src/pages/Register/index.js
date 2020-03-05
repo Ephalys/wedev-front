@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Input from "../../components/Input";
 import "./register.scss";
 import Select from "../../components/Select";
-import axios from "axios";
+import axios from "../../axios-config";
 
 const profileList = [
   { value: "back", label: "Back-end" },
@@ -38,9 +38,9 @@ class Register extends Component {
     event.preventDefault();
 
     axios
-      .post(`https://jiraf-back.herokuapp.com/register`, this.state)
+      .post(`/register`, this.state)
       .then(res => {
-        const token = res.data.token;
+        // const token = res.data.token;
         if ((res.status = 200)) {
           //user connecté
         }
@@ -51,6 +51,8 @@ class Register extends Component {
   };
 
   render() {
+    console.log(this.state);
+
     return (
       <div className="register">
         <div className="register__form">

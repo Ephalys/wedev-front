@@ -4,7 +4,7 @@ import './listblock.scss'
 class ListBlock extends Component {
     render() {
         return (
-            <div className="listblock">
+            <div className="listblock container">
                 <div className="listblock__left">
                     <p className="title-label">comment ça marche ?</p>
                     <h3 className="title">
@@ -17,25 +17,40 @@ class ListBlock extends Component {
                 </div>
                 <div className="listblock__right">
                     <div className="list__item">
-                        <h4>Créer vos projets</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi dolores ea
-                            error eveniet hic id illo, minima nam nemo obcaecati, quod sit sunt tenetur totam voluptas
-                            voluptatum. Repellat, totam?
-                        </p>
+                        <div className="list__item-number">
+                            1
+                        </div>
+                        <h4 className="list__item-title">Créer vos projets</h4>
+                        <div className="list__item-text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi dolores ea
+                                error eveniet hic id illo, minima nam nemo obcaecati, quod sit sunt tenetur totam voluptas
+                                voluptatum. Repellat, totam?
+                            </p>
+                        </div>
                     </div>
                     <div className="list__item">
-                        <h4>Ajouter vos sprints</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi dolores ea
-                            error eveniet hic id illo, minima nam nemo obcaecati, quod sit sunt tenetur totam voluptas
-                            voluptatum. Repellat, totam?
-                        </p>
+                        <div className="list__item-number">
+                            2
+                        </div>
+                        <h4 className="list__item-title">Ajouter vos sprints</h4>
+                        <div className="list__item-text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi dolores ea
+                                error eveniet hic id illo, minima nam nemo obcaecati, quod sit sunt tenetur totam voluptas
+                                voluptatum. Repellat, totam?
+                            </p>
+                        </div>
                     </div>
                     <div className="list__item">
-                        <h4>Affecter vos tâches</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi dolores ea
-                            error eveniet hic id illo, minima nam nemo obcaecati, quod sit sunt tenetur totam voluptas
-                            voluptatum. Repellat, totam?
-                        </p>
+                        <div className="list__item-number">
+                            3
+                        </div>
+                        <h4 className="list__item-title">Affecter vos tâches</h4>
+                        <div className="list__item-text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi dolores ea
+                                error eveniet hic id illo, minima nam nemo obcaecati, quod sit sunt tenetur totam voluptas
+                                voluptatum. Repellat, totam?
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

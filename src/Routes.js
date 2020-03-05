@@ -8,16 +8,17 @@ import Projects from "./pages/Projects/Projects";
 import CreateProject from "./pages/Projects/create";
 import CreateClient from "./pages/Clients/CreateClient";
 
-export class Routes extends Component {
+class Routes extends Component {
   render() {
     const isLoggedIn = true;
     return (
       <div>
         {isLoggedIn ? (
-          <Route exact path="/" component={Dashboard} />
+          <Route path="/" component={Dashboard} />
         ) : (
           <Route exact path="/" component={Home} />
         )}
+
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/projects" component={Projects} />

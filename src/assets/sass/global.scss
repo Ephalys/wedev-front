@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 
+@import '../../assets/sass/breakpoints';
+
 * {
   box-sizing: border-box;
 }
@@ -42,4 +44,12 @@ ul {
 
 a {
   cursor: pointer;
+}
+
+.container {
+  padding: 50px;
+
+  @media (max-width: $screen-max-md) {
+    padding: 20px;
+  }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Input from "../../components/Input";
 import "./login.scss";
-import axios from "axios";
+import axios from "../../axios-config";
 
 class Login extends Component {
   state = {};
@@ -16,7 +16,7 @@ class Login extends Component {
     event.preventDefault();
 
     axios
-      .post(`https://4bd2d8e5.ngrok.io/login`, this.state)
+      .post(`/login`, this.state)
       .then(res => {
         console.log(res);
         console.log(res.data);
