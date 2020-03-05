@@ -3,6 +3,8 @@ import Socials from "../Socials";
 import Button from '../Button'
 import heroBg from "../../assets/images/hero-bg.png";
 import "./hero.scss";
+import { Link } from 'react-scroll'
+
 
 class Index extends Component {
     render() {
@@ -23,10 +25,15 @@ class Index extends Component {
                 </div>
                 <div className="hero__footer">
                     <Socials theme="dark" />
-                    <Button
-                        classes="btn btn__white btn__large btn__rounded btn__letter-spacing fwb"
-                        text="Explore"
-                    />
+                    <Link
+                        activeClass="active"
+                        className="btn btn__white btn__large btn__rounded btn__letter-spacing fwb"
+                        to="presentation"
+                        spy={true}
+                        smooth={true}
+                        duration={500} >
+                        Explore
+                    </Link>
                 </div>
             </div>
         );

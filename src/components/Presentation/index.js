@@ -5,11 +5,13 @@ import icon2 from "../../assets/images/icon2.svg";
 import icon3 from "../../assets/images/icon3.svg";
 import icon4 from "../../assets/images/icon4.svg";
 import "../../assets/sass/global.scss";
+import { Element } from 'react-scroll'
+
 
 class Presentation extends Component {
   render() {
     return (
-      <div className="presentation">
+      <Element className="presentation" name="presentation">
         <p className="presentation__label fwb">Voici WeDev</p>
         <h2>Application de gestion de projet pour les dev</h2>
         <p className="presentation__text">
@@ -39,7 +41,7 @@ class Presentation extends Component {
             <h4>Des utilitaires pour votre dev</h4>
           </li>
         </ul>
-      </div>
+      </Element>
     );
   }
 }

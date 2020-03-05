@@ -1,7 +1,7 @@
 @import '../../assets/sass/colors';
 @import '../../assets/sass/breakpoints';
 
-.Register {
+.register {
     background-size: cover;
     width: 100%;
     padding: 18% 0;
@@ -17,11 +17,16 @@
         margin: 5vh 0;
     }
 
-    .Container {
+    .container {
         margin: auto;
         width: 70%;
         background-color: $white;
         box-shadow: 5px 10px 20px 5px grey;
-        padding: 6% 20%;
+        padding: 50px 100px;
+
+        @media (max-width: $screen-max-sm) {
+            width: 90%;
+            padding: 30px 15px;
+        }
     }
 }
