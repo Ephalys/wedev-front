@@ -14,17 +14,19 @@ class CreateClient extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    // axios
-    //   .post(`https://jiraf-back.herokuapp.com/register`, this.state)
-    //   .then(res => {
-    //     const token = res.data.token;
-    //     if ((res.status = 200)) {
-    //       //user connecté
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err.response.data.error);
-    //   });
+    axios
+      .post(`https://4bd2d8e5.ngrok.io/client`, this.state, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(res => {
+        const token = res.data.token;
+        if ((res.status = 200)) {
+          //user connecté
+        }
+      })
+      .catch(err => {
+        console.log(err.response.data.error);
+      });
   };
   render() {
     console.log(this.state);
@@ -74,6 +76,12 @@ class CreateClient extends Component {
             type="text"
             placeholder=""
             changed={this.onInputChange}
+          />
+          <input
+            onClick={this.handleSubmit}
+            type="submit"
+            value="Login"
+            className="btn btn__rounded btn__green btn__letter-spacing fwb"
           />
         </form>
       </div>

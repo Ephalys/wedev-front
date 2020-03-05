@@ -16,7 +16,7 @@ class Login extends Component {
     event.preventDefault();
 
     axios
-      .post(`https://jiraf-back.herokuapp.com/login`, this.state)
+      .post(`https://4bd2d8e5.ngrok.io/login`, this.state)
       .then(res => {
         console.log(res);
         console.log(res.data);
