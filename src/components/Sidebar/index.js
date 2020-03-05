@@ -5,7 +5,14 @@ class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menu: ["Dashboard", "Clients", "Blahblah"]
+      //   menu: ["Dashboard", "Clients", "Blahblah"]
+      menu: [
+        { name: "Create Project", link: "/projects/create" },
+        { name: "Create client", link: "/client/create" },
+        { name: "Fetch my projects", link: "/projects" },
+        { name: "register", link: "/register" },
+        { name: "login", link: "/login" }
+      ]
     };
   }
   render() {
@@ -13,21 +20,14 @@ class Sidebar extends Component {
       <div className="sidebar">
         <ul>
           {this.state.menu.map(function(item, i) {
+            console.log(item);
+
             return (
               <li key={i}>
-                <a href="">{item}</a>
+                <a href={item.link}>{item.name}</a>
               </li>
             );
           })}
-          <li>
-            <a href="/projects/create">Create Project</a>
-          </li>
-          <li>
-            <a href="/projects"> Project</a>
-          </li>
-          <li>
-            <a href="/client/create"> Create Client</a>
-          </li>
         </ul>
       </div>
     );
