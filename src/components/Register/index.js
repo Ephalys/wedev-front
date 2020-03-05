@@ -17,7 +17,7 @@ class Register extends Component {
             l'application WeAreData
           </p>
           <Button
-            classes="btn btn__green btn__bwr btn__large upr fwb btn__std-width"
+            classes="btn btn__green btn__bwr btn__large upr fwb"
             text="Je m'inscris"
             href="/register"
           />
