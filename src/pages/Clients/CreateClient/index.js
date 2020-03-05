@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Input from "../../../components/Input";
-import axios from "axios";
+import axios from "../../../axios-config";
 
 class CreateClient extends Component {
   state = {};
@@ -15,11 +15,11 @@ class CreateClient extends Component {
     event.preventDefault();
 
     axios
-      .post(`https://4bd2d8e5.ngrok.io/client`, this.state, {
+      .post(`/client`, this.state, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        const token = res.data.token;
+        // const token = res.data.token;
         if ((res.status = 200)) {
           //user connecté
         }

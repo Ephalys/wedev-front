@@ -5,14 +5,12 @@ class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //   menu: ["Dashboard", "Clients", "Blahblah"]
       menu: [
         { name: "Dashboard", link: "/" },
         { name: "Create Project", link: "/projects/create" },
         { name: "Create client", link: "/client/create" },
         { name: "Fetch my projects", link: "/projects" },
-        { name: "register", link: "/register" },
-        { name: "login", link: "/login" }
+        { name: "Log Out", link: "/logout" }
       ]
     };
   }

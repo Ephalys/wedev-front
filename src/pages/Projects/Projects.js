@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "../../axios-config";
 
 class Projects extends Component {
   componentDidMount() {
     axios
-      .get("https://4bd2d8e5.ngrok.io/project", {
+      .get(`/project`, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(response => {
