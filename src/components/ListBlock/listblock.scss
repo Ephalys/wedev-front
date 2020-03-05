@@ -10,8 +10,17 @@
         flex-direction: column;
     }
 
+    @media (max-width: $screen-max-sm) {
+     padding: 20px;
+    }
+
     &__left {
         padding-right: 50px;
+
+        @media (max-width: $screen-max-sm) {
+            padding: 0;
+        }
+
         .title-label {
             text-transform: uppercase;
             font-size: 11px;
@@ -31,5 +40,9 @@
     }
     &__right {
         padding-left: 50px;
+
+        @media (max-width: $screen-max-sm) {
+            padding: 0;
+        }
     }
 }
