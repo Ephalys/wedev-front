@@ -17,6 +17,7 @@ class Index extends Component {
                         <Button
                             classes="btn btn__blue btn__large btn__rounded btn__letter-spacing fwb"
                             text="Inscrivez-vous"
+                            href="/register"
                         />
                     </div>
                 </div>
