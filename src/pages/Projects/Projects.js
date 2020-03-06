@@ -39,15 +39,6 @@ class Projects extends Component {
         />
       );
     });
-    // let projects = null;
-
-    // if (this.state.data) {
-    //   projects = (
-    //     <div>
-    //       <Projects projects={this.state.data} />
-    //     </div>
-    //   );
-    // }
 
     return (
       <div>

@@ -14,7 +14,7 @@ class Routes extends Component {
     return (
       <div>
         {isLoggedIn ? (
-          <Route path="/" component={Dashboard} />
+          <Route exact path="/" component={Dashboard} />
         ) : (
           <Route exact path="/" component={Home} />
         )}

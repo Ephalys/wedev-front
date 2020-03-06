@@ -5,11 +5,13 @@ import "./App.css";
 import Routes from "./Routes";
 // import Sidebar from "./components/Sidebar";
 
+import Container from "./pages/Container";
+
 function App() {
   return (
     <div className="App">
       {/* <Sidebar /> */}
-      <Routes />
+      <Container />
     </div>
   );
 }
