@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./project.scss";
+import { Link } from "react-router-dom";
 
 class Project extends Component {
   render() {
@@ -17,7 +18,7 @@ class Project extends Component {
         <p>{this.props.user}</p>
 
         <div>
-          <a href={"/project/" + {this.props.id} + "/createsprint"}>sprint</a>
+          <Link href="/project/createsprint">sprint</Link>
         </div>
       </div>
     );

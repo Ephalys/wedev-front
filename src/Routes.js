@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
-import Projects from "./pages/Projects/Projects";
+import Projects from "./pages/Projects";
 import CreateProject from "./pages/Projects/create";
 import CreateClient from "./pages/Clients/CreateClient";
 import CreateSprint from "./pages/Sprints/CreateSprint";
