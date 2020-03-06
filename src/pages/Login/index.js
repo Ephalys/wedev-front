@@ -2,12 +2,19 @@ import React, { Component } from "react";
 import Input from "../../components/Input";
 import "./login.scss";
 import axios from "../../axios-config";
+import verifyToken from "../../utils/verify_token";
 import history from "../../utils/history";
 
 class Login extends Component {
-  state = {
-    isLoggedIn : false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn : false
+    };
+    if(verifyToken) {
+      history.push('/');
+    }
+  }
 
   onInputChange = event => {
     this.setState({
