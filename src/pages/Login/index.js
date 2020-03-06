@@ -31,6 +31,7 @@ class Login extends Component {
         console.log(res);
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
         history.push('/');
       })
       .catch(err => {
