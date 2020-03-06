@@ -10,7 +10,6 @@ class Sidebar extends Component {
         { name: "Create Project", link: "/projects/create" },
         { name: "Create client", link: "/client/create" },
         { name: "Fetch my projects", link: "/projects" },
-        { name: "Log Out", link: "/logout" }
       ]
     };
   }
