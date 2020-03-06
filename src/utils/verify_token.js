@@ -1,7 +1,5 @@
 const verifyToken = () => {
-    return (
-        localStorage.getItem('token')
-    );
+    return localStorage.getItem('token');
 };
 
 export default verifyToken;

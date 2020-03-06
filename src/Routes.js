@@ -12,9 +12,10 @@ import history from "./utils/history";
 
 class Routes extends Component {
     render() {
+        console.log(verifyToken());
         return (
             <Router history={history}>
-                {verifyToken ? (
+                {verifyToken() ? (
                     <Route path="/" component={Dashboard} />
                 ) : (
                     <Route exact path="/" component={Home} />

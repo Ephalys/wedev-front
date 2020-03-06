@@ -11,7 +11,7 @@ class Login extends Component {
     this.state = {
       isLoggedIn : false
     };
-    if(verifyToken) {
+    if(verifyToken()) {
       history.push('/');
     }
   }
