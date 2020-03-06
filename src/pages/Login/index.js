@@ -4,12 +4,15 @@ import "./login.scss";
 import axios from "../../axios-config";
 import verifyToken from "../../utils/verify_token";
 import history from "../../utils/history";
+import { Lottie } from '@crello/react-lottie'
+import animationData from '../../utils/loader.json'
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn : false
+      isLoggedIn : false,
+      loading: false
     };
     if(verifyToken()) {
       history.push('/');
@@ -24,21 +27,23 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    this.setState({ loading: true });
     return axios
         .post(`/login`, this.state)
         .then(res => {
           localStorage.setItem("token", res.data.token);
+          this.setState({ loading: false });
         })
-        .then(() => {
-          history.push('/dashboard');
-        })
+         .then(() => {
+           history.push('/dashboard');
+         })
         .catch(err => {
           alert(err.response.data.error);
         });
   };
 
   render() {
+    const loaderOption = {animationData: animationData, loop: true};
     return (
         <div className="login">
           <div className="login__form">
@@ -58,12 +63,20 @@ class Login extends Component {
                   placeholder="Must have at least 6 characters"
                   changed={this.onInputChange}
               />
-              <input
+              <button
                   onClick={this.handleSubmit}
                   type="submit"
-                  value="Login"
-                  className="btn btn__rounded btn__green btn__letter-spacing fwb"
-              />
+                  className="btn btn__rounded btn__green btn__letter-spacing fwb btn__with-loader"
+              >
+                {this.state.loading && (
+                <Lottie
+                    config={loaderOption}
+                    height={30}
+                    width={30}
+                    className="loader__in-btn"/>
+                )}
+                Login
+              </button>
             </form>
           </div>
         </div>
