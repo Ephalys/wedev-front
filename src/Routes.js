@@ -24,11 +24,7 @@ class Routes extends Component {
 
         <Route exact path="/projects/create" component={CreateProject} />
         <Route exact path="/client/create" component={CreateClient} />
-        <Route
-          exact
-          path="/project/createsprint/:id"
-          component={CreateSprint}
-        />
+
         <Route exact path="/detailsproject/:id" component={DetailsProject} />
         <Route
           exact
