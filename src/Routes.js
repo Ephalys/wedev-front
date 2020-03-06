@@ -9,6 +9,8 @@ import CreateProject from "./pages/Projects/create";
 import CreateClient from "./pages/Clients/CreateClient";
 import history from "./utils/history";
 import CreateSprint from "./pages/Sprints/CreateSprint";
+import Project from "./pages/Projects/Project";
+import DetailsProject from "./pages/Projects/ProjectDetails.js";
 
 class Routes extends Component {
   render() {
@@ -25,6 +27,12 @@ class Routes extends Component {
         <Route
           exact
           path="/project/createsprint/:id"
+          component={CreateSprint}
+        />
+        <Route exact path="/detailsproject/:id" component={DetailsProject} />
+        <Route
+          exact
+          path="/detailsproject/createsprint/:id"
           component={CreateSprint}
         />
       </Router>

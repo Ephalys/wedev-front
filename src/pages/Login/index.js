@@ -32,6 +32,7 @@ class Login extends Component {
         .post(`/login`, this.state)
         .then(res => {
           localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
           this.setState({ loading: false });
         })
          .then(() => {

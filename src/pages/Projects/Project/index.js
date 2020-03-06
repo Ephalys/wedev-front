@@ -29,8 +29,7 @@ class Project extends Component {
         <p>{this.props.user}</p>
         {this.BlogPost}
         <div>
-          {/* <Link to={}>sprint</Link> */}
-          <a href={("/project/createsprint/", this.props.id)}>sprint</a>
+          <a href={`/detailsproject/${this.props.id}`}>detail</a>
         </div>
       </div>
     );

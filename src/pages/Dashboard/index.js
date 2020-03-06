@@ -5,6 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import { Route } from "react-router-dom";
 import IndexDashboard from "../../components/IndexDashboard";
 import verifyToken from "../../utils/verify_token";
+import NavBar from "../../components/NavBar";
 
 class Dashboard extends Component {
   render() {
@@ -12,9 +13,12 @@ class Dashboard extends Component {
       <div>
         {verifyToken() ? (
           <div className="dashboard">
-            <Sidebar />
-            <div className="dashboard__content">
-              <Route path="/dashboard" component={IndexDashboard} />
+            <NavBar />
+            <div>
+              <Sidebar />
+              <div className="dashboard__content">
+                <Route path="/dashboard" component={IndexDashboard} />
+              </div>
             </div>
           </div>
         ) : (
