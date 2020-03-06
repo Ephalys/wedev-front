@@ -19,7 +19,6 @@ class Routes extends Component {
                 ) : (
                     <Route exact path="/" component={Home} />
                 )}
-
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/projects" component={Projects} />
