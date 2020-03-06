@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects/Projects";
 import CreateProject from "./pages/Projects/create";
 import CreateClient from "./pages/Clients/CreateClient";
+import CreateSprint from "./pages/Sprints/CreateSprint";
 
 class Routes extends Component {
   render() {
@@ -25,6 +26,11 @@ class Routes extends Component {
 
         <Route exact path="/projects/create" component={CreateProject} />
         <Route exact path="/client/create" component={CreateClient} />
+        <Route
+          exact
+          path="/project/:id/createsprint"
+          component={CreateSprint}
+        />
       </div>
     );
   }

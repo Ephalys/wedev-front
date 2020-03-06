@@ -36,6 +36,7 @@ class Projects extends Component {
           adr={el.adr}
           client={el.client}
           user={el.user}
+          id={el.id}
         />
       );
     });
