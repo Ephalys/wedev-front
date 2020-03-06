@@ -25,7 +25,7 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    if(verifyToken) {
+    if(verifyToken()) {
       history.push('/');
     }
   }

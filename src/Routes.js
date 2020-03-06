@@ -16,7 +16,7 @@ class Routes extends Component {
         return (
             <Router history={history}>
                 {verifyToken() ? (
-                    <Route path="/" component={Dashboard} />
+                    <Route exact path="/" component={Dashboard} />
                 ) : (
                     <Route exact path="/" component={Home} />
                 )}
