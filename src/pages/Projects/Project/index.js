@@ -1,8 +1,19 @@
 import React, { Component } from "react";
 import "./project.scss";
 import { Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams
+} from "react-router-dom";
 
 class Project extends Component {
+  constructor(props) {
+    super(props);
+    console.log();
+  }
+
   render() {
     return (
       <div className="project" onClick={this.props.click}>
@@ -16,9 +27,10 @@ class Project extends Component {
         <p>{this.props.adr}</p>
         <p>{this.props.client}</p>
         <p>{this.props.user}</p>
-
+        {this.BlogPost}
         <div>
-          <Link href="/project/createsprint">sprint</Link>
+          {/* <Link to={}>sprint</Link> */}
+          <a href={("/project/createsprint/", this.props.id)}>sprint</a>
         </div>
       </div>
     );

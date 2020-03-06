@@ -7,20 +7,15 @@ import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects";
 import CreateProject from "./pages/Projects/create";
 import CreateClient from "./pages/Clients/CreateClient";
-import CreateSprint from "./pages/Sprints/CreateSprint";
-import verifyToken from "./utils/verify_token";
 import history from "./utils/history";
+import CreateSprint from "./pages/Sprints/CreateSprint";
 
 class Routes extends Component {
   render() {
-    console.log(verifyToken());
     return (
       <Router history={history}>
-        {verifyToken() ? (
-          <Route path="/" component={Dashboard} />
-        ) : (
-          <Route exact path="/" component={Home} />
-        )}
+        <Route exact path="/" component={Home} />
+        <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/projects" component={Projects} />
@@ -29,7 +24,7 @@ class Routes extends Component {
         <Route exact path="/client/create" component={CreateClient} />
         <Route
           exact
-          path="/project/:id/createsprint"
+          path="/project/createsprint/:id"
           component={CreateSprint}
         />
       </Router>

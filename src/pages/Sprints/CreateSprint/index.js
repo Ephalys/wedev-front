@@ -3,6 +3,10 @@ import Input from "../../../components/Input";
 import axios from "axios";
 
 class CreateSprint extends Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props.params);
+  }
   state = {};
 
   onInputChange = event => {
