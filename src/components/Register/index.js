@@ -14,7 +14,7 @@ class Register extends Component {
           <h3 className="text-uppercase btn__letter-spacing">Offre de lancement</h3>
           <p className="fwb">
             inscrivez-vous et recevez prochainement un accès premium à
-            l'application WeAreData
+            l'application WeDev
           </p>
           <Button
             classes="btn btn__green btn__bwr btn__large upr fwb"

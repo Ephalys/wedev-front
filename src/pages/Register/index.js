@@ -3,6 +3,8 @@ import Input from "../../components/Input";
 import "./register.scss";
 import Select from "../../components/Select";
 import axios from "../../axios-config";
+import verifyToken from "../../utils/verify_token";
+import history from "../../utils/history";
 
 const profileList = [
   { value: "back", label: "Back-end" },
@@ -20,7 +22,13 @@ const companyStatus = [
 ];
 
 class Register extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {};
+    if(verifyToken) {
+      history.push('/');
+    }
+  }
 
   onInputChange = event => {
     this.setState({

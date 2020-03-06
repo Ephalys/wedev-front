@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, withRouter } from "react-router-dom";
+import { Router, Route, withRouter } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -8,18 +8,19 @@ import Projects from "./pages/Projects/Projects";
 import CreateProject from "./pages/Projects/create";
 import CreateClient from "./pages/Clients/CreateClient";
 import CreateSprint from "./pages/Sprints/CreateSprint";
+import verifyToken from "./utils/verify_token";
+import history from "./utils/history";
 
 class Routes extends Component {
   render() {
-    const isLoggedIn = true;
+    console.log(verifyToken());
     return (
-      <div>
-        {isLoggedIn ? (
-          <Route exact path="/" component={Dashboard} />
+      <Router history={history}>
+        {verifyToken() ? (
+          <Route path="/" component={Dashboard} />
         ) : (
           <Route exact path="/" component={Home} />
         )}
-
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/projects" component={Projects} />
@@ -31,7 +32,7 @@ class Routes extends Component {
           path="/project/:id/createsprint"
           component={CreateSprint}
         />
-      </div>
+      </Router>
     );
   }
 }
