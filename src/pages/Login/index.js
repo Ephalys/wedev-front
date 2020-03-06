@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import Input from "../../components/Input";
 import "./login.scss";
 import axios from "../../axios-config";
+import history from "../../utils/history";
 
 class Login extends Component {
-  state = {};
+  state = {
+    isLoggedIn : false
+  };
 
   onInputChange = event => {
     this.setState({
@@ -15,12 +18,13 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    axios
+    return axios
       .post(`/login`, this.state)
       .then(res => {
         console.log(res);
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
+        history.push('/');
       })
       .catch(err => {
         alert(err.response.data.error);
@@ -28,8 +32,6 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.state);
-
     return (
       <div className="login">
         <div className="login__form">
