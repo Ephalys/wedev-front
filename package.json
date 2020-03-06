@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@crello/react-lottie": "^0.0.8",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
@@ -10,6 +11,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "add": "^2.0.6",
     "axios": "^0.19.2",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
@@ -18,7 +20,8 @@
     "react-scripts": "3.4.0",
     "react-scroll": "^1.7.16",
     "react-select": "^3.0.8",
-    "webfontloader": "^1.6.28"
+    "webfontloader": "^1.6.28",
+    "yarn": "^1.22.0"
   },
   "scripts": {
     "start": "react-scripts start",
