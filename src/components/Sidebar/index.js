@@ -7,9 +7,9 @@ class Sidebar extends Component {
     this.state = {
       menu: [
         { name: "Dashboard", link: "/" },
-        { name: "Create Project", link: "/projects/create" },
-        { name: "Create client", link: "/client/create" },
-        { name: "Fetch my projects", link: "/projects" },
+        { name: "Create Project", link: "/dashboard/projects/create" },
+        { name: "Create client", link: "/dashboard/client/create" },
+        { name: "Fetch my projects", link: "/dashboard/projects" },
       ]
     };
   }
