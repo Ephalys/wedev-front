@@ -31,7 +31,7 @@ class DetailsProject extends Component {
         <div>DetailsProject</div>
         <div>
           <a
-            href={`/detailsproject/createsprint/${this.props.match.params.id}`}
+            href={`/dashboard/detailsproject/createsprint/${this.props.match.params.id}`}
           >
             sprint
           </a>

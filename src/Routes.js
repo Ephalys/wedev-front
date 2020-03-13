@@ -1,36 +1,53 @@
 import React, { Component } from "react";
-import { Router, Route, withRouter } from "react-router-dom";
+import { Route, Router, withRouter, Switch } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./layout/Dashboard";
 import Projects from "./pages/Projects";
 import CreateProject from "./pages/Projects/create";
 import CreateClient from "./pages/Clients/CreateClient";
 import history from "./utils/history";
+import IndexDashboard from "./components/IndexDashboard";
 import CreateSprint from "./pages/Sprints/CreateSprint";
-import Project from "./pages/Projects/Project";
-import DetailsProject from "./pages/Projects/ProjectDetails.js";
+import DetailsProject from "./pages/Projects/ProjectDetails";
 
 class Routes extends Component {
   render() {
     return (
       <Router history={history}>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/projects" component={Projects} />
+        <Route path="/dashboard/:path?" exact>
+          <Dashboard>
+            <Switch>
+              <Route path="/dashboard" exact component={IndexDashboard} />
+              <Route path="/dashboard/projects" component={Projects} />
+              <Route
+                path="/dashboard/projects/create"
+                component={CreateProject}
+              />
+              <Route path="/dashboard/client/create" component={CreateClient} />
+              <Route
+                exact
+                path="/dashboard/detailsproject/:id"
+                component={DetailsProject}
+              />
 
-        <Route exact path="/projects/create" component={CreateProject} />
-        <Route exact path="/client/create" component={CreateClient} />
+              <Route
+                exact
+                path="/dashboard/detailsproject/createsprint/:id"
+                component={CreateSprint}
+              />
+            </Switch>
+          </Dashboard>
+        </Route>
 
-        <Route exact path="/detailsproject/:id" component={DetailsProject} />
-        <Route
-          exact
-          path="/detailsproject/createsprint/:id"
-          component={CreateSprint}
-        />
+        <Route>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+          </Switch>
+        </Route>
       </Router>
     );
   }

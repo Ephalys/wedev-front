@@ -15,6 +15,8 @@ class Project extends Component {
   }
 
   render() {
+    console.log(this.props.id);
+
     return (
       <div className="project" onClick={this.props.click}>
         <p>{this.props.title}</p>
@@ -29,7 +31,7 @@ class Project extends Component {
         <p>{this.props.user}</p>
         {this.BlogPost}
         <div>
-          <a href={`/detailsproject/${this.props.id}`}>detail</a>
+          <a href={`/dashboard/detailsproject/${this.props.id}`}>detail</a>
         </div>
       </div>
     );
