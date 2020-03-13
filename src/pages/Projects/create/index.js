@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Input from "../../../components/Input/index";
 import axios from "../../../axios-config";
 
-class Create extends Component {
+class CreateProject extends Component {
   state = {};
 
   onInputChange = event => {
@@ -122,4 +122,4 @@ class Create extends Component {
   }
 }
 
-export default Create;
+export default CreateProject;

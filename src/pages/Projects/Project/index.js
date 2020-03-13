@@ -1,12 +1,5 @@
 import React, { Component } from "react";
 import "./project.scss";
-import { Link } from "react-router-dom";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams
-} from "react-router-dom";
 
 class Project extends Component {
   constructor(props) {

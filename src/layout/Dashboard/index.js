@@ -14,15 +14,17 @@ class Dashboard extends Component {
             <NavBar />
             <div>
               <Sidebar />
-              <div className="dashboard__content">
-                  {this.props.children}
-              </div>
+
+            </div>
+            <div className="dashboard__content">
+              {this.props.children}
             </div>
           </div>
         ) : (
           <Redirect to="/login" />
         )}
       </div>
+
     );
   }
 }

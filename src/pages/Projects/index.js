@@ -41,9 +41,10 @@ class Projects extends Component {
       );
     });
 
+
     return (
       <div>
-        <div>Projects</div>
+        <h3>Projects</h3>
         {projects}
       </div>
     );
