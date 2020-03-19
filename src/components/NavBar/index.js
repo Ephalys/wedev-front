@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './navbar.scss';
 import history from "../../utils/history";
+import logo from "../../assets/images/logo.svg";
 
 class NavBar extends Component {
   logout = () => {
@@ -21,6 +22,9 @@ class NavBar extends Component {
 
     return (
       <nav className="navbar">
+        <div className="navbar__left">
+          <img src={logo} alt="logo" />
+        </div>
         <div className="navbar__right">
           <div className="infos">
             <span className="name">{firstName} {lastName}</span>
