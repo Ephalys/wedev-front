@@ -7,9 +7,10 @@ import "./project-details.scss";
 class DetailsProject extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      project: []
+    };
   }
-
-  state = { isDisabled: true };
 
   componentDidMount() {
     axios
