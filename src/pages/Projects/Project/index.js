@@ -4,12 +4,9 @@ import "./project.scss";
 class Project extends Component {
   constructor(props) {
     super(props);
-    console.log();
   }
 
   render() {
-    console.log(this.props.id);
-
     return (
       <div className="project" onClick={this.props.click}>
         <p>{this.props.title}</p>

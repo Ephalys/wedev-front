@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import Input from "../../../components/Input";
-import axios from "axios";
+import axios from "../../../axios-config";
 
 class CreateSprint extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.params);
+    console.log(this.props.match.params.id);
   }
   state = {};
+
+  componentDidMount() {
+    this.setState({ project: this.props.match.params.id });
+  }
 
   onInputChange = event => {
     this.setState({
@@ -33,6 +37,8 @@ class CreateSprint extends Component {
       });
   };
   render() {
+    console.log(this.state);
+
     return (
       <div>
         <div>CreateSprint</div>

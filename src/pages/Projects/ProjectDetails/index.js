@@ -1,39 +1,46 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "../../../axios-config";
+import Input from "../../../components/Input";
 
 class DetailsProject extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.match.params.id);
   }
+
+  state = {};
 
   componentDidMount() {
     axios
-      .get(
-        `/project/1`,
-        // {
-        //   params: {
-        //     id: 1
-        //   }
-        // },
-        {
-          headers: { Authorization: localStorage.getItem("token") }
+      .get("/project/" + this.props.match.params.id, {
+        headers: {
+          Authorization: localStorage.getItem("token")
         }
-      )
+      })
       .then(response => {
-        console.log(response.data);
-        // this.setState({ projects: response.data.projects });
+        this.setState({ project: response.data.project });
       });
   }
   render() {
+    console.log(this.state);
+
     return (
       <div>
         <div>DetailsProject</div>
+        <form>
+          <Input
+            nameField="title"
+            label="Title"
+            type="text"
+            placeholder=""
+            valueField={this.state.project ? this.state.project.title : ""}
+            changed={this.onInputChange}
+          />
+        </form>
         <div>
           <a
             href={`/dashboard/detailsproject/createsprint/${this.props.match.params.id}`}
           >
-            sprint
+            create sprint
           </a>
         </div>
       </div>
