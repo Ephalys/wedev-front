@@ -25,7 +25,7 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    if(verifyToken()) {
+    if (verifyToken()) {
       history.push('/');
     }
   }
@@ -51,6 +51,9 @@ class Register extends Component {
         // const token = res.data.token;
         if ((res.status = 200)) {
           //user connecté
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+          history.push('/dashboard');
         }
       })
       .catch(err => {
