@@ -1,4 +1,5 @@
 @import "../../assets/sass/colors.scss";
+@import '../../assets/sass/breakpoints';
 
 .sidebar {
   width: 30%;
@@ -8,6 +9,15 @@
   top: 60px;
   box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
 
+  @media (max-width: $screen-max-md) {
+    width: 100%;
+    margin-left: 0;
+    position: relative;
+    min-height: unset;
+    left: unset;
+    top: unset;
+  }
+
   ul {
     display: flex;
     flex-direction: column;
@@ -16,6 +26,10 @@
     padding: 0;
     text-align: left;
 
+    @media (max-width: $screen-max-md) {
+      margin: 15px 5px;
+      flex-direction: row;
+    }
     li {
       margin: 5px 0;
       a {
