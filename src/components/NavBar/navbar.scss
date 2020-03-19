@@ -8,14 +8,35 @@
   0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background: white;
 
   &__left {
+    display: flex;
+    align-items: center;
     margin: 10px 0 10px 50px;
+
+    @media (max-width: $screen-max-md) {
+      margin: 10px 0 10px 15px;
+    }
+    img {
+      max-width: 150px;
+      @media (max-width: $screen-max-sm) {
+        max-width: 100px;
+      }
+    }
   }
   &__right {
     display: flex;
     margin: 10px 50px 10px 0;
 
+    @media (max-width: $screen-max-md) {
+      margin: 10px 15px 10px 0;
+    }
     .infos {
       display: flex;
       flex-direction: column;

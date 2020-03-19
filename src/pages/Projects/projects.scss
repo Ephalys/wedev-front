@@ -1,7 +1,14 @@
+@import '../../assets/sass/breakpoints';
+
 .projects {
     &__header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @media (max-width: $screen-max-xs) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
     }
 }
