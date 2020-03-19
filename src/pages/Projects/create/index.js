@@ -35,7 +35,7 @@ class CreateProject extends Component {
     console.log(this.state);
     return (
       <div>
-        <label>Create Project</label>
+        <h1>Create a project</h1>
         <form>
           <Input
             nameField="title"

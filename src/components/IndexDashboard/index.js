@@ -2,7 +2,7 @@ import React from "react";
 
 const IndexDashboard = props => {
     return (
-        <h1>Index dashboard</h1>
+        <h1>Dashboard</h1>
     );
 };
 

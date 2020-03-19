@@ -33,7 +33,7 @@ class CreateClient extends Component {
 
     return (
       <div>
-        <label>create client</label>
+        <h1>Create a client</h1>
         <form>
           <Input
             nameField="name"
