@@ -5,9 +5,10 @@ import Input from "../../../components/Input";
 class DetailsProject extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      project: []
+    }
   }
-
-  state = {};
 
   componentDidMount() {
     axios

@@ -5,9 +5,9 @@ import axios from "../../../axios-config";
 class CreateSprint extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
     console.log(this.props.match.params.id);
   }
-  state = {};
 
   componentDidMount() {
     this.setState({ project: this.props.match.params.id });
