@@ -11,40 +11,50 @@ import IndexDashboard from "./components/IndexDashboard";
 import CreateSprint from "./pages/Sprints/CreateSprint";
 import DetailsProject from "./pages/Projects/ProjectDetails";
 import CreateProject from "./pages/Projects/create";
+import SprintDetails from "./pages/Sprints/SprintDetails";
 
 class Routes extends Component {
   render() {
     return (
-        <Router history={history}>
-          <Route path="/dashboard">
-            <Dashboard>
-              <Switch>
-                <Route path="/dashboard/client/create" component={CreateClient} />
-                <Route exact path="/dashboard/projects" component={Projects} />
-                <Route exact path="/dashboard/projects/create" component={CreateProject} />
-                <Route
-                    exact
-                    path="/dashboard/detailsproject/:id"
-                    component={DetailsProject}
-                />
-                <Route
-                    exact
-                    path="/dashboard/detailsproject/createsprint/:id"
-                    component={CreateSprint}
-                />
-                <Route exact path="/dashboard" component={IndexDashboard} />
-              </Switch>
-            </Dashboard>
-          </Route>
-
-          <Route>
+      <Router history={history}>
+        <Route path="/dashboard">
+          <Dashboard>
             <Switch>
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/" component={Home} />
+              <Route path="/dashboard/client/create" component={CreateClient} />
+              <Route exact path="/dashboard/projects" component={Projects} />
+              <Route
+                exact
+                path="/dashboard/projects/create"
+                component={CreateProject}
+              />
+              <Route
+                exact
+                path="/dashboard/detailsproject/:id"
+                component={DetailsProject}
+              />
+              <Route
+                exact
+                path="/dashboard/detailssprint/:id"
+                component={SprintDetails}
+              />
+              <Route
+                exact
+                path="/dashboard/detailsproject/createsprint/:id"
+                component={CreateSprint}
+              />
+              <Route exact path="/dashboard" component={IndexDashboard} />
             </Switch>
-          </Route>
-        </Router>
+          </Dashboard>
+        </Route>
+
+        <Route>
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/" component={Home} />
+          </Switch>
+        </Route>
+      </Router>
     );
   }
 }

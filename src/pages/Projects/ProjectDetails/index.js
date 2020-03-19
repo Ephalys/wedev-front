@@ -8,7 +8,8 @@ class DetailsProject extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      project: []
+      project: [],
+      isDisabled: true
     };
   }
 
@@ -28,10 +29,12 @@ class DetailsProject extends Component {
 
     let sprints = null;
 
-    if (this.state.project) {
-      sprints = this.state.project.Sprints.map((element, id) => {
+    if (this.state.project.Sprints) {
+      sprints = this.state.project.Sprints.map((element, i) => {
         return (
           <Sprint
+            key={i}
+            id={element.id}
             title={element.title}
             startDate={element.startDate}
             endDate={element.endDate}
