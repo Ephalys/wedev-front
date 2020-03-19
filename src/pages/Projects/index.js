@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Project from "./Project";
 import axios from "../../axios-config";
-import './projects.scss';
+import "./projects.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -44,12 +44,13 @@ class Projects extends Component {
       );
     });
 
-
     return (
       <div className="projects">
         <div className="projects__header">
           <h1>Projects</h1>
-          <a href="/dashboard/projects/create"><FontAwesomeIcon icon={faPlus} /> Create a new project</a>
+          <a href="/dashboard/projects/create">
+            <FontAwesomeIcon icon={faPlus} /> Create a new project
+          </a>
         </div>
         {projects}
       </div>

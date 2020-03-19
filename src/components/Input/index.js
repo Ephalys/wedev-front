@@ -3,11 +3,9 @@ import "./input.scss";
 
 class Input extends Component {
   render() {
-    console.log(this.props.valueField);
-
     return (
       <div className="form-group">
-        <label>{this.props.label}</label>
+        <label>{this.props.label} :</label>
         <input
           name={this.props.nameField}
           type={this.props.type}
@@ -16,6 +14,7 @@ class Input extends Component {
           onChange={event => {
             this.props.changed(event);
           }}
+          disabled={this.props.isDisabled}
         />
       </div>
     );
