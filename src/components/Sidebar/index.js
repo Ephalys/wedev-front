@@ -9,7 +9,6 @@ class Sidebar extends Component {
         { name: "Home", link: "/" },
         { name: "Dashboard", link: "/dashboard" },
         { name: "Projects", link: "/dashboard/projects" },
-        { name: "Create project", link: "/dashboard/projects/create" },
         { name: "Create client", link: "/dashboard/client/create" },
       ]
     };

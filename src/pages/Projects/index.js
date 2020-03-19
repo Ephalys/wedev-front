@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Project from "./Project";
 import axios from "../../axios-config";
+import './projects.scss';
 
 class Projects extends Component {
   state = {
@@ -9,13 +10,13 @@ class Projects extends Component {
 
   componentDidMount() {
     axios
-      .get(`/project`, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
-      .then(response => {
-        console.log(response.data);
-        this.setState({ projects: response.data.projects });
-      });
+        .get(`/project`, {
+          headers: { Authorization: localStorage.getItem("token") }
+        })
+        .then(response => {
+          console.log(response.data);
+          this.setState({ projects: response.data.projects });
+        });
   }
 
   tableau = Object.keys(this.state);
@@ -25,28 +26,31 @@ class Projects extends Component {
     console.log(this.state);
     projects = this.state.projects.map((el, index) => {
       return (
-        <Project
-          key={index}
-          title={el.title}
-          amount={el.amount}
-          delay={el.delay}
-          startDate={el.startDate}
-          endDate={el.endDate}
-          status={el.status}
-          adr={el.adr}
-          client={el.client}
-          user={el.user}
-          id={el.id}
-        />
+          <Project
+              key={index}
+              title={el.title}
+              amount={el.amount}
+              delay={el.delay}
+              startDate={el.startDate}
+              endDate={el.endDate}
+              status={el.status}
+              adr={el.adr}
+              client={el.client}
+              user={el.user}
+              id={el.id}
+          />
       );
     });
 
 
     return (
-      <div>
-        <h1>Projects</h1>
-        {projects}
-      </div>
+        <div className="projects">
+          <div className="projects__header">
+            <h1>Projects</h1>
+            <a href="/dashboard/projects/create">+ Create a new project</a>
+          </div>
+          {projects}
+        </div>
     );
   }
 }
