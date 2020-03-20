@@ -45,19 +45,11 @@ class UpdateTaskModal extends Component {
               valueField={this.props.data.description}
               changed={this.props.changeValue}
             />
-            <Input
-              nameField="status"
-              label="Status"
-              type="text"
-              placeholder=""
-              valueField={this.props.data.status}
-              changed={this.props.changeValue}
-            />
             <Select
               nameField="status"
               values={statusList}
               label="Status"
-              changed={this.onSelectChange}
+              changed={this.props.changeSelect}
             />
             <Input
               nameField="completionTime"
