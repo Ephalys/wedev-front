@@ -10,7 +10,7 @@ import animationData from '../../utils/loading-black-dots.json';
 class Projects extends Component {
   state = {
     projects: [],
-    loading: false
+    loading: true
   };
 
   componentDidMount() {
@@ -21,7 +21,7 @@ class Projects extends Component {
       .then(response => {
         console.log(response.data);
         this.setState({ projects: response.data.projects });
-        this.setState({loading: true})
+        this.setState({loading: false})
       });
   }
 
@@ -57,12 +57,12 @@ class Projects extends Component {
             <FontAwesomeIcon icon={faPlus} /> Create a new project
           </a>
         </div>
-        {this.state.loading ? (projects) : (
+        {this.state.loading ? (
             <Lottie
             config={loaderOption}
             height={150}
             className="loader"
-        />)}
+        />) : (projects)}
       </div>
     );
   }
