@@ -110,10 +110,17 @@ class CreateProject extends Component {
             placeholder=""
             changed={this.onInputChange}
           />
+          <Input
+            nameField="githubRepository"
+            label="Github link (optional)"
+            type="text"
+            placeholder=""
+            changed={this.onInputChange}
+          />
           <input
             onClick={this.handleSubmit}
             type="submit"
-            value="Login"
+            value="Create"
             className="btn btn__rounded btn__green btn__letter-spacing fwb"
           />
         </form>

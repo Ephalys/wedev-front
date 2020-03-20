@@ -1,0 +1,12 @@
+@import "../../../assets/sass/colors.scss";
+
+a {
+    width: 20%;
+    margin: 5px;
+    padding: 5px;
+
+    &:hover {
+        background-color: $lightblue;
+        border-radius: 4px;
+    }
+}
