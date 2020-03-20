@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import axios from "../../../axios-config";
 import Input from "../../../components/Input";
 import CreateTaskModal from "../../../components/CreateTaskModal/Modal";
+import UpdateTaskModal from "../../../components/updateTaskModal/Modal";
 
 class SprintDetails extends Component {
   state = {
     isDisabled: true,
-    isOpen: false,
+    isOpenAddTaskModal: false,
+    isOpenUpdateTaskModal: false,
     newTask: {},
     updateTask: {}
   };
@@ -47,12 +49,20 @@ class SprintDetails extends Component {
     this.closeModal();
   };
 
-  openModal = () => {
-    this.setState({ isOpen: true });
+  openCreateTaskModal = () => {
+    this.setState({ isOpenAddTaskModal: true });
+  };
+
+  openUpdateTaskModal = () => {
+    this.setState({ isOpenUpdateTaskModal: true });
   };
 
   closeModal = () => {
-    this.setState({ isOpen: false, newTask: {} });
+    this.setState({
+      isOpenAddTaskModal: false,
+      isOpenUpdateTaskModal: false,
+      newTask: {}
+    });
   };
 
   onChangeNewTask = event => {
@@ -73,7 +83,7 @@ class SprintDetails extends Component {
     if (this.state.sprint) {
       tasks = this.state.sprint.Tasks.map((element, i) => {
         return (
-          <li key={i} onClick={this.onChangeUpdateTask}>
+          <li key={i} onClick={this.openUpdateTaskModal}>
             {element.title}
           </li>
         );
@@ -82,8 +92,14 @@ class SprintDetails extends Component {
 
     return (
       <div>
+        <UpdateTaskModal
+          show={this.state.isOpenUpdateTaskModal}
+          modalClosed={this.closeModal}
+          changeValue={this.onChangeNewTask}
+          addTask={this.handleSubmitTask}
+        />
         <CreateTaskModal
-          show={this.state.isOpen}
+          show={this.state.isOpenAddTaskModal}
           modalClosed={this.closeModal}
           changeValue={this.onChangeNewTask}
           addTask={this.handleSubmitTask}
@@ -133,7 +149,7 @@ class SprintDetails extends Component {
           {tasks}
         </ul>
 
-        <button onClick={this.openModal}>Add Task</button>
+        <button onClick={this.openCreateTaskModal}>Add Task</button>
 
         {/* <form>
           <Input
