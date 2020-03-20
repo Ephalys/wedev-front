@@ -12,6 +12,9 @@ import CreateSprint from "./pages/Sprints/CreateSprint";
 import DetailsProject from "./pages/Projects/ProjectDetails";
 import CreateProject from "./pages/Projects/create";
 import SprintDetails from "./pages/Sprints/SprintDetails";
+import Clients from './pages/Clients';
+import DetailsClient from "./pages/Clients/ClientDetails";
+
 
 class Routes extends Component {
   render() {
@@ -21,6 +24,12 @@ class Routes extends Component {
           <Dashboard>
             <Switch>
               <Route path="/dashboard/client/create" component={CreateClient} />
+              <Route path="/dashboard/clients" component={Clients} />
+              <Route
+                exact
+                path="/dashboard/detailsclient/:id"
+                component={DetailsClient}
+              />
               <Route exact path="/dashboard/projects" component={Projects} />
               <Route
                 exact
