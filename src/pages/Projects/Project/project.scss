@@ -6,6 +6,11 @@
     &__header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        p {
+            margin: 0;
+        }
         a {
             color: black;
             &:hover {
