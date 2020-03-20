@@ -165,43 +165,6 @@ class SprintDetails extends Component {
         </ul>
 
         <button onClick={this.openCreateTaskModal}>Add Task</button>
-
-        {/* <form>
-          <Input
-            nameField="title"
-            label="Title"
-            type="text"
-            placeholder=""
-            changed={this.onInputChangeTask}
-          />
-          <Input
-            nameField="description"
-            label="Description"
-            type="text"
-            placeholder=""
-            changed={this.onInputChangeTask}
-          />
-          <Input
-            nameField="status"
-            label="Status"
-            type="text"
-            placeholder=""
-            changed={this.onInputChangeTask}
-          />
-          <Input
-            nameField="completionTime"
-            label="CompletionTime"
-            type="text"
-            placeholder=""
-            changed={this.onInputChangeTask}
-          />
-          <input
-            onClick={this.handleSubmitTask}
-            type="submit"
-            value="Submit"
-            className="btn btn__rounded btn__green btn__letter-spacing fwb"
-          />
-        </form> */}
       </div>
     );
   }
