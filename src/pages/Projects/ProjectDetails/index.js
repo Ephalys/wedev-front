@@ -46,7 +46,7 @@ class DetailsProject extends Component {
 
     return (
       <div>
-        <div>DetailsProject</div>
+        <h1>Aperçu du projet — {this.state.project.title}</h1>
         <form>
           <Input
             nameField="title"
