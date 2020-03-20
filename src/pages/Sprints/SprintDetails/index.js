@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axios from "../../../axios-config";
 import Input from "../../../components/Input";
+import Modal from "../../../components/CreateTaskModal/Modal";
 
 class SprintDetails extends Component {
-  state = { isDisabled: true };
+  state = { isDisabled: true, isOpen: false };
   componentDidMount() {
     axios
       .get("/sprint/" + this.props.match.params.id, {
@@ -42,11 +43,26 @@ class SprintDetails extends Component {
       });
   };
 
+  openModal = () => {
+    this.setState({ isOpen: true });
+  };
+
+  closeModal = () => {
+    this.setState({ isOpen: false });
+  };
+
+  closeModal;
+
   render() {
     console.log(this.state);
 
     return (
       <div>
+        <Modal
+          show={this.state.isOpen}
+          modalClosed={this.closeModal}
+          // data={this.state}
+        />
         <h3>Sprint details</h3>
         <form>
           <Input
@@ -87,7 +103,9 @@ class SprintDetails extends Component {
           />
         </form>
 
-        <form>
+        <button onClick={this.openModal}>Add Task</button>
+
+        {/* <form>
           <Input
             nameField="title"
             label="Title"
@@ -122,7 +140,7 @@ class SprintDetails extends Component {
             value="Submit"
             className="btn btn__rounded btn__green btn__letter-spacing fwb"
           />
-        </form>
+        </form> */}
       </div>
     );
   }
