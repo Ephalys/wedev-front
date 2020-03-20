@@ -17,6 +17,7 @@
     left: unset;
     top: unset;
     margin-top: 60px;
+    background-color: $darkblue;
   }
 
   ul {
@@ -37,9 +38,15 @@
         padding: 10px;
         display: block;
         color: #333;
-        &:hover {
+        @media (max-width: $screen-max-md) {
+        color: white;
+        }
+          &:hover {
           background-color: $lightblue;
           border-radius: 4px;
+            @media (max-width: $screen-max-md) {
+              color: black;
+            }
         }
       }
     }
