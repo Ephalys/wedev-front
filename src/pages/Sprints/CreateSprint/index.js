@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import Input from "../../../components/Input";
 import axios from "../../../axios-config";
+import Select from "../../../components/Select";
+
+const statusList = [
+  { value: "en_cours", label: "En cours" },
+  { value: "termine", label: "Terminé" },
+  { value: "a_faire", label: "A faire" }
+];
 
 class CreateSprint extends Component {
   constructor(props) {
@@ -36,6 +43,13 @@ class CreateSprint extends Component {
         console.log(err.response.data.error);
       });
   };
+
+  onSelectChange = (event, name) => {
+    this.setState({
+      [name]: event.value
+    });
+  };
+
   render() {
     console.log(this.state);
 
@@ -64,12 +78,11 @@ class CreateSprint extends Component {
             placeholder=""
             changed={this.onInputChange}
           />
-          <Input
+          <Select
             nameField="status"
-            label="status"
-            type="text"
-            placeholder=""
-            changed={this.onInputChange}
+            values={statusList}
+            label="Status"
+            changed={this.onSelectChange}
           />
           <input
             onClick={this.handleSubmit}
