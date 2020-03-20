@@ -9,6 +9,8 @@ class UpdateTaskModal extends Component {
   }
 
   render() {
+    console.log(this.props);
+
     return (
       <div>
         <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
@@ -25,6 +27,7 @@ class UpdateTaskModal extends Component {
               label="Title"
               type="text"
               placeholder=""
+              valueField={this.props.data.title}
               changed={this.props.changeValue}
             />
             <Input
@@ -32,6 +35,7 @@ class UpdateTaskModal extends Component {
               label="Description"
               type="text"
               placeholder=""
+              valueField={this.props.data.description}
               changed={this.props.changeValue}
             />
             <Input
@@ -39,6 +43,7 @@ class UpdateTaskModal extends Component {
               label="Status"
               type="text"
               placeholder=""
+              valueField={this.props.data.status}
               changed={this.props.changeValue}
             />
             <Input
@@ -46,10 +51,11 @@ class UpdateTaskModal extends Component {
               label="CompletionTime"
               type="text"
               placeholder=""
+              valueField={this.props.data.completionTime}
               changed={this.props.changeValue}
             />
 
-            <button onClick={this.props.addTask}>Update</button>
+            <button onClick={this.props.updateTask}>Update</button>
           </div>
         </div>
       </div>

@@ -49,11 +49,19 @@ class SprintDetails extends Component {
     this.closeModal();
   };
 
+  handleSubmitUpdateTask = event => {};
+
   openCreateTaskModal = () => {
     this.setState({ isOpenAddTaskModal: true });
   };
 
-  openUpdateTaskModal = () => {
+  openUpdateTaskModal = (id, event) => {
+    let newUpdateTask = this.state.sprint.Tasks.filter(el => {
+      return el.id === id;
+    });
+
+    this.setState({ updateTask: newUpdateTask[0] });
+
     this.setState({ isOpenUpdateTaskModal: true });
   };
 
@@ -69,8 +77,14 @@ class SprintDetails extends Component {
     let newTask = this.state.newTask;
 
     newTask[event.target.name] = event.target.value;
+  };
 
-    console.log(newTask);
+  onChangeUpdatedTask = event => {
+    let newTask = this.state.updateTask;
+
+    newTask[event.target.name] = event.target.value;
+
+    this.setState({ updateTask: newTask });
   };
 
   onChangeUpdateTask = event => {};
@@ -83,7 +97,7 @@ class SprintDetails extends Component {
     if (this.state.sprint) {
       tasks = this.state.sprint.Tasks.map((element, i) => {
         return (
-          <li key={i} onClick={this.openUpdateTaskModal}>
+          <li key={i} onClick={e => this.openUpdateTaskModal(element.id, e)}>
             {element.title}
           </li>
         );
@@ -95,8 +109,9 @@ class SprintDetails extends Component {
         <UpdateTaskModal
           show={this.state.isOpenUpdateTaskModal}
           modalClosed={this.closeModal}
-          changeValue={this.onChangeNewTask}
-          addTask={this.handleSubmitTask}
+          changeValue={this.onChangeUpdateTask}
+          updateTask={this.handleSubmitUpdateTask}
+          data={this.state.updateTask}
         />
         <CreateTaskModal
           show={this.state.isOpenAddTaskModal}
