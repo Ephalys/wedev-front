@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Modal.scss";
 import Backdrop from "../Backdrop/Backdrop";
+import Input from "../Input";
 
 class CreateTaskModal extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -18,7 +19,36 @@ class CreateTaskModal extends Component {
             opacity: this.props.show ? "1" : "0"
           }}
         >
-          <div>94763</div>
+          <div>
+            <Input
+              nameField="title"
+              label="Title"
+              type="text"
+              placeholder=""
+              changed={this.props.changeValue}
+            />
+            <Input
+              nameField="description"
+              label="Description"
+              type="text"
+              placeholder=""
+              changed={this.props.changeValue}
+            />
+            <Input
+              nameField="status"
+              label="Status"
+              type="text"
+              placeholder=""
+              changed={this.props.changeValue}
+            />
+            <Input
+              nameField="completionTime"
+              label="CompletionTime"
+              type="text"
+              placeholder=""
+              changed={this.props.changeValue}
+            />
+          </div>
         </div>
       </div>
     );

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import axios from "../../../axios-config";
 import Input from "../../../components/Input";
-import Modal from "../../../components/CreateTaskModal/Modal";
+import CreateTaskModal from "../../../components/CreateTaskModal/Modal";
 
 class SprintDetails extends Component {
-  state = { isDisabled: true, isOpen: false };
+  state = {
+    isDisabled: true,
+    isOpen: false,
+    newTask: {}
+  };
   componentDidMount() {
     axios
       .get("/sprint/" + this.props.match.params.id, {
@@ -15,6 +19,8 @@ class SprintDetails extends Component {
       .then(response => {
         this.setState({ sprint: response.data.sprint });
       });
+
+    this.setState({ newTask: { sprint: this.props.match.params.id } });
   }
 
   onInputChangeTask = event => {
@@ -48,20 +54,36 @@ class SprintDetails extends Component {
   };
 
   closeModal = () => {
+    axios
+      .post(`/task`, this.state.newTask, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.response.data.error);
+      });
     this.setState({ isOpen: false });
   };
 
-  closeModal;
+  onChangeNewTask = event => {
+    let newTask = this.state.newTask;
+
+    newTask[event.target.name] = event.target.value;
+
+    console.log(newTask);
+  };
 
   render() {
     console.log(this.state);
 
     return (
       <div>
-        <Modal
+        <CreateTaskModal
           show={this.state.isOpen}
           modalClosed={this.closeModal}
-          // data={this.state}
+          changeValue={this.onChangeNewTask}
         />
         <h3>Sprint details</h3>
         <form>
