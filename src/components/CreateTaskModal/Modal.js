@@ -48,6 +48,8 @@ class CreateTaskModal extends Component {
               placeholder=""
               changed={this.props.changeValue}
             />
+
+            <button onClick={this.props.addTask}>Add</button>
           </div>
         </div>
       </div>

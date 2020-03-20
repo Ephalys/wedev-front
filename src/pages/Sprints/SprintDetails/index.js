@@ -7,7 +7,8 @@ class SprintDetails extends Component {
   state = {
     isDisabled: true,
     isOpen: false,
-    newTask: {}
+    newTask: {},
+    updateTask: {}
   };
   componentDidMount() {
     axios
@@ -33,28 +34,6 @@ class SprintDetails extends Component {
     event.preventDefault();
 
     axios
-      .post(`/task`, this.state, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
-      .then(res => {
-        console.log(res.data);
-
-        // const token = res.data.token;
-        if ((res.status = 200)) {
-          //user connecté
-        }
-      })
-      .catch(err => {
-        console.log(err.response.data.error);
-      });
-  };
-
-  openModal = () => {
-    this.setState({ isOpen: true });
-  };
-
-  closeModal = () => {
-    axios
       .post(`/task`, this.state.newTask, {
         headers: { Authorization: localStorage.getItem("token") }
       })
@@ -64,7 +43,16 @@ class SprintDetails extends Component {
       .catch(err => {
         console.log(err.response.data.error);
       });
-    this.setState({ isOpen: false });
+
+    this.closeModal();
+  };
+
+  openModal = () => {
+    this.setState({ isOpen: true });
+  };
+
+  closeModal = () => {
+    this.setState({ isOpen: false, newTask: {} });
   };
 
   onChangeNewTask = event => {
@@ -75,8 +63,22 @@ class SprintDetails extends Component {
     console.log(newTask);
   };
 
+  onChangeUpdateTask = event => {};
+
   render() {
     console.log(this.state);
+
+    let tasks = null;
+
+    if (this.state.sprint) {
+      tasks = this.state.sprint.Tasks.map((element, i) => {
+        return (
+          <li key={i} onClick={this.onChangeUpdateTask}>
+            {element.title}
+          </li>
+        );
+      });
+    }
 
     return (
       <div>
@@ -84,6 +86,7 @@ class SprintDetails extends Component {
           show={this.state.isOpen}
           modalClosed={this.closeModal}
           changeValue={this.onChangeNewTask}
+          addTask={this.handleSubmitTask}
         />
         <h3>Sprint details</h3>
         <form>
@@ -124,6 +127,11 @@ class SprintDetails extends Component {
             isDisabled={this.state.isDisabled}
           />
         </form>
+
+        <ul>
+          <label>Taches :</label>
+          {tasks}
+        </ul>
 
         <button onClick={this.openModal}>Add Task</button>
 
