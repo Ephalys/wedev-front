@@ -1,4 +1,5 @@
 @import "../../assets/sass/colors.scss";
+@import '../../assets/sass/breakpoints';
 
 .btn {
     text-align: center;
@@ -16,10 +17,19 @@
 
     &__large {
         padding: 12px 40px;
+        @media (max-width: $screen-max-sm) {
+         padding: 8px 30px;
+            font-size: 13px;
+        }
     }
 
     &__medium {
         padding: 10px 20px;
+
+        @media (max-width: $screen-max-sm) {
+            padding: 6px 24px;
+            font-size: 12px;
+        }
     }
 
     &__letter-spacing {

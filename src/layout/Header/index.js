@@ -11,7 +11,7 @@ class Header extends Component {
       <header className="header">
         <img src={logo} alt="logo" className="header__img" />
         <Button
-          classes="btn btn__black btn__large btn__rounded btn__letter-spacing fwb"
+          classes="btn btn__black btn__medium btn__rounded btn__letter-spacing fwb"
           text={verifyToken() ? 'dashboard' : 'login'}
           href={'/' + verifyToken() ? 'dashboard' : 'login'}
         />
