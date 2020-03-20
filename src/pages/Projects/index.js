@@ -4,10 +4,13 @@ import axios from "../../axios-config";
 import "./projects.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Lottie } from '@crello/react-lottie'
+import animationData from '../../utils/loading-black-dots.json';
 
 class Projects extends Component {
   state = {
-    projects: []
+    projects: [],
+    loading: false
   };
 
   componentDidMount() {
@@ -18,6 +21,7 @@ class Projects extends Component {
       .then(response => {
         console.log(response.data);
         this.setState({ projects: response.data.projects });
+        this.setState({loading: true})
       });
   }
 
@@ -26,6 +30,7 @@ class Projects extends Component {
   render() {
     let projects = null;
     console.log(this.state);
+    const loaderOption = { animationData: animationData, loop: true };
     projects = this.state.projects.map((el, index) => {
       return (
         <Project
@@ -52,7 +57,12 @@ class Projects extends Component {
             <FontAwesomeIcon icon={faPlus} /> Create a new project
           </a>
         </div>
-        {projects}
+        {this.state.loading ? (projects) : (
+            <Lottie
+            config={loaderOption}
+            height={150}
+            className="loader"
+        />)}
       </div>
     );
   }
