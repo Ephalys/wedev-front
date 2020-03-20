@@ -2,16 +2,23 @@ import React, { Component } from 'react';
 import axios from "../../axios-config";
 import './indexDashboard.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faSpinner, faCoins, faTachometerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faCheck, faSpinner, faCoins, faTachometerAlt, faTable } from "@fortawesome/free-solid-svg-icons";
 import { Lottie } from '@crello/react-lottie'
 import animationData from '../../utils/loading-black-dots.json';
 import CountUp from 'react-countup';
+import Input from "../Input";
+import Select from "../Select";
+import history from "../../utils/history";
+
+import CustomModal from '../CustomModal';
 
 class IndexDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            metrics: null
+            metrics: null,
+            isOpen: false,
+            projects: []
         };
     }
 
@@ -33,12 +40,139 @@ class IndexDashboard extends Component {
             });
     }
 
+    openModal = () => {
+        axios
+            .get(`/project`, {
+                headers: { Authorization: localStorage.getItem("token") }
+            })
+            .then(response => {
+                console.log(response.data.projects);
+                let projects = [];
+                if (response.data.projects > 0) {
+                    response.data.projects.forEach(el => {
+                        if (el.githubRepository) {
+                            // projects.push({value: el.id, label: el.title});
+                            projects = [...projects, { value: el.id, label: el.title }];
+                        }
+                    });
+                }
+
+                projects = [{
+                    ['value']: '1',
+                    ['label']: 'Projet Test en dur'
+                }];
+                this.setState({
+                    projects: projects,
+                    isOpen: true
+                });
+            });
+    };
+
+    closeModal = () => {
+        this.setState({ isOpen: false });
+    }
+
+    onInputChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    };
+
+    onSelectChange = (event, name) => {
+        this.setState({
+            [name]: event.value
+        });
+    };
+
+    handleSubmit = () => {
+        const datas = {
+            ['pseudo']: this.state.pseudo,
+            ['password']: this.state.password,
+            ['title']: this.state.title,
+            ['body']: this.state.body,
+            ['tags']: this.state.tags,
+        }
+
+        console.log(datas);
+        axios
+            .post(`/issue/${this.state.projectId}`, datas, {
+                headers: { Authorization: localStorage.getItem("token") }
+            })
+            .then(res => {
+                console.log(res);
+                history.push('/dashboard');
+            })
+            .catch(err => {
+                console.log(err.response.data.error);
+            });
+
+    }
+
     render() {
-        console.log(this.state.metrics);
+        console.log(this.state);
         const loaderOption = { animationData: animationData, loop: true };
         return (
             <div className="dashboard">
-                <h1>Dashboard</h1>
+                <CustomModal
+                    isOpen={this.state.isOpen}
+                    title="Add a new Issue"
+                    onValidateClick={this.state.projects.length > 0 ? this.handleSubmit : this.closeModal}
+                    closeModal={this.closeModal}
+                    validateText={this.state.projects.length > 0 ? "Create" : "All right"}
+                    content={this.state.projects.length > 0 ? (
+                        <div>
+                            <Select
+                                nameField="projectId"
+                                values={this.state.projects}
+                                label="Projet"
+                                changed={this.onSelectChange}
+                            /><Input
+                                nameField="pseudo"
+                                label="Github Username"
+                                type="text"
+                                placeholder=""
+                                changed={this.onInputChange}
+                            />
+                            <Input
+                                nameField="password"
+                                label="Github Password"
+                                type="password"
+                                placeholder=""
+                                changed={this.onInputChange}
+                            />
+                            <Input
+                                nameField="title"
+                                label="Issue Title"
+                                type="text"
+                                placeholder=""
+                                changed={this.onInputChange}
+                            />
+                            <Input
+                                nameField="body"
+                                label="Issue Description"
+                                type="textarea"
+                                placeholder=""
+                                changed={this.onInputChange}
+                            />
+                            <Input
+                                nameField="tags"
+                                label="Issue Tags (separated by commas)"
+                                type="text"
+                                placeholder=""
+                                changed={this.onInputChange}
+                            />
+                        </div>
+                    ) : (
+                            <div>No project with a GitHub link found in your projects. Please add one to an existant project or create a new project with a GitHub link.</div>
+                        )
+                    }
+                />
+                <h1>
+                    <span>Dashboard</span>
+                    <a className="add-issue" onClick={this.openModal}>
+                        <FontAwesomeIcon icon={faPlus} /> Create a new issue
+                    </a>
+                </h1>
                 <div className="metrics">
                     <div className="metrics__card">
                         <FontAwesomeIcon icon={faCheck} size="2x" />
@@ -136,7 +270,7 @@ class IndexDashboard extends Component {
                         <span className="title">Average Hourly Rate</span>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }

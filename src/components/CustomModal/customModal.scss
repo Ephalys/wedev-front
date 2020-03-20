@@ -1,0 +1,32 @@
+.modal {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    .close {
+      cursor: pointer;
+    }
+  }
+  &__content {
+  }
+  &__footer {
+    .validateForm {
+      color: #434242;
+      border: 2px solid #434242;
+      text-transform: uppercase;
+      border-radius: 30px;
+      padding: 2px 0;
+      text-align: center;
+      transition: all 0.3s;
+      margin-top: 10px;
+      cursor: pointer;
+      &:hover {
+        transition: all 0.3s;
+        background-color: #434242;
+        color: #fff;
+        border-radius: 4px;
+      }
+    }
+  }
+}
