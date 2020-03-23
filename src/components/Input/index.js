@@ -5,7 +5,7 @@ class Input extends Component {
   render() {
     return (
       <div className="form-group">
-        <label>{this.props.label} :</label>
+        <label>{this.props.label}</label>
         <input
           name={this.props.nameField}
           type={this.props.type}

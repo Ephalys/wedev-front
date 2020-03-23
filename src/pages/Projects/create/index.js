@@ -130,7 +130,7 @@ class CreateProject extends Component {
             onClick={this.handleSubmit}
             type="submit"
             value="Create"
-            className="btn btn__rounded btn__green btn__letter-spacing fwb"
+            className="btn btn__rounded btn__green btn__letter-spacing fwb btn__medium"
           />
         </form>
       </div>

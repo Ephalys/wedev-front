@@ -133,7 +133,7 @@ class Register extends Component {
             <input
               type="submit"
               value="Register"
-              className="btn btn__rounded btn__green btn__letter-spacing fwb"
+              className="btn btn__rounded btn__green btn__letter-spacing fwb btn__medium"
               onClick={this.handleSubmit}
             />
           </form>
