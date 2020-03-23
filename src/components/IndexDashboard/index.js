@@ -127,12 +127,12 @@ class IndexDashboard extends Component {
                                 label="Projet"
                                 changed={this.onSelectChange}
                             /><Input
-                                nameField="pseudo"
-                                label="Github Username"
-                                type="text"
-                                placeholder=""
-                                changed={this.onInputChange}
-                            />
+                            nameField="pseudo"
+                            label="Github Username"
+                            type="text"
+                            placeholder=""
+                            changed={this.onInputChange}
+                        />
                             <Input
                                 nameField="password"
                                 label="Github Password"
@@ -163,16 +163,18 @@ class IndexDashboard extends Component {
                             />
                         </div>
                     ) : (
-                            <div>No project with a GitHub link found in your projects. Please add one to an existant project or create a new project with a GitHub link.</div>
-                        )
+                        <div>No project with a GitHub link found in your projects. Please add one to an existant project or create a new project with a GitHub link.</div>
+                    )
                     }
                 />
-                <h1>
-                    <span>Dashboard</span>
-                    <a className="add-issue" onClick={this.openModal}>
+                <div className="dashboard__header">
+                    <h1>
+                        Dashboard
+                    </h1>
+                    <a onClick={this.openModal}>
                         <FontAwesomeIcon icon={faPlus} /> Create a new issue
                     </a>
-                </h1>
+                </div>
                 <div className="metrics">
                     <div className="metrics__card">
                         <FontAwesomeIcon icon={faCheck} size="2x" />
@@ -186,13 +188,13 @@ class IndexDashboard extends Component {
                                 }
                             </span>
                         ) : (
-                                <Lottie
-                                    config={loaderOption}
-                                    height={40}
-                                    width={40}
-                                    className="loader"
-                                />
-                            )}
+                            <Lottie
+                                config={loaderOption}
+                                height={40}
+                                width={40}
+                                className="loader"
+                            />
+                        )}
                         <span className="title">Realised Projects</span>
                     </div>
                     <div className="metrics__card">
@@ -208,13 +210,13 @@ class IndexDashboard extends Component {
                                 }
                             </span>
                         ) : (
-                                <Lottie
-                                    config={loaderOption}
-                                    height={40}
-                                    width={40}
-                                    className="loader"
-                                />
-                            )}
+                            <Lottie
+                                config={loaderOption}
+                                height={40}
+                                width={40}
+                                className="loader"
+                            />
+                        )}
                         <span className="title">Current Projects</span>
                     </div>
                     <div className="metrics__card">
@@ -234,13 +236,13 @@ class IndexDashboard extends Component {
                                 }
                             </span>
                         ) : (
-                                <Lottie
-                                    config={loaderOption}
-                                    height={40}
-                                    width={40}
-                                    className="loader"
-                                />
-                            )}
+                            <Lottie
+                                config={loaderOption}
+                                height={40}
+                                width={40}
+                                className="loader"
+                            />
+                        )}
                         <span className="title">Turnover</span>
                     </div>
                     <div className="metrics__card">
@@ -260,13 +262,13 @@ class IndexDashboard extends Component {
                                 }
                             </span>
                         ) : (
-                                <Lottie
-                                    config={loaderOption}
-                                    height={40}
-                                    width={40}
-                                    className="loader"
-                                />
-                            )}
+                            <Lottie
+                                config={loaderOption}
+                                height={40}
+                                width={40}
+                                className="loader"
+                            />
+                        )}
                         <span className="title">Average Hourly Rate</span>
                     </div>
                 </div>

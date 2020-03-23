@@ -1,4 +1,9 @@
 .dashboard {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .modal {
     position: fixed;
     z-index: 500;
@@ -16,13 +21,6 @@
     .modal {
       width: 500px;
       left: calc(50% - 250px);
-    }
-  }
-  h1 {
-    display: flex;
-    justify-content: space-between;
-    .add-issue {
-      font-size: 16px;
     }
   }
   .metrics {
