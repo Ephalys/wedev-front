@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import Input from "../../../components/Input/index";
 import axios from "../../../axios-config";
+import Select from "../../../components/Select";
+
+const statusList = [
+  { value: "en_cours", label: "En cours" },
+  { value: "termine", label: "Terminé" },
+  { value: "a_faire", label: "A faire" }
+];
 
 class CreateProject extends Component {
   state = {};
@@ -31,6 +38,12 @@ class CreateProject extends Component {
       });
   };
 
+  onSelectChange = (event, name) => {
+    this.setState({
+      [name]: event.value
+    });
+  };
+
   render() {
     console.log(this.state);
     return (
@@ -58,7 +71,6 @@ class CreateProject extends Component {
             placeholder=""
             changed={this.onInputChange}
           />
-
           <Input
             nameField="startDate"
             label="StartDate"
@@ -66,7 +78,6 @@ class CreateProject extends Component {
             placeholder=""
             changed={this.onInputChange}
           />
-
           <Input
             nameField="endDate"
             label="EndDate"
@@ -74,14 +85,12 @@ class CreateProject extends Component {
             placeholder=""
             changed={this.onInputChange}
           />
-          <Input
+          <Select
             nameField="status"
+            values={statusList}
             label="Status"
-            type="text"
-            placeholder=""
-            changed={this.onInputChange}
+            changed={this.onSelectChange}
           />
-
           <Input
             nameField="stacks"
             label="Stacks"

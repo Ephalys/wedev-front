@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import "./Modal.scss";
 import Backdrop from "../Backdrop/Backdrop";
 import Input from "../Input";
+import Select from "../Select";
+
+const statusList = [
+  { value: "en_cours", label: "En cours" },
+  { value: "termine", label: "Terminé" },
+  { value: "a_faire", label: "A faire" }
+];
 
 class UpdateTaskModal extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -38,13 +45,11 @@ class UpdateTaskModal extends Component {
               valueField={this.props.data.description}
               changed={this.props.changeValue}
             />
-            <Input
+            <Select
               nameField="status"
+              values={statusList}
               label="Status"
-              type="text"
-              placeholder=""
-              valueField={this.props.data.status}
-              changed={this.props.changeValue}
+              changed={this.props.changeSelect}
             />
             <Input
               nameField="completionTime"

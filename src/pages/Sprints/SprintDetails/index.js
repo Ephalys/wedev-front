@@ -79,7 +79,7 @@ class SprintDetails extends Component {
     newTask[event.target.name] = event.target.value;
   };
 
-  onChangeUpdatedTask = event => {
+  onChangeUpdateTask = event => {
     let newTask = this.state.updateTask;
 
     newTask[event.target.name] = event.target.value;
@@ -87,7 +87,21 @@ class SprintDetails extends Component {
     this.setState({ updateTask: newTask });
   };
 
-  onChangeUpdateTask = event => {};
+  onSelectChangeNewTask = (event, name) => {
+    let newTask = this.state.newTask;
+
+    newTask[name] = event.value;
+
+    this.setState({ newTask: newTask });
+  };
+
+  onSelectChangeUpdateTask = (event, name) => {
+    let newTask = this.state.updateTask;
+
+    newTask[name] = event.value;
+
+    this.setState({ updateTask: newTask });
+  };
 
   render() {
     console.log(this.state);
@@ -112,12 +126,14 @@ class SprintDetails extends Component {
           changeValue={this.onChangeUpdateTask}
           updateTask={this.handleSubmitUpdateTask}
           data={this.state.updateTask}
+          changeSelect={this.onSelectChangeUpdateTask}
         />
         <CreateTaskModal
           show={this.state.isOpenAddTaskModal}
           modalClosed={this.closeModal}
           changeValue={this.onChangeNewTask}
           addTask={this.handleSubmitTask}
+          changeSelect={this.onSelectChangeNewTask}
         />
         <h3>Sprint details</h3>
         <form>
