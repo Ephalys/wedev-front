@@ -11,10 +11,6 @@ const statusList = [
 ];
 
 class UpdateTaskModal extends Component {
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextProps.show !== this.props.show;
-  // }
-
   render() {
     console.log(this.props);
 

@@ -49,7 +49,24 @@ class SprintDetails extends Component {
     this.closeModal();
   };
 
-  handleSubmitUpdateTask = event => {};
+  handleSubmitUpdateTask = event => {
+    console.log(event.id);
+
+    event.preventDefault();
+
+    axios
+      .patch(`/task/` + this.state.updateTask.id, this.state.updateTask, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.response.data.error);
+      });
+
+    this.closeModal();
+  };
 
   openCreateTaskModal = () => {
     this.setState({ isOpenAddTaskModal: true });
@@ -83,8 +100,9 @@ class SprintDetails extends Component {
     let newTask = this.state.updateTask;
 
     newTask[event.target.name] = event.target.value;
+    console.log(this.state);
 
-    this.setState({ updateTask: newTask });
+    // this.setState({ updateTask: newTask });
   };
 
   onSelectChangeNewTask = (event, name) => {
