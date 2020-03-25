@@ -107,7 +107,7 @@ class CreateProject extends Component {
           />
           <Input
             nameField="client"
-            label="Le iencli"
+            label="Le iencli (email)"
             type="text"
             placeholder=""
             changed={this.onInputChange}

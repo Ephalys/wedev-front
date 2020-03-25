@@ -80,7 +80,7 @@ class CreateClient extends Component {
           <input
             onClick={this.handleSubmit}
             type="submit"
-            value="Login"
+            value="Create"
             className="btn btn__rounded btn__green btn__letter-spacing fwb btn__medium"
           />
         </form>
