@@ -3,12 +3,8 @@ import ReactModal from 'react-modal';
 import './customModal.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import { Button } from 'react-scroll';
 
 class CustomModal extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <ReactModal

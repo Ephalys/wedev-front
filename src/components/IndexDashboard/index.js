@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "../../axios-config";
 import './indexDashboard.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faCheck, faSpinner, faCoins, faTachometerAlt, faTable } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faCheck, faSpinner, faCoins, faTachometerAlt } from "@fortawesome/free-solid-svg-icons";
 import { Lottie } from '@crello/react-lottie'
 import animationData from '../../utils/loading-black-dots.json';
 import CountUp from 'react-countup';
