@@ -55,7 +55,7 @@ class CreateSprint extends Component {
 
     return (
       <div>
-        <div>CreateSprint</div>
+        <h1>Create a new sprint</h1>
         <form>
           <Input
             nameField="title"
@@ -66,14 +66,14 @@ class CreateSprint extends Component {
           />
           <Input
             nameField="startDate"
-            label="startDate"
+            label="Start date"
             type="text"
             placeholder=""
             changed={this.onInputChange}
           />
           <Input
             nameField="endDate"
-            label="endDate"
+            label="End date"
             type="text"
             placeholder=""
             changed={this.onInputChange}
@@ -87,8 +87,8 @@ class CreateSprint extends Component {
           <input
             onClick={this.handleSubmit}
             type="submit"
-            value="Login"
-            className="btn btn__rounded btn__green btn__letter-spacing fwb"
+            value="Create"
+            className="btn btn__rounded btn__green btn__letter-spacing fwb btn__medium"
           />
         </form>
       </div>

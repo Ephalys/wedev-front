@@ -49,12 +49,21 @@ class DetailsProject extends Component {
           <h1>Aperçu du projet — {this.state.project.title}</h1>
           <div className="project__details-cards">
             <div className="project__details-block">
+              <p className="label">
+                Status
+              </p>
               {this.state.project ? this.state.project.status : ""}
             </div>
             <div className="project__details-block">
+              <p className="label">
+                Stacks
+              </p>
               {this.state.project ? this.state.project.stacks : ""}
             </div>
             <div className="project__details-block">
+              <p className="label">
+                Amount
+              </p>
               {this.state.project ? this.state.project.amount : ""} €
             </div>
           </div>
