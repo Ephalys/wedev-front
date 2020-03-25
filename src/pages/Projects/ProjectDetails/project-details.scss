@@ -1,8 +1,16 @@
 @import '../../../assets/sass/breakpoints';
 
-.sprintsList {
-    display: flex;
-    flex-wrap: wrap;
+.sprints {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 
 .project__details {
