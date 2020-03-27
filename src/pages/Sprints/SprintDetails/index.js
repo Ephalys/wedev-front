@@ -132,8 +132,12 @@ class SprintDetails extends Component {
     if (this.state.sprint) {
       tasks = this.state.sprint.Tasks.map((element, i) => {
         return (
-          <li key={i} onClick={e => this.openUpdateTaskModal(element.id, e)}>
-            {element.title}
+          <li
+            className="task"
+            key={i}
+            onClick={e => this.openUpdateTaskModal(element.id, e)}
+          >
+            - {element.title}
           </li>
         );
       });
