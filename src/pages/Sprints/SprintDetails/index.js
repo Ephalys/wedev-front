@@ -132,6 +132,22 @@ class SprintDetails extends Component {
     this.setState({ updateTask: newTask });
   };
 
+  deleteTask = id => {
+    console.log(id);
+
+    axios
+      .delete(`/task/` + id, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(res => {
+        console.log(res);
+        this.getSprint();
+      })
+      .catch(err => {
+        console.log(err.response.data.error);
+      });
+  };
+
   render() {
     console.log(this.state);
 
@@ -140,13 +156,17 @@ class SprintDetails extends Component {
     if (this.state.sprint) {
       tasks = this.state.sprint.Tasks.map((element, i) => {
         return (
-          <li
-            className="task"
-            key={i}
-            onClick={e => this.openUpdateTaskModal(element.id, e)}
-          >
-            - {element.title}
-          </li>
+          <div>
+            <li
+              className="task"
+              key={i}
+              onClick={e => this.openUpdateTaskModal(element.id, e)}
+            >
+              - {element.title}
+            </li>
+
+            <button onClick={() => this.deleteTask(element.id)}>X</button>
+          </div>
         );
       });
     }
