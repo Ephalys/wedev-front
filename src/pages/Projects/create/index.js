@@ -10,7 +10,20 @@ const statusList = [
 ];
 
 class CreateProject extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    // state = {};
+    this.state = {
+      startDate: new Date()
+    };
+  }
+
+  onDateInputChange = event => {
+    let splitDate = event.target.value.split('-')
+    this.setState({
+      [event.target.name]: `${splitDate[1]}-${splitDate[2]}-${splitDate[0]}`
+    });
+  };
 
   onInputChange = event => {
     this.setState({
@@ -74,16 +87,16 @@ class CreateProject extends Component {
           <Input
             nameField="startDate"
             label="StartDate"
-            type="text"
+            type="date"
             placeholder=""
-            changed={this.onInputChange}
+            changed={this.onDateInputChange}
           />
           <Input
             nameField="endDate"
             label="EndDate"
-            type="text"
+            type="date"
             placeholder=""
-            changed={this.onInputChange}
+            changed={this.onDateInputChange}
           />
           <Select
             nameField="status"
