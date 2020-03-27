@@ -50,6 +50,13 @@ class CreateSprint extends Component {
     });
   };
 
+  onDateInputChange = event => {
+    let splitDate = event.target.value.split("-");
+    this.setState({
+      [event.target.name]: `${splitDate[1]}-${splitDate[2]}-${splitDate[0]}`
+    });
+  };
+
   render() {
     console.log(this.state);
 
@@ -67,16 +74,16 @@ class CreateSprint extends Component {
           <Input
             nameField="startDate"
             label="Start date"
-            type="text"
+            type="date"
             placeholder=""
-            changed={this.onInputChange}
+            changed={this.onDateInputChange}
           />
           <Input
             nameField="endDate"
             label="End date"
-            type="text"
+            type="date"
             placeholder=""
-            changed={this.onInputChange}
+            changed={this.onDateInputChange}
           />
           <Select
             nameField="status"
