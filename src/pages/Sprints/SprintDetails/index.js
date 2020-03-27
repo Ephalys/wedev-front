@@ -95,6 +95,7 @@ class SprintDetails extends Component {
       .then(res => {
         console.log(res);
         this.getSprint();
+        this.setState({ isDisabled: true });
       })
       .catch(err => {
         console.log(err.response.data.error);
