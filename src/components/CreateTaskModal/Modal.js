@@ -41,9 +41,6 @@ class CreateTaskModal extends Component {
               placeholder=""
               changed={this.props.changeValue}
             />
-            <textarea id="story" name="story" rows="5" cols="33">
-              It was a dark and stormy night...
-            </textarea>
             <Select
               nameField="status"
               values={statusList}
@@ -58,7 +55,12 @@ class CreateTaskModal extends Component {
               changed={this.props.changeValue}
             />
 
-            <button className="btn btn__medium btn__green" onClick={this.props.addTask}>Add</button>
+            <button
+              className="btn btn__medium btn__green"
+              onClick={this.props.addTask}
+            >
+              Add
+            </button>
           </div>
         </div>
       </div>
