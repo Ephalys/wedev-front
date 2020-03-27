@@ -63,11 +63,11 @@ class DetailsClient extends Component {
           <h1 className="title">Fiche Client — {this.state.client.name}</h1>
           {this.state.isDisabled ? (
             <div className="edition-mode" onClick={this.handleEditionMode}>
-              <FontAwesomeIcon icon={faPencilAlt} /><span>Edition Mode</span>
+              <FontAwesomeIcon icon={faPencilAlt} /><span>Edit</span>
             </div>
           ) : (
               <div className="edition-mode" onClick={this.handleSubmit}>
-                <FontAwesomeIcon icon={faCheck} onClick={this.handleSubmit} /><span>Submit edition</span>
+                <FontAwesomeIcon icon={faCheck} onClick={this.handleSubmit} /><span>Validate</span>
               </div>
             )}
         </div>
