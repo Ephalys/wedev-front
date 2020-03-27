@@ -67,8 +67,8 @@ class CreateProject extends Component {
             label: `${el.name} - ${el.contactFirstName} ${el.contactLastName}`,
             value: el.id
           });
-          this.setState({ clientList: clientTab });
         })
+        this.setState({ clientList: clientTab });
       });
   }
 

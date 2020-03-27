@@ -4,9 +4,10 @@ import Input from "../../../components/Input";
 import Sprint from "../../Sprints/Sprint";
 import "./project-details.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTable, faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Lottie } from '@crello/react-lottie'
 import animationData from '../../../utils/loading-black-dots.json';
+import history from "../../../utils/history";
 
 class DetailsProject extends Component {
     constructor(props) {
@@ -51,13 +52,13 @@ class DetailsProject extends Component {
     }
 
     handleDelete = () => {
-        //     axios
-        //         .delete('/client/' + this.props.match.params.id, {
-        //             headers: { Authorization: localStorage.getItem("token") }
-        //         })
-        //         .then((response) => {
-        //             history.push('/dashboard/clients');
-        //         });
+        axios
+            .delete('/project/' + this.props.match.params.id, {
+                headers: { Authorization: localStorage.getItem("token") }
+            })
+            .then((response) => {
+                history.push('/dashboard/projects');
+            });
     }
 
     componentDidMount() {
@@ -129,9 +130,11 @@ class DetailsProject extends Component {
                             <h1>Aperçu du projet — {this.state.project.title}</h1>
                             {this.state.isDisabled ? (
                                 <div className="buttons">
+                                    {/* {this.state.project.Sprint && ( */}
                                     <div className="delete" onClick={this.handleDelete}>
                                         <FontAwesomeIcon icon={faTrashAlt} /><span>Delete</span>
                                     </div>
+                                    {/* )} */}
                                     <div className="edition" onClick={this.handleEditionMod}>
                                         <FontAwesomeIcon icon={faPencilAlt} /><span>Edit</span>
                                     </div>
