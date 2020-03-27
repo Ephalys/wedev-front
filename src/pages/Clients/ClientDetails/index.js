@@ -3,7 +3,7 @@ import axios from "../../../axios-config";
 import Input from "../../../components/Input";
 import "./client-details.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 class DetailsClient extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class DetailsClient extends Component {
     });
   };
 
-  handleEditionMode = () => {
+  handleEditionMod = () => {
     console.log(this.state);
     this.setState({ isDisabled: false });
   }
@@ -62,11 +62,16 @@ class DetailsClient extends Component {
         <div className="client__header">
           <h1 className="title">Fiche Client — {this.state.client.name}</h1>
           {this.state.isDisabled ? (
-            <div className="edition-mode" onClick={this.handleEditionMode}>
-              <FontAwesomeIcon icon={faPencilAlt} /><span>Edit</span>
+            <div className="buttons">
+              <div className="delete" onClick={this.handleDelete}>
+                <FontAwesomeIcon icon={faTrashAlt} /><span>Delete</span>
+              </div>
+              <div className="edition" onClick={this.handleEditionMod}>
+                <FontAwesomeIcon icon={faPencilAlt} /><span>Edit</span>
+              </div>
             </div>
           ) : (
-              <div className="edition-mode" onClick={this.handleSubmit}>
+              <div className="edition" onClick={this.handleSubmit}>
                 <FontAwesomeIcon icon={faCheck} onClick={this.handleSubmit} /><span>Validate</span>
               </div>
             )}
