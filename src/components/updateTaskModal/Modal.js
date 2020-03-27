@@ -56,7 +56,7 @@ class UpdateTaskModal extends Component {
               changed={this.props.changeValue}
             />
 
-            <button onClick={this.props.updateTask}>Update</button>
+            <button className="btn btn__medium btn__green" onClick={this.props.updateTask}>Update</button>
           </div>
         </div>
       </div>
