@@ -6,6 +6,13 @@ import UpdateTaskModal from "../../../components/updateTaskModal/Modal";
 import "./sprint-details.scss";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Select from "../../../components/Select";
+
+const statusList = [
+  { value: "en_cours", label: "En cours" },
+  { value: "termine", label: "Terminé" },
+  { value: "a_faire", label: "A faire" }
+];
 
 class SprintDetails extends Component {
   state = {
@@ -78,6 +85,26 @@ class SprintDetails extends Component {
     this.getSprint();
   };
 
+  handleSubmitSprint = event => {
+    event.preventDefault();
+
+    axios
+      .patch(`/sprint/` + this.state.sprint.id, this.state.sprint, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(res => {
+        console.log(res);
+        this.getSprint();
+        this.setState({ isDisabled: true });
+      })
+      .catch(err => {
+        console.log(err.response.data.error);
+      });
+
+    this.closeModal();
+    this.getSprint();
+  };
+
   openCreateTaskModal = () => {
     this.setState({ isOpenAddTaskModal: true });
   };
@@ -124,6 +151,14 @@ class SprintDetails extends Component {
     this.setState({ newTask: newTask });
   };
 
+  onSelectChangeSprint = (event, name) => {
+    let sprint = this.state.sprint;
+
+    sprint[name] = event.value;
+
+    this.setState({ sprint: sprint });
+  };
+
   onSelectChangeUpdateTask = (event, name) => {
     let newTask = this.state.updateTask;
 
@@ -133,8 +168,6 @@ class SprintDetails extends Component {
   };
 
   deleteTask = id => {
-    console.log(id);
-
     axios
       .delete(`/task/` + id, {
         headers: { Authorization: localStorage.getItem("token") }
@@ -146,6 +179,32 @@ class SprintDetails extends Component {
       .catch(err => {
         console.log(err.response.data.error);
       });
+  };
+
+  updateToggle = () => {
+    this.setState({ isDisabled: false });
+  };
+
+  onInputChange = event => {
+    let updatedSprint = this.state.sprint;
+
+    updatedSprint[event.target.name] = event.target.value;
+
+    this.setState({ sprint: updatedSprint });
+    console.log(this.state);
+  };
+
+  onDateInputChange = event => {
+    let sprint = this.state.sprint;
+    let splitDate = event.target.value.split("-");
+
+    sprint[
+      event.target.name
+    ] = `${splitDate[0]}-${splitDate[2]}-${splitDate[1]}`;
+
+    this.setState({
+      sprint: sprint
+    });
   };
 
   render() {
@@ -189,6 +248,13 @@ class SprintDetails extends Component {
           changeSelect={this.onSelectChangeNewTask}
         />
         <h1>Sprint details</h1>
+        <button onClick={this.updateToggle}>modif</button>
+        <button
+          disabled={this.state.isDisabled}
+          onClick={this.handleSubmitSprint}
+        >
+          submit
+        </button>
         <form>
           <Input
             nameField="title"
@@ -202,29 +268,27 @@ class SprintDetails extends Component {
           <Input
             nameField="startDate"
             label="StartDate"
-            type="text"
-            placeholder=""
             valueField={this.state.sprint ? this.state.sprint.startDate : ""}
-            changed={this.onInputChange}
             isDisabled={this.state.isDisabled}
+            type="date"
+            placeholder=""
+            changed={this.onDateInputChange}
           />
           <Input
             nameField="endDate"
             label="EndDate"
-            type="text"
-            placeholder=""
             valueField={this.state.sprint ? this.state.sprint.endDate : ""}
-            changed={this.onInputChange}
             isDisabled={this.state.isDisabled}
-          />
-          <Input
-            nameField="status"
-            label="Status"
-            type="text"
+            type="date"
             placeholder=""
-            valueField={this.state.sprint ? this.state.sprint.status : ""}
-            changed={this.onInputChange}
-            isDisabled={this.state.isDisabled}
+            changed={this.onDateInputChange}
+          />
+
+          <Select
+            nameField="status"
+            values={statusList}
+            label="Status"
+            changed={this.onSelectChangeSprint}
           />
         </form>
 

@@ -12,8 +12,6 @@ const statusList = [
 
 class UpdateTaskModal extends Component {
   render() {
-    console.log(this.props);
-
     return (
       <div>
         <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
@@ -56,7 +54,12 @@ class UpdateTaskModal extends Component {
               changed={this.props.changeValue}
             />
 
-            <button className="btn btn__medium btn__green" onClick={this.props.updateTask}>Update</button>
+            <button
+              className="btn btn__medium btn__green"
+              onClick={this.props.updateTask}
+            >
+              Update
+            </button>
           </div>
         </div>
       </div>
