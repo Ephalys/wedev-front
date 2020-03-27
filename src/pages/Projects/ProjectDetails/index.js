@@ -54,7 +54,7 @@ class DetailsProject extends Component {
                         <p className="label">
                             Status
                         </p>
-                        {this.state.project ? this.state.project.status : ""}
+                        {this.state.project ? (this.state.project.status === "en_cours" ? "En cours" : "Réalisé") : ""}
                     </div>
                     <div className="project__details-block">
                         <p className="label">

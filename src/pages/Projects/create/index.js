@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Input from "../../../components/Input/index";
 import axios from "../../../axios-config";
 import Select from "../../../components/Select";
+import history from "../../../utils/history";
 
 const statusList = [
   { value: "en_cours", label: "En cours" },
@@ -40,10 +41,8 @@ class CreateProject extends Component {
       })
       .then(res => {
         console.log(res.data);
-
-        // const token = res.data.token;
         if ((res.status = 200)) {
-          //user connecté
+          history.push('/dashboard/projects');
         }
       })
       .catch(err => {
@@ -121,13 +120,6 @@ class CreateProject extends Component {
           <Input
             nameField="client"
             label="Le iencli (email)"
-            type="text"
-            placeholder=""
-            changed={this.onInputChange}
-          />
-          <Input
-            nameField="user"
-            label="Le user"
             type="text"
             placeholder=""
             changed={this.onInputChange}
