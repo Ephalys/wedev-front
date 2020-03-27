@@ -13,9 +13,8 @@ const statusList = [
 class CreateProject extends Component {
   constructor(props) {
     super(props);
-    // state = {};
     this.state = {
-      startDate: new Date()
+      clientList: null
     };
   }
 
@@ -34,7 +33,6 @@ class CreateProject extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
     axios
       .post(`/project`, this.state, {
         headers: { Authorization: localStorage.getItem("token") }
@@ -55,6 +53,24 @@ class CreateProject extends Component {
       [name]: event.value
     });
   };
+
+
+  componentDidMount() {
+    axios
+      .get('/client/all', {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(response => {
+        let clientTab = [];
+        response.data.clients.map((el, i) => {
+          clientTab.push({
+            label: `${el.name} - ${el.contactFirstName} ${el.contactLastName}`,
+            value: el.id
+          });
+          this.setState({ clientList: clientTab });
+        })
+      });
+  }
 
   render() {
     console.log(this.state);
@@ -112,17 +128,16 @@ class CreateProject extends Component {
           />
           <Input
             nameField="adr"
-            label="Adr"
+            label="Average Daily rate"
             type="text"
             placeholder=""
             changed={this.onInputChange}
           />
-          <Input
+          <Select
             nameField="client"
-            label="Le iencli (email)"
-            type="text"
-            placeholder=""
-            changed={this.onInputChange}
+            values={this.state.clientList}
+            label="Client"
+            changed={this.props.changeSelect}
           />
           <Input
             nameField="githubRepository"
