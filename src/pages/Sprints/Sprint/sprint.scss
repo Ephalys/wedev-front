@@ -1,12 +1,30 @@
 @import "../../../assets/sass/colors.scss";
 
-.sprintDisplay {
-    width: 20%;
-    margin: 5px;
-    padding: 5px;
+.sprint {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    color: black;
 
     &:hover {
         background-color: $lightblue;
         border-radius: 4px;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    &__body {
+        font-size: 12px;
+    }
+
+    p {
+        margin: 0;
     }
 }

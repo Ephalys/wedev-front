@@ -4,17 +4,18 @@ import "./sprint.scss";
 class Sprint extends Component {
   render() {
     return (
-      <a
-        className="sprintDisplay"
-        href={`/dashboard/detailssprint/${this.props.id}`}
-      >
-        <div className="sprint">
-          <p>{this.props.title}</p>
-          <p>{this.props.startDate}</p>
-          <p>{this.props.endDate}</p>
-          <p>{this.props.status}</p>
-        </div>
-      </a>
+        <a
+            className="sprint"
+            href={`/dashboard/detailssprint/${this.props.id}`}
+        >
+          <div className="sprint__header">
+            <strong><p>{this.props.title}</p></strong>
+            <p>{this.props.status}</p>
+          </div>
+          <div className="sprint__body">
+            <p>{this.props.startDate} — {this.props.endDate}</p>
+          </div>
+        </a>
     );
   }
 }
