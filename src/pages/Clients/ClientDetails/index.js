@@ -58,7 +58,7 @@ class DetailsClient extends Component {
   render() {
     console.log(this.state);
     return (
-      <div className="client">
+      <div>
         <div className="client__header">
           <h1 className="title">Fiche Client — {this.state.client.name}</h1>
           {this.state.isDisabled ? (
