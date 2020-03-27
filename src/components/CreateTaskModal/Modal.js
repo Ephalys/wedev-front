@@ -41,6 +41,9 @@ class CreateTaskModal extends Component {
               placeholder=""
               changed={this.props.changeValue}
             />
+            <textarea id="story" name="story" rows="5" cols="33">
+              It was a dark and stormy night...
+            </textarea>
             <Select
               nameField="status"
               values={statusList}

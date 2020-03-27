@@ -16,6 +16,10 @@ class SprintDetails extends Component {
     updateTask: {}
   };
   componentDidMount() {
+    this.getSprint();
+  }
+
+  getSprint = () => {
     axios
       .get("/sprint/" + this.props.match.params.id, {
         headers: {
@@ -27,7 +31,7 @@ class SprintDetails extends Component {
       });
 
     this.setState({ newTask: { sprint: this.props.match.params.id } });
-  }
+  };
 
   onInputChangeTask = event => {
     this.setState({
@@ -44,6 +48,7 @@ class SprintDetails extends Component {
       })
       .then(res => {
         console.log(res);
+        this.getSprint();
       })
       .catch(err => {
         console.log(err.response.data.error);
@@ -63,12 +68,14 @@ class SprintDetails extends Component {
       })
       .then(res => {
         console.log(res);
+        this.getSprint();
       })
       .catch(err => {
         console.log(err.response.data.error);
       });
 
     this.closeModal();
+    this.getSprint();
   };
 
   openCreateTaskModal = () => {
@@ -89,7 +96,8 @@ class SprintDetails extends Component {
     this.setState({
       isOpenAddTaskModal: false,
       isOpenUpdateTaskModal: false,
-      newTask: {}
+      newTask: { sprint: this.props.match.params.id },
+      updateTask: {}
     });
   };
 
