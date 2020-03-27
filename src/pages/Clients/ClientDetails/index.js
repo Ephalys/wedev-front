@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "../../../axios-config";
 import Input from "../../../components/Input";
+import history from "../../../utils/history";
 import "./client-details.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -42,6 +43,16 @@ class DetailsClient extends Component {
       .then((response) => {
         this.setState({ isDisabled: true });
       });
+  }
+
+  handleDelete = () => {
+    axios
+    .delete('/client/' + this.props.match.params.id, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then((response) => {
+      history.push('/dashboard/clients');
+    });
   }
 
   componentDidMount() {
