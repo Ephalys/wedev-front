@@ -9,60 +9,52 @@ import animationData from '../../utils/loading-black-dots.json';
 
 class Clients extends Component {
   state = {
-    clients: [],
-    loading: true
+    clients: null,
   };
 
   componentDidMount() {
     axios
-      .get(`/client`, {
+      .get(`/client/all`, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(response => {
         console.log(response.data);
         this.setState({ clients: response.data.clients });
-        this.setState({loading: false})
       });
   }
 
-  tableau = Object.keys(this.state);
-
   render() {
-    let clients = null;
     console.log(this.state);
-    const loaderOption = { animationData: animationData, loop: true };
-    clients = this.state.clients.map((el, index) => {
-      return (
-        <Client
-          key={index}
-          title={el.title}
-          amount={el.amount}
-          delay={el.delay}
-          startDate={el.startDate}
-          endDate={el.endDate}
-          status={el.status}
-          adr={el.adr}
-          client={el.client}
-          user={el.user}
-          id={el.id}
-        />
-      );
-    });
-
     return (
       <div className="clients">
         <div className="clients__header">
           <h1>Clients</h1>
-          <a href="/dashboard/clients/create">
+          <a href="/dashboard/client/create">
             <FontAwesomeIcon icon={faPlus} /> Create a new client
           </a>
         </div>
-        {this.state.loading ? (
-            <Lottie
-            config={loaderOption}
+        {!this.state.clients ? ( 
+          <Lottie
+            config={{ animationData: animationData, loop: true }}
             height={150}
             className="loader"
-        />) : (clients)}
+          />
+        ) : (
+            this.state.clients.map((el, index) => {
+              return (
+                <Client
+                  key={index}
+                  name={el.name}
+                  address={el.address}
+                  contactFirstName={el.contactFirstName}
+                  contactLastName={el.contactLastName}
+                  phone={el.phone}
+                  mail={el.mail}
+                  id={el.id}
+                />
+              );
+            })
+          )}
       </div>
     );
   }

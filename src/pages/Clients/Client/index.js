@@ -7,10 +7,10 @@ class Client extends Component {
         <div className="client__header">
           <strong>
             <a href={`/dashboard/detailsclient/${this.props.id}`}>
-              {this.props.title}
+              {this.props.name}
             </a>
           </strong>
-          <p>{this.props.status}</p>
+          <p>{this.props.contactLastName} {this.props.contactFirstName}</p>
         </div>
       </div>
     );
