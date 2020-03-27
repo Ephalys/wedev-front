@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Input from "../../../components/Input";
 import axios from "../../../axios-config";
 import Select from "../../../components/Select";
+import history from "../../../utils/history";
 
 const statusList = [
   { value: "en_cours", label: "En cours" },
@@ -28,15 +29,14 @@ class CreateSprint extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    const idProject = window.location.href.split('/')[window.location.href.split('/').length - 1];
     axios
       .post(`/sprint`, this.state, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        // const token = res.data.token;
         if ((res.status = 200)) {
-          //user connecté
+          history.push(`/dashboard/detailsproject/${idProject}`);
         }
       })
       .catch(err => {
