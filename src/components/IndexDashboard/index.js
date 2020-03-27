@@ -37,6 +37,17 @@ class IndexDashboard extends Component {
                         averageHourlyRate: 523.78
                     }
                 });
+            }).catch((error) => {
+                if(error.response.status === 401){
+                    axios
+                    .post('/token', {
+                        token: localStorage.getItem('token')
+                    })
+                    .then((response) => {
+                        localStorage.setItem('token', response.data.token);
+                        window.location.reload();
+                    });
+                }
             });
     }
 
