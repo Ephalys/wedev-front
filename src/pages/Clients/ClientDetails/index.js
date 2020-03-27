@@ -83,7 +83,7 @@ class DetailsClient extends Component {
             </div>
           ) : (
               <div className="edition" onClick={this.handleSubmit}>
-                <FontAwesomeIcon icon={faCheck} onClick={this.handleSubmit} /><span>Validate</span>
+                <FontAwesomeIcon icon={faCheck} /><span>Validate</span>
               </div>
             )}
         </div>
