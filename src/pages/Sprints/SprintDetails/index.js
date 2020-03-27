@@ -3,6 +3,9 @@ import axios from "../../../axios-config";
 import Input from "../../../components/Input";
 import CreateTaskModal from "../../../components/CreateTaskModal/Modal";
 import UpdateTaskModal from "../../../components/updateTaskModal/Modal";
+import "./sprint-details.scss";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class SprintDetails extends Component {
   state = {
@@ -102,7 +105,7 @@ class SprintDetails extends Component {
     newTask[event.target.name] = event.target.value;
     console.log(this.state);
 
-    // this.setState({ updateTask: newTask });
+    this.setState({ updateTask: newTask });
   };
 
   onSelectChangeNewTask = (event, name) => {
@@ -193,12 +196,15 @@ class SprintDetails extends Component {
           />
         </form>
 
-        <ul>
-          <label>Taches :</label>
-          {tasks}
-        </ul>
-
-        <button onClick={this.openCreateTaskModal}>Add Task</button>
+        <div className="tasks">
+          <div className="tasks__header">
+            <h2>Tasks</h2>
+            <a onClick={this.openCreateTaskModal}>
+              <FontAwesomeIcon icon={faPlus} /> Create a new task
+            </a>
+          </div>
+          <div className="tasks__list">{tasks}</div>
+        </div>
       </div>
     );
   }

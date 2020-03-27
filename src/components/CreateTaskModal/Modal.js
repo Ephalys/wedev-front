@@ -41,13 +41,6 @@ class CreateTaskModal extends Component {
               placeholder=""
               changed={this.props.changeValue}
             />
-            {/* <Input
-              nameField="status"
-              label="Status"
-              type="text"
-              placeholder=""
-              changed={this.props.changeValue}
-            /> */}
             <Select
               nameField="status"
               values={statusList}
