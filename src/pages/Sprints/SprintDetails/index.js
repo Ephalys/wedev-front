@@ -168,7 +168,7 @@ class SprintDetails extends Component {
           addTask={this.handleSubmitTask}
           changeSelect={this.onSelectChangeNewTask}
         />
-        <h3>Sprint details</h3>
+        <h1>Sprint details</h1>
         <form>
           <Input
             nameField="title"

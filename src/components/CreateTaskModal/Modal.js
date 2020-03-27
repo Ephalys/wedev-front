@@ -58,7 +58,7 @@ class CreateTaskModal extends Component {
               changed={this.props.changeValue}
             />
 
-            <button onClick={this.props.addTask}>Add</button>
+            <button className="btn btn__medium btn__green" onClick={this.props.addTask}>Add</button>
           </div>
         </div>
       </div>
