@@ -10,7 +10,7 @@ class Project extends Component {
               {this.props.title}
             </a>
           </strong>
-          <p>{this.props.status}</p>
+          <p>{this.props.status === "en_cours" ? "En cours" : "Réalisé"}</p>
         </div>
       </div>
     );
