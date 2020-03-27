@@ -1,4 +1,13 @@
-.sprintsList {
-    display: flex;
-    flex-wrap: wrap;
+.client{
+    &__header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    .edition-mode{
+        cursor: pointer;
+        span{
+            margin-left: 5px;   
+        }
+    }
+    }
 }

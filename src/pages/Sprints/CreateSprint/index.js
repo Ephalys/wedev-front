@@ -29,14 +29,13 @@ class CreateSprint extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const idProject = window.location.href.split('/')[window.location.href.split('/').length - 1];
     axios
       .post(`/sprint`, this.state, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
         if ((res.status = 200)) {
-          history.push(`/dashboard/detailsproject/${idProject}`);
+          history.push(`/dashboard/detailsproject/${this.props.match.params.id}`);
         }
       })
       .catch(err => {

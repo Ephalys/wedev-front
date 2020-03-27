@@ -1,16 +1,47 @@
 import React, { Component } from "react";
 import axios from "../../../axios-config";
 import Input from "../../../components/Input";
-import Sprint from "../../Sprints/Sprint";
 import "./client-details.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 class DetailsClient extends Component {
   constructor(props) {
     super(props);
     this.state = {
       client: [],
-      isDisabled: true
+      isDisabled: true,
     };
+  }
+
+  onInputChange = event => {
+    console.log(event.target.value)
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleEditionMode = () => {
+    console.log(this.state);
+    this.setState({ isDisabled: false });
+  }
+
+  handleSubmit = () => {
+    const datas = {
+      ['name']: this.state.name || this.state.client.name,
+      ['address']: this.state.address || this.state.client.address,
+      ['contactFirstName']: this.state.contactFirstName || this.state.client.contactFirstName,
+      ['contactLastName']: this.state.contactLastName || this.state.client.contactLastName,
+      ['phone']: this.state.phone || this.state.client.phone,
+      ['mail']: this.state.mail || this.state.client.mail,
+    };
+    axios
+      .patch('/client/' + this.props.match.params.id, datas, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then((response) => {
+        this.setState({ isDisabled: true });
+      });
   }
 
   componentDidMount() {
@@ -26,110 +57,76 @@ class DetailsClient extends Component {
   }
   render() {
     console.log(this.state);
-
-    let sprints = null;
-
-    if (this.state.client.Sprints) {
-      sprints = this.state.client.Sprints.map((element, i) => {
-        return (
-          <Sprint
-            key={i}
-            id={element.id}
-            title={element.title}
-            startDate={element.startDate}
-            endDate={element.endDate}
-            status={element.status}
-          />
-        );
-      });
-    }
-
     return (
-      <div>
-        <h1>Aperçu du projet — {this.state.client.title}</h1>
+      <div className="client">
+        <div className="client__header">
+          <h1 className="title">Fiche Client — {this.state.client.name}</h1>
+          {this.state.isDisabled ? (
+            <div className="edition-mode" onClick={this.handleEditionMode}>
+              <FontAwesomeIcon icon={faPencilAlt} /><span>Edition Mode</span>
+            </div>
+          ) : (
+              <div className="edition-mode" onClick={this.handleSubmit}>
+                <FontAwesomeIcon icon={faCheck} onClick={this.handleSubmit} /><span>Submit edition</span>
+              </div>
+            )}
+        </div>
         <form>
           <Input
-            nameField="title"
-            label="Title"
+            nameField="name"
+            label="Name"
             type="text"
             placeholder=""
-            valueField={this.state.client ? this.state.client.title : ""}
+            valueField={typeof this.state.name !== "undefined" ? this.state.name : (this.state.client.name || "")}
             changed={this.onInputChange}
             isDisabled={this.state.isDisabled}
           />
           <Input
-            nameField="amount"
-            label="Amount"
+            nameField="address"
+            label="Address"
             type="text"
             placeholder=""
-            valueField={this.state.client ? this.state.client.amount : ""}
+            valueField={typeof this.state.address !== "undefined" ? this.state.address : (this.state.client.address || "")}
             changed={this.onInputChange}
             isDisabled={this.state.isDisabled}
           />
           <Input
-            nameField="delay"
-            label="Delay"
+            nameField="contactFirstName"
+            label="Contact - Firstname"
             type="text"
             placeholder=""
-            valueField={this.state.client ? this.state.client.delay : ""}
+            valueField={typeof this.state.contactFirstName !== "undefined" ? this.state.contactFirstName : (this.state.client.contactFirstName || "")}
             changed={this.onInputChange}
             isDisabled={this.state.isDisabled}
           />
           <Input
-            nameField="startDate"
-            label="StartDate"
+            nameField="contactLastName"
+            label="Contact - Lastname"
             type="text"
             placeholder=""
-            valueField={this.state.client ? this.state.client.startDate : ""}
+            valueField={typeof this.state.contactLastName !== "undefined" ? this.state.contactLastName : (this.state.client.contactLastName || "")}
             changed={this.onInputChange}
             isDisabled={this.state.isDisabled}
           />
           <Input
-            nameField="endDate"
-            label="EndDate"
+            nameField="phone"
+            label="Phone number"
             type="text"
             placeholder=""
-            valueField={this.state.client ? this.state.client.endDate : ""}
+            valueField={typeof this.state.phone !== "undefined" ? this.state.phone : (this.state.client.phone || "")}
             changed={this.onInputChange}
             isDisabled={this.state.isDisabled}
           />
           <Input
-            nameField="status"
-            label="Status"
+            nameField="mail"
+            label="Email"
             type="text"
             placeholder=""
-            valueField={this.state.client ? this.state.client.status : ""}
-            changed={this.onInputChange}
-            isDisabled={this.state.isDisabled}
-          />
-          <Input
-            nameField="stacks"
-            label="Stacks"
-            type="text"
-            placeholder=""
-            valueField={this.state.client ? this.state.client.stacks : ""}
-            changed={this.onInputChange}
-            isDisabled={this.state.isDisabled}
-          />
-          <Input
-            nameField="adr"
-            label="hourly rate"
-            type="text"
-            placeholder=""
-            valueField={this.state.client ? this.state.client.adr : ""}
+            valueField={typeof this.state.mail !== "undefined" ? this.state.mail : (this.state.client.mail || "")}
             changed={this.onInputChange}
             isDisabled={this.state.isDisabled}
           />
         </form>
-
-        <div className="sprintsList">{sprints}</div>
-        <div>
-          <a
-            href={`/dashboard/detailsclient/createsprint/${this.props.match.params.id}`}
-          >
-            create sprint
-          </a>
-        </div>
       </div>
     );
   }

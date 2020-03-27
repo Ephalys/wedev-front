@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Input from "../../../components/Input";
 import axios from "../../../axios-config";
+import history from "../../../utils/history";
 
 class CreateClient extends Component {
   state = {};
@@ -13,15 +14,13 @@ class CreateClient extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
     axios
       .post(`/client`, this.state, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        // const token = res.data.token;
         if ((res.status = 200)) {
-          //user connecté
+          history.push('/clients');
         }
       })
       .catch(err => {
@@ -44,9 +43,9 @@ class CreateClient extends Component {
           />
           <Input
             nameField="address"
-            label="Adresse"
+            label="Address"
             type="text"
-            placeholder=""
+            placeholder="Number, Street, City, Country..."
             changed={this.onInputChange}
           />
           <Input
