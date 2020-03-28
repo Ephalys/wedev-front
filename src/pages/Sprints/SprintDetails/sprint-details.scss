@@ -1,5 +1,37 @@
 @import '../../../assets/sass/breakpoints';
 
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .buttons {
+        display: flex;
+
+        .edition,
+        .delete {
+            cursor: pointer;
+
+            span {
+                margin-left: 5px;
+            }
+        }
+
+        .delete {
+            margin-right: 15px;
+        }
+    }
+
+    .edition {
+        cursor: pointer;
+        margin-left: 5px;
+
+        span {
+            margin-left: 5px;
+        }
+    }
+}
+
 .tasks {
     &__header {
         display: flex;

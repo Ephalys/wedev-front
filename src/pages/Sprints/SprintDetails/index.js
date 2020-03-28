@@ -4,9 +4,16 @@ import Input from "../../../components/Input";
 import CreateTaskModal from "../../../components/CreateTaskModal/Modal";
 import UpdateTaskModal from "../../../components/updateTaskModal/Modal";
 import "./sprint-details.scss";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Select from "../../../components/Select";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlus,
+  faPencilAlt,
+  faCheck,
+  faTrashAlt
+} from "@fortawesome/free-solid-svg-icons";
+import { Lottie } from "@crello/react-lottie";
+import history from "../../../utils/history";
 
 const statusList = [
   { value: "en_cours", label: "En cours" },
@@ -207,9 +214,38 @@ class SprintDetails extends Component {
     });
   };
 
-  render() {
-    console.log(this.state);
+  handleDelete = () => {
+    axios
+      .delete("/sprint/" + this.props.match.params.id, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(response => {
+        history.push("/dashboard/projects");
+      });
+  };
 
+  handleEditionMod = () => {
+    this.setState({ isDisabled: false });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    axios
+      .patch(`/sprint/` + this.state.sprint.id, this.state.sprint, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(res => {
+        console.log(res);
+        this.getSprint();
+        this.setState({ isDisabled: true });
+      })
+      .catch(err => {
+        console.log(err.response.data.error);
+      });
+  };
+
+  render() {
     let tasks = null;
 
     if (this.state.sprint) {
@@ -224,7 +260,9 @@ class SprintDetails extends Component {
               - {element.title}
             </li>
 
-            <button onClick={() => this.deleteTask(element.id)}>X</button>
+            <button onClick={() => this.deleteTask(element.id)}>
+              <FontAwesomeIcon icon={faTrashAlt} />
+            </button>
           </div>
         );
       });
@@ -247,14 +285,26 @@ class SprintDetails extends Component {
           addTask={this.handleSubmitTask}
           changeSelect={this.onSelectChangeNewTask}
         />
-        <h1>Sprint details</h1>
-        <button onClick={this.updateToggle}>modif</button>
-        <button
-          disabled={this.state.isDisabled}
-          onClick={this.handleSubmitSprint}
-        >
-          submit
-        </button>
+        <div className="head">
+          <h1>Sprint details</h1>
+          {this.state.isDisabled ? (
+            <div className="buttons">
+              <div className="delete" onClick={this.handleDelete}>
+                <FontAwesomeIcon icon={faTrashAlt} />
+                <span>Delete</span>
+              </div>
+              <div className="edition" onClick={this.handleEditionMod}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+                <span>Edit</span>
+              </div>
+            </div>
+          ) : (
+            <div className="edition" onClick={this.handleSubmit}>
+              <FontAwesomeIcon icon={faCheck} />
+              <span>Validate</span>
+            </div>
+          )}
+        </div>
         <form>
           <Input
             nameField="title"
