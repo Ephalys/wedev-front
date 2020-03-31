@@ -12,6 +12,7 @@ import {
   faCoins,
   faTachometerAlt
 } from "@fortawesome/free-solid-svg-icons";
+import "./createProject.scss";
 
 const statusList = [
   { value: "en_cours", label: "En cours" },
@@ -131,10 +132,13 @@ class CreateProject extends Component {
   render() {
     return (
       <div>
-        <h1>Create a project</h1>
-        <a onClick={this.openModal}>
-          <FontAwesomeIcon icon={faPlus} /> From Github
-        </a>
+        <div className="create__header">
+          <h1>Create a project</h1>
+          <a onClick={this.openModal}>
+            <FontAwesomeIcon icon={faPlus} /> From Github
+          </a>
+        </div>
+
         <CustomModal
           isOpen={this.state.isOpen}
           title="Add a project from github"
