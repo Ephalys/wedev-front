@@ -8,6 +8,7 @@ import { faPlus, faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-soli
 import { Lottie } from '@crello/react-lottie'
 import animationData from '../../../utils/loading-black-dots.json';
 import history from "../../../utils/history";
+import DeleteButton from "../../../components/DeleteButton";
 
 class DetailsProject extends Component {
     constructor(props) {
@@ -129,9 +130,7 @@ class DetailsProject extends Component {
                             <h1>Aperçu du projet — {this.state.project.title}</h1>
                             {this.state.isDisabled ? (
                                 <div className="buttons">
-                                    <div className="delete" onClick={this.handleDelete}>
-                                        <FontAwesomeIcon icon={faTrashAlt} /><span>Delete</span>
-                                    </div>
+                                    <DeleteButton handleDelete={this.handleDelete}/>
                                     <div className="edition" onClick={this.handleEditionMod}>
                                         <FontAwesomeIcon icon={faPencilAlt} /><span>Edit</span>
                                     </div>

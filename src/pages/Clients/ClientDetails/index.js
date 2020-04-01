@@ -5,6 +5,8 @@ import history from "../../../utils/history";
 import "./client-details.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import DeleteButton from "../../../components/DeleteButton";
+import EditButton from "../../../components/EditButton";
 
 class DetailsClient extends Component {
   constructor(props) {
@@ -71,17 +73,11 @@ class DetailsClient extends Component {
           <h1 className="title">Fiche Client — {this.state.client.name}</h1>
           {this.state.isDisabled ? (
             <div className="buttons">
-              <div className="delete" onClick={this.handleDelete}>
-                <FontAwesomeIcon icon={faTrashAlt} /><span>Delete</span>
-              </div>
-              <div className="edition" onClick={this.handleEditionMod}>
-                <FontAwesomeIcon icon={faPencilAlt} /><span>Edit</span>
-              </div>
+              <DeleteButton handleDelete={this.handleDelete}/>
+              <EditButton handleEdit={this.handleEditionMod}/>
             </div>
           ) : (
-              <div className="edition" onClick={this.handleSubmit}>
-                <FontAwesomeIcon icon={faCheck} /><span>Validate</span>
-              </div>
+              <EditButton handleEdit={this.handleSubmit} />
             )}
         </div>
         <form>

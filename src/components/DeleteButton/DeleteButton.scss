@@ -1,0 +1,13 @@
+@import '../../assets/sass/colors.scss';
+
+.delete {
+    cursor: pointer;
+    font-size: 13px;
+    color: #717171;
+    margin-right: 15px;
+    align-items: center;
+
+    span {
+        margin-left: 5px;
+    }
+}

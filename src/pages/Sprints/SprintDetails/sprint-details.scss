@@ -6,15 +6,11 @@
   justify-content: space-between;
   .buttons {
     display: flex;
-    .edition,
-    .delete {
+    .edition{
       cursor: pointer;
       span {
         margin-left: 5px;
       }
-    }
-    .delete {
-      margin-right: 15px;
     }
   }
   .edition {

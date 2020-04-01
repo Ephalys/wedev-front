@@ -10,6 +10,7 @@ import { faPlus, faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-soli
 import history from "../../../utils/history";
 import { Lottie } from '@crello/react-lottie'
 import animationData from '../../../utils/loading-black-dots.json';
+import DeleteButton from "../../../components/DeleteButton";
 
 
 const statusList = [
@@ -262,10 +263,7 @@ class SprintDetails extends Component {
                   <h1>Sprint details</h1>
                   {this.state.isDisabled ? (
                       <div className="buttons">
-                        <div className="delete" onClick={this.handleDelete}>
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                          <span>Delete</span>
-                        </div>
+                        <DeleteButton handleDelete={this.handleDelete}/>
                         <div className="edition" onClick={this.handleEditionMod}>
                           <FontAwesomeIcon icon={faPencilAlt} />
                           <span>Edit</span>
