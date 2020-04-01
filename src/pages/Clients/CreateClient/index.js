@@ -28,8 +28,6 @@ class CreateClient extends Component {
       });
   };
   render() {
-    console.log(this.state);
-
     return (
       <div>
         <h1>Create a client</h1>

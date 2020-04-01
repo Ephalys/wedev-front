@@ -11,6 +11,26 @@ const statusList = [
 ];
 
 class UpdateTaskModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { statusValue: this.props.statusValue };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.statusValue !== prevState.statusValue) {
+      return { statusValue: nextProps.statusValue };
+    }
+    else {
+      return null
+    };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.statusValue !== this.props.statusValue) {
+      this.setState({ statusValue: this.props.statusValue });
+    }
+  }
+
   render() {
     return (
       <div>
@@ -42,6 +62,7 @@ class UpdateTaskModal extends Component {
             <Select
               nameField="status"
               values={statusList}
+              value={this.props.statusValue}
               label="Status"
               changed={this.props.changeSelect}
             />

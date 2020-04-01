@@ -16,14 +16,12 @@ class DetailsClient extends Component {
   }
 
   onInputChange = event => {
-    console.log(event.target.value)
     this.setState({
       [event.target.name]: event.target.value
     });
   };
 
   handleEditionMod = () => {
-    console.log(this.state);
     this.setState({ isDisabled: false });
   }
 
@@ -67,7 +65,6 @@ class DetailsClient extends Component {
       });
   }
   render() {
-    console.log(this.state);
     return (
       <div>
         <div className="client__header">

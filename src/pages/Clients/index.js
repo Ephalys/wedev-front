@@ -18,13 +18,11 @@ class Clients extends Component {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(response => {
-        console.log(response.data);
         this.setState({ clients: response.data.clients });
       });
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="clients">
         <div className="clients__header">

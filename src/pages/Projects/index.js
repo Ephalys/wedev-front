@@ -19,7 +19,6 @@ class Projects extends Component {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(response => {
-        console.log(response.data);
         this.setState({ projects: response.data.projects });
         this.setState({loading: false})
       });
@@ -29,7 +28,6 @@ class Projects extends Component {
 
   render() {
     let projects = null;
-    console.log(this.state);
     const loaderOption = { animationData: animationData, loop: true };
     projects = this.state.projects.map((el, index) => {
       return (

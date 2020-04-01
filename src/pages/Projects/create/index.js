@@ -58,7 +58,6 @@ class CreateProject extends Component {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        console.log(res.data);
         if ((res.status = 200)) {
           history.push("/dashboard/projects");
         }
@@ -75,7 +74,6 @@ class CreateProject extends Component {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        console.log(res.data);
         if ((res.status = 200)) {
           history.push("/dashboard/projects");
         }
@@ -92,8 +90,6 @@ class CreateProject extends Component {
   };
 
   onSelectChangeClient = event => {
-    console.log(event);
-
     this.setState({
       client: event.value
     });
@@ -107,8 +103,6 @@ class CreateProject extends Component {
       .then(response => {
         let clientTab = [];
         response.data.clients.map((el, i) => {
-          console.log(el.mail);
-
           clientTab.push({
             label: `${el.name} - ${el.contactFirstName} ${el.contactLastName}`,
             value: el.mail

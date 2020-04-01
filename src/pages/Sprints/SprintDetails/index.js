@@ -8,6 +8,9 @@ import Select from "../../../components/Select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import history from "../../../utils/history";
+import { Lottie } from '@crello/react-lottie'
+import animationData from '../../../utils/loading-black-dots.json';
+
 
 const statusList = [
   { value: "en_cours", label: "En cours" },
@@ -22,7 +25,7 @@ class SprintDetails extends Component {
       isDisabled: true,
       isOpenAddTaskModal: false,
       isOpenUpdateTaskModal: false,
-      newTask: {},
+      newTask: null,
       updateTask: {},
       sprint: null
     };
@@ -41,8 +44,8 @@ class SprintDetails extends Component {
       })
       .then(response => {
         let sprint = response.data.sprint;
-        sprint.startDate = this.formatDateEntoUs(sprint.startDate);
-        sprint.endDate = this.formatDateEntoUs(sprint.endDate);
+        sprint.startDate = this.formatDateFrtoUs(sprint.startDate);
+        sprint.endDate = this.formatDateFrtoUs(sprint.endDate);
         this.setState({
           sprint: sprint,
           newTask: { sprint: this.props.match.params.id }
@@ -81,13 +84,11 @@ class SprintDetails extends Component {
       })
       .then(res => {
         this.getSprint();
+        this.closeModal();
       })
       .catch(err => {
         console.log(err.response.data.error);
       });
-
-    this.closeModal();
-    this.getSprint();
   };
 
   handleSubmitSprint = event => {
@@ -134,6 +135,7 @@ class SprintDetails extends Component {
   onChangeNewTask = event => {
     let newTask = this.state.newTask;
     newTask[event.target.name] = event.target.value;
+    this.setState({ updateTask: newTask });
   };
 
   onChangeUpdateTask = event => {
@@ -148,9 +150,9 @@ class SprintDetails extends Component {
     this.setState({ newTask: newTask });
   };
 
-  onSelectChangeSprint = (event, name) => {
+  onSelectChangeSprint = (event) => {
     let sprint = this.state.sprint;
-    sprint[name] = event.value;
+    sprint[event.target.name] = event.target.value;
     this.setState({ sprint: sprint });
   };
 
@@ -208,14 +210,15 @@ class SprintDetails extends Component {
   handleSubmit = event => {
     event.preventDefault();
     let sprint = this.state.sprint;
-    sprint['startDate'] = this.formatDateUstoEn(sprint['startDate']);
-    sprint['endDate'] = this.formatDateUstoEn(sprint['endDate']);
+    sprint['startDate'] = sprint.startDate ? this.formatDateUstoEn(sprint.startDate) : "";
+    sprint['endDate'] = sprint.endDate ? this.formatDateUstoEn(sprint.endDate) : "";
     axios
       .patch(`/sprint/` + this.state.sprint.id, sprint, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
         this.setState({ isDisabled: true });
+        this.getSprint();
       })
       .catch(err => {
         console.log(err.response.data.error);
@@ -227,128 +230,123 @@ class SprintDetails extends Component {
     return `${eDate[2]}-${eDate[1]}-${eDate[0]}`;
   }
 
-  formatDateFrtoEn = (date) => {
-    const eDate = date.split('/');
-    return `${eDate[1]}-${eDate[0]}-${eDate[2]}`;
-  }
-
-  formatDateEntoUs = (date) => {
-    const eDate = date.split('/');
-    return `${eDate[2]}-${eDate[0]}-${eDate[1]}`;
-  }
-
   formatDateUstoEn = (date) => {
     const eDate = date.split('-');
     return `${eDate[1]}-${eDate[2]}-${eDate[0]}`;
-  } 
+  }
 
   render() {
-    let tasks = null;
-    if (this.state.sprint) {
-      tasks = this.state.sprint.Tasks.map((element, i) => {
-        return (
-          <div>
-            <li
-              className="task"
-              key={i}
-              onClick={e => this.openUpdateTaskModal(element.id, e)}
-            >
-              - {element.title}
-            </li>
-            <button onClick={() => this.deleteTask(element.id)}>
-              <FontAwesomeIcon icon={faTrashAlt} />
-            </button>
-          </div>
-        );
-      });
-    }
-
     return (
       <div>
-        <UpdateTaskModal
-          show={this.state.isOpenUpdateTaskModal}
-          modalClosed={this.closeModal}
-          changeValue={this.onChangeUpdateTask}
-          updateTask={this.handleSubmitUpdateTask}
-          data={this.state.updateTask}
-          changeSelect={this.onSelectChangeUpdateTask}
-        />
-        <CreateTaskModal
-          show={this.state.isOpenAddTaskModal}
-          modalClosed={this.closeModal}
-          changeValue={this.onChangeNewTask}
-          addTask={this.handleSubmitTask}
-          changeSelect={this.onSelectChangeNewTask}
-        />
-        <div className="head">
-          <h1>Sprint details</h1>
-          {this.state.isDisabled ? (
-            <div className="buttons">
-              <div className="delete" onClick={this.handleDelete}>
-                <FontAwesomeIcon icon={faTrashAlt} />
-                <span>Delete</span>
+        {!(!this.state.Tasks && !this.state.sprint) ? (
+          <>
+            <UpdateTaskModal
+              show={this.state.isOpenUpdateTaskModal}
+              modalClosed={this.closeModal}
+              changeValue={this.onChangeUpdateTask}
+              value={this.state.newTask.status}
+              updateTask={this.handleSubmitUpdateTask}
+              data={this.state.updateTask}
+              statusValue={this.state.updateTask.status}
+              changeSelect={this.onSelectChangeUpdateTask}
+            />
+            <CreateTaskModal
+              show={this.state.isOpenAddTaskModal}
+              modalClosed={this.closeModal}
+              changeValue={this.onChangeNewTask}
+              statusValue={this.state.newTask.status}
+              addTask={this.handleSubmitTask}
+              changeSelect={this.onSelectChangeNewTask}
+            />
+            <div className="head">
+              <h1>Sprint details</h1>
+              {this.state.isDisabled ? (
+                <div className="buttons">
+                  <div className="delete" onClick={this.handleDelete}>
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                    <span>Delete</span>
+                  </div>
+                  <div className="edition" onClick={this.handleEditionMod}>
+                    <FontAwesomeIcon icon={faPencilAlt} />
+                    <span>Edit</span>
+                  </div>
+                </div>
+              ) : (
+                  <div className="edition" onClick={this.handleSubmit}>
+                    <FontAwesomeIcon icon={faCheck} />
+                    <span>Validate</span>
+                  </div>
+                )}
+            </div>
+            <form>
+              <Input
+                nameField="title"
+                label="Title"
+                type="text"
+                placeholder=""
+                valueField={this.state.sprint.title || ""}
+                changed={this.onInputChange}
+                isDisabled={this.state.isDisabled}
+              />
+              <Input
+                nameField="startDate"
+                label="StartDate"
+                valueField={this.state.sprint.startDate || ""}
+                isDisabled={this.state.isDisabled}
+                type="date"
+                placeholder=""
+                changed={this.onDateInputChange}
+              />
+              <Input
+                nameField="endDate"
+                label="EndDate"
+                valueField={this.state.sprint.endDate || ""}
+                isDisabled={this.state.isDisabled}
+                type="date"
+                placeholder=""
+                changed={this.onDateInputChange}
+              />
+              <Select
+                nameField="status"
+                values={statusList}
+                value={this.state.sprint.status || ""}
+                label="Status"
+                changed={this.onSelectChangeSprint}
+              />
+            </form>
+            <div className="tasks">
+              <div className="tasks__header">
+                <h2>Tasks</h2>
+                <a onClick={this.openCreateTaskModal}>
+                  <FontAwesomeIcon icon={faPlus} /> Create a new task
+            </a>
               </div>
-              <div className="edition" onClick={this.handleEditionMod}>
-                <FontAwesomeIcon icon={faPencilAlt} />
-                <span>Edit</span>
+              <div className="tasks__list">
+                {
+                  this.state.sprint.Tasks.map((element, i) => {
+                    return (
+                      <div>
+                        <li className="task" key={i} onClick={e => this.openUpdateTaskModal(element.id, e)}>
+                          - {element.title}
+                        </li>
+                        <button onClick={() => this.deleteTask(element.id)}>
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                      </div>
+                    );
+                  })
+                }
               </div>
             </div>
-          ) : (
-              <div className="edition" onClick={this.handleSubmit}>
-                <FontAwesomeIcon icon={faCheck} />
-                <span>Validate</span>
-              </div>
-            )}
-        </div>
-        {this.state.sprint ? (
-          <form>
-            <Input
-              nameField="title"
-              label="Title"
-              type="text"
-              placeholder=""
-              valueField={this.state.sprint ? this.state.sprint.title : ""}
-              changed={this.onInputChange}
-              isDisabled={this.state.isDisabled}
-            />
-            <Input
-              nameField="startDate"
-              label="StartDate"
-              valueField={this.state.sprint.startDate || ""}
-              isDisabled={this.state.isDisabled}
-              type="date"
-              placeholder=""
-              changed={this.onDateInputChange}
-            />
-            <Input
-              nameField="endDate"
-              label="EndDate"
-              valueField={this.state.sprint.endDate || ""}
-              isDisabled={this.state.isDisabled}
-              type="date"
-              placeholder=""
-              changed={this.onDateInputChange}
-            />
-            <Select
-              nameField="status"
-              values={statusList}
-              value={this.state.sprint ? this.state.sprint.status : ""}
-              label="Status"
-              changed={this.onSelectChangeSprint}
-            />
-          </form>
+          </>
         ) : (
-            <></>
-          )}
-        <div className="tasks">
-          <div className="tasks__header">
-            <h2>Tasks</h2>
-            <a onClick={this.openCreateTaskModal}>
-              <FontAwesomeIcon icon={faPlus} /> Create a new task
-            </a>
-          </div>
-          <div className="tasks__list">{tasks}</div>
-        </div>
+            <Lottie
+              config={{ animationData: animationData, loop: true }}
+              height={150}
+              className="loader"
+            />
+          )
+        }
       </div>
     );
   }

@@ -38,9 +38,9 @@ class DetailsProject extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const datas = {
-            ['startDate']: this.state.startDate ? this.formatDateUstoEn(this.state.startDate) : this.formatDateFrtoEn(this.state.project.startDate),
-            ['endDate']: this.state.endDate ? this.formatDateUstoEn(this.state.endDate) : this.formatDateFrtoEn(this.state.project.endDate),
-            ['adr']: this.state.adr || this.state.project.adr,
+            'startDate': this.state.startDate ? this.formatDateUstoEn(this.state.startDate) : this.formatDateFrtoEn(this.state.project.startDate),
+            'endDate': this.state.endDate ? this.formatDateUstoEn(this.state.endDate) : this.formatDateFrtoEn(this.state.project.endDate),
+            'adr': this.state.adr || this.state.project.adr,
         };
         axios
             .patch('/project/' + this.props.match.params.id, datas, {
@@ -105,7 +105,6 @@ class DetailsProject extends Component {
     }
 
     render() {
-        console.log(this.state);
         let sprints = null;
         if (this.state.project !== null && this.state.project.Sprints.length > 0) {
             sprints = this.state.project.Sprints.map((element, i) => {

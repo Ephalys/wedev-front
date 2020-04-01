@@ -11,8 +11,24 @@ const statusList = [
 ];
 
 class CreateTaskModal extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.show !== this.props.show;
+  constructor(props) {
+    super(props);
+    this.state = { statusValue: this.props.statusValue };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.statusValue !== prevState.statusValue) {
+      return { statusValue: nextProps.statusValue };
+    }
+    else {
+      return null
+    };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.statusValue !== this.props.statusValue) {
+      this.setState({ statusValue: this.props.statusValue });
+    }
   }
 
   render() {
@@ -44,6 +60,7 @@ class CreateTaskModal extends Component {
             <Select
               nameField="status"
               values={statusList}
+              value={this.props.statusValue}
               label="Status"
               changed={this.props.changeSelect}
             />
@@ -54,13 +71,7 @@ class CreateTaskModal extends Component {
               placeholder=""
               changed={this.props.changeValue}
             />
-
-            <button
-              className="btn btn__medium btn__green"
-              onClick={this.props.addTask}
-            >
-              Add
-            </button>
+            <button className="btn btn__medium btn__green" onClick={this.props.addTask}>Add</button>
           </div>
         </div>
       </div>

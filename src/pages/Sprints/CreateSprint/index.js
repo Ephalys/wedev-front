@@ -14,7 +14,6 @@ class CreateSprint extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    console.log(this.props.match.params.id);
   }
 
   componentDidMount() {
@@ -57,8 +56,6 @@ class CreateSprint extends Component {
   };
 
   render() {
-    console.log(this.state);
-
     return (
       <div>
         <h1>Create a new sprint</h1>

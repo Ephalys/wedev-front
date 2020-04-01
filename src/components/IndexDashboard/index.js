@@ -57,7 +57,6 @@ class IndexDashboard extends Component {
                 headers: { Authorization: localStorage.getItem("token") }
             })
             .then(response => {
-                console.log(response.data.projects);
                 let projects = [];
                 if (response.data.projects > 0) {
                     response.data.projects.forEach(el => {
@@ -104,13 +103,11 @@ class IndexDashboard extends Component {
             ['tags']: this.state.tags,
         }
 
-        console.log(datas);
         axios
             .post(`/issue/${this.state.projectId}`, datas, {
                 headers: { Authorization: localStorage.getItem("token") }
             })
             .then(res => {
-                console.log(res);
                 history.push('/dashboard');
             })
             .catch(err => {
@@ -120,7 +117,6 @@ class IndexDashboard extends Component {
     }
 
     render() {
-        console.log(this.state);
         const loaderOption = { animationData: animationData, loop: true };
         return (
             <div className="dashboard">
