@@ -116,7 +116,7 @@ class DetailsProject extends Component {
                         title={element.title}
                         startDate={element.startDate}
                         endDate={element.endDate}
-                        status={element.status}
+                        status={element.status == "en_cours" ? "En cours" : (element.state == "a_faire" ? "A faire" : "Terminé")}
                     />
                 );
             });
@@ -196,15 +196,12 @@ class DetailsProject extends Component {
                                 isDisabled={this.state.isDisabled}
                             />
                         </form>
-
                         <div className="sprints">
                             <div className="sprints__header">
                                 <h2>Sprints</h2>
-                                <a
-                                    href={`/dashboard/detailsproject/createsprint/${this.props.match.params.id}`}
-                                >
+                                <a href={`/dashboard/detailsproject/createsprint/${this.props.match.params.id}`}>
                                     <FontAwesomeIcon icon={faPlus} /> Create a new sprint
-                        </a>
+                                </a>
                             </div>
                             <div className="sprints__list">{sprints}</div>
                         </div>
