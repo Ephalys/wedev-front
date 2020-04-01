@@ -77,7 +77,7 @@ class DetailsClient extends Component {
               <EditButton handleEdit={this.handleEditionMod}/>
             </div>
           ) : (
-              <EditButton handleEdit={this.handleSubmit} />
+              <EditButton handleEdit={this.handleSubmit} validate={true}/>
             )}
         </div>
         <form>

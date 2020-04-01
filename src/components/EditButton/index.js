@@ -7,7 +7,10 @@ class EditButton extends Component {
     render() {
         return (
             <div className="edition" onClick={this.props.handleEdit}>
-                <FontAwesomeIcon icon={faPencilAlt} /><span>Edit</span>
+                <FontAwesomeIcon icon={faPencilAlt} />
+                <span>
+                    {this.props.validate ? 'Validate' : 'Edit'}
+                </span>
             </div>
         );
     }

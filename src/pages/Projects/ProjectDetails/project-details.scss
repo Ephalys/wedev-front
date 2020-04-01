@@ -20,22 +20,6 @@
     justify-content: space-between;
     .buttons {
       display: flex;
-      .edition {
-        font-size: 12px;
-        display: flex;
-        cursor: pointer;
-        span {
-          margin-left: 5px;
-        }
-      }
-    }
-    .edition {
-      display: flex;
-      cursor: pointer;
-      margin-left: 5px;
-      span {
-        margin-left: 5px;
-      }
     }
   }
   &-cards {
