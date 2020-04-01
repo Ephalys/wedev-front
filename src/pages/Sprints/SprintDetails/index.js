@@ -37,20 +37,20 @@ class SprintDetails extends Component {
 
   getSprint = () => {
     axios
-      .get("/sprint/" + this.props.match.params.id, {
-        headers: {
-          Authorization: localStorage.getItem("token")
-        }
-      })
-      .then(response => {
-        let sprint = response.data.sprint;
-        sprint.startDate = this.formatDateFrtoUs(sprint.startDate);
-        sprint.endDate = this.formatDateFrtoUs(sprint.endDate);
-        this.setState({
-          sprint: sprint,
-          newTask: { sprint: this.props.match.params.id }
+        .get("/sprint/" + this.props.match.params.id, {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        })
+        .then(response => {
+          let sprint = response.data.sprint;
+          sprint.startDate = this.formatDateFrtoUs(sprint.startDate);
+          sprint.endDate = this.formatDateFrtoUs(sprint.endDate);
+          this.setState({
+            sprint: sprint,
+            newTask: { sprint: this.props.match.params.id }
+          });
         });
-      });
   };
 
   onInputChangeTask = event => {
@@ -63,15 +63,15 @@ class SprintDetails extends Component {
     event.preventDefault();
 
     axios
-      .post(`/task`, this.state.newTask, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
-      .then(res => {
-        this.getSprint();
-      })
-      .catch(err => {
-        console.log(err.response.data.error);
-      });
+        .post(`/task`, this.state.newTask, {
+          headers: { Authorization: localStorage.getItem("token") }
+        })
+        .then(res => {
+          this.getSprint();
+        })
+        .catch(err => {
+          console.log(err.response.data.error);
+        });
 
     this.closeModal();
   };
@@ -79,32 +79,32 @@ class SprintDetails extends Component {
   handleSubmitUpdateTask = event => {
     event.preventDefault();
     axios
-      .patch(`/task/` + this.state.updateTask.id, this.state.updateTask, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
-      .then(res => {
-        this.getSprint();
-        this.closeModal();
-      })
-      .catch(err => {
-        console.log(err.response.data.error);
-      });
+        .patch(`/task/` + this.state.updateTask.id, this.state.updateTask, {
+          headers: { Authorization: localStorage.getItem("token") }
+        })
+        .then(res => {
+          this.getSprint();
+          this.closeModal();
+        })
+        .catch(err => {
+          console.log(err.response.data.error);
+        });
   };
 
   handleSubmitSprint = event => {
     event.preventDefault();
 
     axios
-      .patch(`/sprint/` + this.state.sprint.id, this.state.sprint, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
-      .then(res => {
-        this.getSprint();
-        this.setState({ isDisabled: true });
-      })
-      .catch(err => {
-        console.log(err.response.data.error);
-      });
+        .patch(`/sprint/` + this.state.sprint.id, this.state.sprint, {
+          headers: { Authorization: localStorage.getItem("token") }
+        })
+        .then(res => {
+          this.getSprint();
+          this.setState({ isDisabled: true });
+        })
+        .catch(err => {
+          console.log(err.response.data.error);
+        });
     this.closeModal();
     this.getSprint();
   };
@@ -164,15 +164,15 @@ class SprintDetails extends Component {
 
   deleteTask = id => {
     axios
-      .delete(`/task/` + id, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
-      .then(res => {
-        this.getSprint();
-      })
-      .catch(err => {
-        console.log(err.response.data.error);
-      });
+        .delete(`/task/` + id, {
+          headers: { Authorization: localStorage.getItem("token") }
+        })
+        .then(res => {
+          this.getSprint();
+        })
+        .catch(err => {
+          console.log(err.response.data.error);
+        });
   };
 
   updateToggle = () => {
@@ -195,12 +195,12 @@ class SprintDetails extends Component {
 
   handleDelete = () => {
     axios
-      .delete("/sprint/" + this.props.match.params.id, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
-      .then(response => {
-        history.push("/dashboard/projects");
-      });
+        .delete("/sprint/" + this.props.match.params.id, {
+          headers: { Authorization: localStorage.getItem("token") }
+        })
+        .then(response => {
+          history.push("/dashboard/projects");
+        });
   };
 
   handleEditionMod = () => {
@@ -213,16 +213,16 @@ class SprintDetails extends Component {
     sprint['startDate'] = sprint.startDate ? this.formatDateUstoEn(sprint.startDate) : "";
     sprint['endDate'] = sprint.endDate ? this.formatDateUstoEn(sprint.endDate) : "";
     axios
-      .patch(`/sprint/` + this.state.sprint.id, sprint, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
-      .then(res => {
-        this.setState({ isDisabled: true });
-        this.getSprint();
-      })
-      .catch(err => {
-        console.log(err.response.data.error);
-      });
+        .patch(`/sprint/` + this.state.sprint.id, sprint, {
+          headers: { Authorization: localStorage.getItem("token") }
+        })
+        .then(res => {
+          this.setState({ isDisabled: true });
+          this.getSprint();
+        })
+        .catch(err => {
+          console.log(err.response.data.error);
+        });
   };
 
   formatDateFrtoUs = (date) => {
@@ -237,117 +237,115 @@ class SprintDetails extends Component {
 
   render() {
     return (
-      <div>
-        {!(!this.state.Tasks && !this.state.sprint) ? (
-          <>
-            <UpdateTaskModal
-              show={this.state.isOpenUpdateTaskModal}
-              modalClosed={this.closeModal}
-              changeValue={this.onChangeUpdateTask}
-              value={this.state.newTask.status}
-              updateTask={this.handleSubmitUpdateTask}
-              data={this.state.updateTask}
-              statusValue={this.state.updateTask.status}
-              changeSelect={this.onSelectChangeUpdateTask}
-            />
-            <CreateTaskModal
-              show={this.state.isOpenAddTaskModal}
-              modalClosed={this.closeModal}
-              changeValue={this.onChangeNewTask}
-              statusValue={this.state.newTask.status}
-              addTask={this.handleSubmitTask}
-              changeSelect={this.onSelectChangeNewTask}
-            />
-            <div className="head">
-              <h1>Sprint details</h1>
-              {this.state.isDisabled ? (
-                <div className="buttons">
-                  <div className="delete" onClick={this.handleDelete}>
-                    <FontAwesomeIcon icon={faTrashAlt} />
-                    <span>Delete</span>
+        <div>
+          {!(!this.state.Tasks && !this.state.sprint) ? (
+              <>
+                <UpdateTaskModal
+                    show={this.state.isOpenUpdateTaskModal}
+                    modalClosed={this.closeModal}
+                    changeValue={this.onChangeUpdateTask}
+                    value={this.state.newTask.status}
+                    updateTask={this.handleSubmitUpdateTask}
+                    data={this.state.updateTask}
+                    statusValue={this.state.updateTask.status}
+                    changeSelect={this.onSelectChangeUpdateTask}
+                />
+                <CreateTaskModal
+                    show={this.state.isOpenAddTaskModal}
+                    modalClosed={this.closeModal}
+                    changeValue={this.onChangeNewTask}
+                    statusValue={this.state.newTask.status}
+                    addTask={this.handleSubmitTask}
+                    changeSelect={this.onSelectChangeNewTask}
+                />
+                <div className="head">
+                  <h1>Sprint details</h1>
+                  {this.state.isDisabled ? (
+                      <div className="buttons">
+                        <div className="delete" onClick={this.handleDelete}>
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                          <span>Delete</span>
+                        </div>
+                        <div className="edition" onClick={this.handleEditionMod}>
+                          <FontAwesomeIcon icon={faPencilAlt} />
+                          <span>Edit</span>
+                        </div>
+                      </div>
+                  ) : (
+                      <div className="edition" onClick={this.handleSubmit}>
+                        <FontAwesomeIcon icon={faCheck} />
+                        <span>Validate</span>
+                      </div>
+                  )}
+                </div>
+                <form>
+                  <Input
+                      nameField="title"
+                      label="Title"
+                      type="text"
+                      placeholder=""
+                      valueField={this.state.sprint.title || ""}
+                      changed={this.onInputChange}
+                      isDisabled={this.state.isDisabled}
+                  />
+                  <Input
+                      nameField="startDate"
+                      label="StartDate"
+                      valueField={this.state.sprint.startDate || ""}
+                      isDisabled={this.state.isDisabled}
+                      type="date"
+                      placeholder=""
+                      changed={this.onDateInputChange}
+                  />
+                  <Input
+                      nameField="endDate"
+                      label="EndDate"
+                      valueField={this.state.sprint.endDate || ""}
+                      isDisabled={this.state.isDisabled}
+                      type="date"
+                      placeholder=""
+                      changed={this.onDateInputChange}
+                  />
+                  <Select
+                      nameField="status"
+                      values={statusList}
+                      value={this.state.sprint.status || ""}
+                      label="Status"
+                      changed={this.onSelectChangeSprint}
+                  />
+                </form>
+                <div className="tasks">
+                  <div className="tasks__header">
+                    <h2>Tasks</h2>
+                    <a onClick={this.openCreateTaskModal}>
+                      <FontAwesomeIcon icon={faPlus} /> Create a new task
+                    </a>
                   </div>
-                  <div className="edition" onClick={this.handleEditionMod}>
-                    <FontAwesomeIcon icon={faPencilAlt} />
-                    <span>Edit</span>
+                  <div className="tasks__list">
+                    {
+                      this.state.sprint.Tasks.map((element, i) => {
+                        return (
+                            <div>
+                              <li className="task" key={i}>
+                                <p className="task__title" onClick={e => this.openUpdateTaskModal(element.id, e)}><strong>{element.title}</strong></p>
+                                <FontAwesomeIcon icon={faTrashAlt} onClick={() => this.deleteTask(element.id)}/>
+                              </li>
+                            </div>
+                        );
+                      })
+                    }
                   </div>
                 </div>
-              ) : (
-                  <div className="edition" onClick={this.handleSubmit}>
-                    <FontAwesomeIcon icon={faCheck} />
-                    <span>Validate</span>
-                  </div>
-                )}
-            </div>
-            <form>
-              <Input
-                nameField="title"
-                label="Title"
-                type="text"
-                placeholder=""
-                valueField={this.state.sprint.title || ""}
-                changed={this.onInputChange}
-                isDisabled={this.state.isDisabled}
+              </>
+          ) : (
+              <Lottie
+                  config={{ animationData: animationData, loop: true }}
+                  height={150}
+                  className="loader"
               />
-              <Input
-                nameField="startDate"
-                label="StartDate"
-                valueField={this.state.sprint.startDate || ""}
-                isDisabled={this.state.isDisabled}
-                type="date"
-                placeholder=""
-                changed={this.onDateInputChange}
-              />
-              <Input
-                nameField="endDate"
-                label="EndDate"
-                valueField={this.state.sprint.endDate || ""}
-                isDisabled={this.state.isDisabled}
-                type="date"
-                placeholder=""
-                changed={this.onDateInputChange}
-              />
-              <Select
-                nameField="status"
-                values={statusList}
-                value={this.state.sprint.status || ""}
-                label="Status"
-                changed={this.onSelectChangeSprint}
-              />
-            </form>
-            <div className="tasks">
-              <div className="tasks__header">
-                <h2>Tasks</h2>
-                <a onClick={this.openCreateTaskModal}>
-                  <FontAwesomeIcon icon={faPlus} /> Create a new task
-            </a>
-              </div>
-              <div className="tasks__list">
-                {
-                  this.state.sprint.Tasks.map((element, i) => {
-                    return (
-                      <div>
-                        <li className="task" key={i}>
-                          <p className="task__title" onClick={e => this.openUpdateTaskModal(element.id, e)}><strong>{element.title}</strong></p>
-                          <a href="#" onClick={() => this.deleteTask(element.id)}>
-                            <FontAwesomeIcon icon={faTrashAlt} />
-                          </a>
-                        </li>
-                      </div>
-                    );
-                  })
-                }
-              </div>
-            </div>
-          </>
-        ) : (
-            <Lottie
-              config={{ animationData: animationData, loop: true }}
-              height={150}
-              className="loader"
-            />
           )
-        }
-      </div>
+          }
+        </div>
     );
   }
 }
