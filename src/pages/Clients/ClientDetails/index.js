@@ -3,8 +3,6 @@ import axios from "../../../axios-config";
 import Input from "../../../components/Input";
 import history from "../../../utils/history";
 import "./client-details.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import DeleteButton from "../../../components/DeleteButton";
 import EditButton from "../../../components/EditButton";
 

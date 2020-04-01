@@ -6,7 +6,7 @@ import UpdateTaskModal from "../../../components/updateTaskModal/Modal";
 import "./sprint-details.scss";
 import Select from "../../../components/Select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import history from "../../../utils/history";
 import { Lottie } from '@crello/react-lottie'
 import animationData from '../../../utils/loading-black-dots.json';

@@ -4,7 +4,7 @@ import Input from "../../../components/Input";
 import Sprint from "../../Sprints/Sprint";
 import "./project-details.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Lottie } from '@crello/react-lottie'
 import animationData from '../../../utils/loading-black-dots.json';
 import history from "../../../utils/history";
@@ -131,11 +131,11 @@ class DetailsProject extends Component {
                             <h1>Aperçu du projet — {this.state.project.title}</h1>
                             {this.state.isDisabled ? (
                                 <div className="buttons">
-                                    <DeleteButton handleDelete={this.handleDelete}/>
-                                    <EditButton handleEdit={this.handleEditionMod}/>
+                                    <DeleteButton handleDelete={this.handleDelete} />
+                                    <EditButton handleEdit={this.handleEditionMod} />
                                 </div>
                             ) : (
-                                <EditButton handleEdit={this.handleSubmit} validate={true}/>
+                                    <EditButton handleEdit={this.handleSubmit} validate={true} />
                                 )}
                         </div>
                         <div className="project__details-cards">
