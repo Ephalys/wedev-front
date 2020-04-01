@@ -86,7 +86,7 @@ class IndexDashboard extends Component {
             ['password']: this.state.password,
             ['title']: this.state.title,
             ['body']: this.state.body,
-            ['tags']: this.state.tags,
+            ['labels']: this.state.labels,
         }
 
         axios
@@ -94,7 +94,7 @@ class IndexDashboard extends Component {
                 headers: { Authorization: localStorage.getItem("token") }
             })
             .then(res => {
-                history.push('/dashboard');
+                window.location.reload();
             })
             .catch(err => {
                 console.log(err.response.data.error);
@@ -149,8 +149,8 @@ class IndexDashboard extends Component {
                                 changed={this.onInputChange}
                             />
                             <Input
-                                nameField="tags"
-                                label="Issue Tags (separated by commas)"
+                                nameField="labels"
+                                label="Issue Labels (separated by commas)"
                                 type="text"
                                 placeholder=""
                                 changed={this.onInputChange}
