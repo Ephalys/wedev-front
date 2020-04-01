@@ -20,7 +20,7 @@ class CreateClient extends Component {
       })
       .then(res => {
         if ((res.status = 200)) {
-          history.push('/clients');
+          history.push('/dashboard/clients');
         }
       })
       .catch(err => {
