@@ -327,11 +327,9 @@ class SprintDetails extends Component {
                     return (
                       <div>
                         <li className="task" key={i} onClick={e => this.openUpdateTaskModal(element.id, e)}>
-                          - {element.title}
+                          {element.title}
                         </li>
-                        <button onClick={() => this.deleteTask(element.id)}>
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                        </button>
+                        <FontAwesomeIcon icon={faTrashAlt} onClick={() => this.deleteTask(element.id)} />
                       </div>
                     );
                   })

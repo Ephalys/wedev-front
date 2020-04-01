@@ -28,25 +28,17 @@ class IndexDashboard extends Component {
                 headers: { Authorization: localStorage.getItem("token") }
             })
             .then(response => {
-                // this.setState({ metrics: response.data.metric });
-                this.setState({
-                    metrics: {
-                        projectCount: 57,
-                        onGoingProjectsCount: 3,
-                        turnover: 1589.46,
-                        averageHourlyRate: 523.78
-                    }
-                });
+                this.setState({ metrics: response.data.metric });
             }).catch((error) => {
-                if(error.response.status === 401){
+                if (error.response.status === 401) {
                     axios
-                    .post('/token', {
-                        token: localStorage.getItem('token')
-                    })
-                    .then((response) => {
-                        localStorage.setItem('token', response.data.token);
-                        window.location.reload();
-                    });
+                        .post('/token', {
+                            token: localStorage.getItem('token')
+                        })
+                        .then((response) => {
+                            localStorage.setItem('token', response.data.token);
+                            window.location.reload();
+                        });
                 }
             });
     }
@@ -58,19 +50,13 @@ class IndexDashboard extends Component {
             })
             .then(response => {
                 let projects = [];
-                if (response.data.projects > 0) {
+                if (response.data.projects.length > 0) {
                     response.data.projects.forEach(el => {
-                        if (el.githubRepository) {
-                            // projects.push({value: el.id, label: el.title});
+                        if (el.githubRepository !== "" && el.githubRepository !== null) {
                             projects = [...projects, { value: el.id, label: el.title }];
                         }
                     });
                 }
-
-                projects = [{
-                    ['value']: '1',
-                    ['label']: 'Projet Test en dur'
-                }];
                 this.setState({
                     projects: projects,
                     isOpen: true
@@ -133,13 +119,14 @@ class IndexDashboard extends Component {
                                 values={this.state.projects}
                                 label="Projet"
                                 changed={this.onSelectChange}
-                            /><Input
-                            nameField="pseudo"
-                            label="Github Username"
-                            type="text"
-                            placeholder=""
-                            changed={this.onInputChange}
-                        />
+                            />
+                            <Input
+                                nameField="pseudo"
+                                label="Github Username"
+                                type="text"
+                                placeholder=""
+                                changed={this.onInputChange}
+                            />
                             <Input
                                 nameField="password"
                                 label="Github Password"
@@ -170,8 +157,8 @@ class IndexDashboard extends Component {
                             />
                         </div>
                     ) : (
-                        <div>No project with a GitHub link found in your projects. Please add one to an existant project or create a new project with a GitHub link.</div>
-                    )
+                            <div>No project with a GitHub link found in your projects. Please add one to an existant project or create a new project with a GitHub link.</div>
+                        )
                     }
                 />
                 <div className="dashboard__header">
@@ -195,13 +182,13 @@ class IndexDashboard extends Component {
                                 }
                             </span>
                         ) : (
-                            <Lottie
-                                config={loaderOption}
-                                height={40}
-                                width={40}
-                                className="loader"
-                            />
-                        )}
+                                <Lottie
+                                    config={loaderOption}
+                                    height={40}
+                                    width={40}
+                                    className="loader"
+                                />
+                            )}
                         <span className="title">Realised Projects</span>
                     </div>
                     <div className="metrics__card">
@@ -217,13 +204,13 @@ class IndexDashboard extends Component {
                                 }
                             </span>
                         ) : (
-                            <Lottie
-                                config={loaderOption}
-                                height={40}
-                                width={40}
-                                className="loader"
-                            />
-                        )}
+                                <Lottie
+                                    config={loaderOption}
+                                    height={40}
+                                    width={40}
+                                    className="loader"
+                                />
+                            )}
                         <span className="title">Current Projects</span>
                     </div>
                     <div className="metrics__card">
@@ -243,13 +230,13 @@ class IndexDashboard extends Component {
                                 }
                             </span>
                         ) : (
-                            <Lottie
-                                config={loaderOption}
-                                height={40}
-                                width={40}
-                                className="loader"
-                            />
-                        )}
+                                <Lottie
+                                    config={loaderOption}
+                                    height={40}
+                                    width={40}
+                                    className="loader"
+                                />
+                            )}
                         <span className="title">Turnover</span>
                     </div>
                     <div className="metrics__card">
@@ -269,13 +256,13 @@ class IndexDashboard extends Component {
                                 }
                             </span>
                         ) : (
-                            <Lottie
-                                config={loaderOption}
-                                height={40}
-                                width={40}
-                                className="loader"
-                            />
-                        )}
+                                <Lottie
+                                    config={loaderOption}
+                                    height={40}
+                                    width={40}
+                                    className="loader"
+                                />
+                            )}
                         <span className="title">Average Hourly Rate</span>
                     </div>
                 </div>
