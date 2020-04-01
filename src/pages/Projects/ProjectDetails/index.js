@@ -130,11 +130,9 @@ class DetailsProject extends Component {
                             <h1>Aperçu du projet — {this.state.project.title}</h1>
                             {this.state.isDisabled ? (
                                 <div className="buttons">
-                                    {/* {this.state.project.Sprint && ( */}
                                     <div className="delete" onClick={this.handleDelete}>
                                         <FontAwesomeIcon icon={faTrashAlt} /><span>Delete</span>
                                     </div>
-                                    {/* )} */}
                                     <div className="edition" onClick={this.handleEditionMod}>
                                         <FontAwesomeIcon icon={faPencilAlt} /><span>Edit</span>
                                     </div>

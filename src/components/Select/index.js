@@ -24,6 +24,7 @@ const customStyles = {
 
 class Select extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="form-group">
         <label htmlFor="">{this.props.label}</label>
@@ -38,6 +39,7 @@ class Select extends Component {
             }
           })}
           options={this.props.values}
+          value={this.props.values.filter(option => option.value === this.props.value)}
           onChange={event => {
             this.props.changed(event, this.props.nameField);
           }}

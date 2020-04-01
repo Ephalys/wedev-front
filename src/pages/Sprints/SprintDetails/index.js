@@ -6,13 +6,7 @@ import UpdateTaskModal from "../../../components/updateTaskModal/Modal";
 import "./sprint-details.scss";
 import Select from "../../../components/Select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faPencilAlt,
-  faCheck,
-  faTrashAlt
-} from "@fortawesome/free-solid-svg-icons";
-import { Lottie } from "@crello/react-lottie";
+import { faPlus, faPencilAlt, faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import history from "../../../utils/history";
 
 const statusList = [
@@ -41,10 +35,11 @@ class SprintDetails extends Component {
         }
       })
       .then(response => {
-        this.setState({ sprint: response.data.sprint });
+        this.setState({
+          sprint: response.data.sprint,
+          newTask: { sprint: this.props.match.params.id }
+        });
       });
-
-    this.setState({ newTask: { sprint: this.props.match.params.id } });
   };
 
   onInputChangeTask = event => {
@@ -121,9 +116,10 @@ class SprintDetails extends Component {
       return el.id === id;
     });
 
-    this.setState({ updateTask: newUpdateTask[0] });
-
-    this.setState({ isOpenUpdateTaskModal: true });
+    this.setState({
+      updateTask: newUpdateTask[0],
+      isOpenUpdateTaskModal: true
+    });
   };
 
   closeModal = () => {
@@ -245,6 +241,21 @@ class SprintDetails extends Component {
       });
   };
 
+  formatDateFrtoUs = (date) => {
+    const eDate = date.split('/');
+    return `${eDate[2]}-${eDate[1]}-${eDate[0]}`;
+  }
+
+  formatDateFrtoEn = (date) => {
+    const eDate = date.split('/');
+    return `${eDate[1]}-${eDate[0]}-${eDate[2]}`;
+  }
+
+  formatDateEntoUs = (date) => {
+    const eDate = date.split('/');
+    return `${eDate[2]}-${eDate[0]}-${eDate[1]}`;
+  }
+
   render() {
     let tasks = null;
 
@@ -259,7 +270,6 @@ class SprintDetails extends Component {
             >
               - {element.title}
             </li>
-
             <button onClick={() => this.deleteTask(element.id)}>
               <FontAwesomeIcon icon={faTrashAlt} />
             </button>
@@ -299,11 +309,11 @@ class SprintDetails extends Component {
               </div>
             </div>
           ) : (
-            <div className="edition" onClick={this.handleSubmit}>
-              <FontAwesomeIcon icon={faCheck} />
-              <span>Validate</span>
-            </div>
-          )}
+              <div className="edition" onClick={this.handleSubmit}>
+                <FontAwesomeIcon icon={faCheck} />
+                <span>Validate</span>
+              </div>
+            )}
         </div>
         <form>
           <Input
@@ -318,7 +328,7 @@ class SprintDetails extends Component {
           <Input
             nameField="startDate"
             label="StartDate"
-            valueField={this.state.sprint ? this.state.sprint.startDate : ""}
+            valueField={this.state.sprint ? this.formatDateEntoUs(this.state.sprint.startDate) : ""}
             isDisabled={this.state.isDisabled}
             type="date"
             placeholder=""
@@ -327,21 +337,20 @@ class SprintDetails extends Component {
           <Input
             nameField="endDate"
             label="EndDate"
-            valueField={this.state.sprint ? this.state.sprint.endDate : ""}
+            valueField={this.state.sprint ? this.formatDateEntoUs(this.state.sprint.endDate) : ""}
             isDisabled={this.state.isDisabled}
             type="date"
             placeholder=""
             changed={this.onDateInputChange}
           />
-
           <Select
             nameField="status"
             values={statusList}
+            value={this.state.sprint ? this.state.sprint.status : ""}
             label="Status"
             changed={this.onSelectChangeSprint}
           />
         </form>
-
         <div className="tasks">
           <div className="tasks__header">
             <h2>Tasks</h2>
