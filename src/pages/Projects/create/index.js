@@ -53,8 +53,11 @@ class CreateProject extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    let projectData = this.state;
+    delete projectData.cientList;
+    delete projectData.project;
     axios
-      .post(`/project`, this.state, {
+      .post(`/project`, projectData, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
@@ -84,6 +87,7 @@ class CreateProject extends Component {
   };
 
   onSelectChangeStatus = (event, name) => {
+    console.log(event, name);
     this.setState({
       [name]: event.value
     });
@@ -126,122 +130,127 @@ class CreateProject extends Component {
   render() {
     return (
       <div>
-        <div className="create__header">
-          <h1>Create a project</h1>
-          <a onClick={this.openModal}>
-            <FontAwesomeIcon icon={faPlus} /> From Github
-          </a>
-        </div>
-
-        <CustomModal
-          isOpen={this.state.isOpen}
-          title="Add a project from github"
-          onValidateClick={this.handleSubmitGithub}
-          closeModal={this.closeModal}
-          validateText="Create"
-          content={
-            <div>
-              <Input
-                nameField="pseudo"
-                label="Github Username"
-                type="text"
-                placeholder=""
-                changed={this.onInputChangeGit}
+        {
+          this.state.clientList ? (
+            <>
+              <div className="create__header">
+                <h1>Create a project</h1>
+                <a onClick={this.openModal}><FontAwesomeIcon icon={faPlus} /> From Github</a>
+              </div>
+              <CustomModal
+                isOpen={this.state.isOpen}
+                title="Add a project from github"
+                onValidateClick={this.handleSubmitGithub}
+                closeModal={this.closeModal}
+                validateText="Create"
+                content={
+                  <div>
+                    <Input
+                      nameField="pseudo"
+                      label="Github Username"
+                      type="text"
+                      placeholder=""
+                      changed={this.onInputChangeGit}
+                    />
+                    <Input
+                      nameField="password"
+                      label="Github Password"
+                      type="password"
+                      placeholder=""
+                      changed={this.onInputChangeGit}
+                    />
+                    <Input
+                      nameField="repoName"
+                      label="RepoName"
+                      type="text"
+                      placeholder=""
+                      changed={this.onInputChangeGit}
+                    />
+                  </div>
+                }
               />
-              <Input
-                nameField="password"
-                label="Github Password"
-                type="password"
-                placeholder=""
-                changed={this.onInputChangeGit}
-              />
-              <Input
-                nameField="repoName"
-                label="RepoName"
-                type="text"
-                placeholder=""
-                changed={this.onInputChangeGit}
-              />
-            </div>
-          }
-        />
-
-        <form>
-          <Input
-            nameField="title"
-            label="Title"
-            type="text"
-            placeholder=""
-            changed={this.onInputChange}
-          />
-          <Input
-            nameField="amount"
-            label="Amount"
-            type="text"
-            placeholder=""
-            changed={this.onInputChange}
-          />
-          <Input
-            nameField="delay"
-            label="Delay"
-            type="text"
-            placeholder=""
-            changed={this.onInputChange}
-          />
-          <Input
-            nameField="startDate"
-            label="StartDate"
-            type="date"
-            placeholder=""
-            changed={this.onDateInputChange}
-          />
-          <Input
-            nameField="endDate"
-            label="EndDate"
-            type="date"
-            placeholder=""
-            changed={this.onDateInputChange}
-          />
-          <Select
-            nameField="status"
-            values={statusList}
-            label="Status"
-            changed={this.onSelectChangeStatus}
-          />
-          <Input
-            nameField="stacks"
-            label="Stacks"
-            type="text"
-            placeholder=""
-            changed={this.onInputChange}
-          />
-          <Input
-            nameField="adr"
-            label="Average Daily rate"
-            type="text"
-            placeholder=""
-            changed={this.onInputChange}
-          />
-          <Select
-            nameField="client"
-            values={this.state.clientList}
-            label="Client"
-            changed={el => this.onSelectChangeClient(el)}
-          />
-          <Input
-            nameField="githubRepository"
-            label="Github link (optional)"
-            type="text"
-            placeholder=""
-            changed={this.onInputChange}
-          />
-          <input
-            onClick={this.handleSubmit}
-            type="submit"
-            value="Create"
-            className="btn btn__rounded btn__green btn__letter-spacing fwb btn__medium"
-          />
-        </form>
+              <form>
+                <Input
+                  nameField="title"
+                  label="Title"
+                  type="text"
+                  placeholder=""
+                  changed={this.onInputChange}
+                />
+                <Input
+                  nameField="amount"
+                  label="Amount"
+                  type="text"
+                  placeholder=""
+                  changed={this.onInputChange}
+                />
+                <Input
+                  nameField="delay"
+                  label="Delay"
+                  type="text"
+                  placeholder=""
+                  changed={this.onInputChange}
+                />
+                <Input
+                  nameField="startDate"
+                  label="StartDate"
+                  type="date"
+                  placeholder=""
+                  changed={this.onDateInputChange}
+                />
+                <Input
+                  nameField="endDate"
+                  label="EndDate"
+                  type="date"
+                  placeholder=""
+                  changed={this.onDateInputChange}
+                />
+                <Select
+                  nameField="status"
+                  values={statusList}
+                  value={this.state.status || ""}
+                  label="Status"
+                  changed={this.onSelectChangeStatus}
+                />
+                <Input
+                  nameField="stacks"
+                  label="Stacks"
+                  type="text"
+                  placeholder=""
+                  changed={this.onInputChange}
+                />
+                <Input
+                  nameField="adr"
+                  label="Average Daily rate"
+                  type="text"
+                  placeholder=""
+                  changed={this.onInputChange}
+                />
+                <Select
+                  nameField="client"
+                  values={this.state.clientList}
+                  value={this.state.client || ""}
+                  label="Client"
+                  changed={el => this.onSelectChangeClient(el)}
+                />
+                <Input
+                  nameField="githubRepository"
+                  label="Github link (optional)"
+                  type="text"
+                  placeholder=""
+                  changed={this.onInputChange}
+                />
+                <input
+                  onClick={this.handleSubmit}
+                  type="submit"
+                  value="Create"
+                  className="btn btn__rounded btn__green btn__letter-spacing fwb btn__medium"
+                />
+              </form>
+            </>
+          ) : (
+              <></>
+            )}
       </div>
     );
   }
