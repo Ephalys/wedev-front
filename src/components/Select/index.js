@@ -39,7 +39,7 @@ class Select extends Component {
             }
           })}
           options={this.props.values}
-          value={this.props.values.filter(option => option.value === this.props.value)}
+          value={typeof this.props.value !== "undefined" ? this.props.values.filter(option => option.value === this.props.value) : ""}
           onChange={event => {
             this.props.changed(event, this.props.nameField);
           }}
