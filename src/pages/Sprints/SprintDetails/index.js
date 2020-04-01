@@ -16,13 +16,18 @@ const statusList = [
 ];
 
 class SprintDetails extends Component {
-  state = {
-    isDisabled: true,
-    isOpenAddTaskModal: false,
-    isOpenUpdateTaskModal: false,
-    newTask: {},
-    updateTask: {}
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDisabled: true,
+      isOpenAddTaskModal: false,
+      isOpenUpdateTaskModal: false,
+      newTask: {},
+      updateTask: {},
+      sprint: null
+    };
+  }
+
   componentDidMount() {
     this.getSprint();
   }
@@ -35,8 +40,11 @@ class SprintDetails extends Component {
         }
       })
       .then(response => {
+        let sprint = response.data.sprint;
+        sprint.startDate = this.formatDateEntoUs(sprint.startDate);
+        sprint.endDate = this.formatDateEntoUs(sprint.endDate);
         this.setState({
-          sprint: response.data.sprint,
+          sprint: sprint,
           newTask: { sprint: this.props.match.params.id }
         });
       });
@@ -56,7 +64,6 @@ class SprintDetails extends Component {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        console.log(res);
         this.getSprint();
       })
       .catch(err => {
@@ -67,16 +74,12 @@ class SprintDetails extends Component {
   };
 
   handleSubmitUpdateTask = event => {
-    console.log(event.id);
-
     event.preventDefault();
-
     axios
       .patch(`/task/` + this.state.updateTask.id, this.state.updateTask, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        console.log(res);
         this.getSprint();
       })
       .catch(err => {
@@ -95,14 +98,12 @@ class SprintDetails extends Component {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        console.log(res);
         this.getSprint();
         this.setState({ isDisabled: true });
       })
       .catch(err => {
         console.log(err.response.data.error);
       });
-
     this.closeModal();
     this.getSprint();
   };
@@ -115,7 +116,6 @@ class SprintDetails extends Component {
     let newUpdateTask = this.state.sprint.Tasks.filter(el => {
       return el.id === id;
     });
-
     this.setState({
       updateTask: newUpdateTask[0],
       isOpenUpdateTaskModal: true
@@ -133,40 +133,30 @@ class SprintDetails extends Component {
 
   onChangeNewTask = event => {
     let newTask = this.state.newTask;
-
     newTask[event.target.name] = event.target.value;
   };
 
   onChangeUpdateTask = event => {
     let newTask = this.state.updateTask;
-
     newTask[event.target.name] = event.target.value;
-    console.log(this.state);
-
     this.setState({ updateTask: newTask });
   };
 
   onSelectChangeNewTask = (event, name) => {
     let newTask = this.state.newTask;
-
     newTask[name] = event.value;
-
     this.setState({ newTask: newTask });
   };
 
   onSelectChangeSprint = (event, name) => {
     let sprint = this.state.sprint;
-
     sprint[name] = event.value;
-
     this.setState({ sprint: sprint });
   };
 
   onSelectChangeUpdateTask = (event, name) => {
     let newTask = this.state.updateTask;
-
     newTask[name] = event.value;
-
     this.setState({ updateTask: newTask });
   };
 
@@ -176,7 +166,6 @@ class SprintDetails extends Component {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        console.log(res);
         this.getSprint();
       })
       .catch(err => {
@@ -190,21 +179,13 @@ class SprintDetails extends Component {
 
   onInputChange = event => {
     let updatedSprint = this.state.sprint;
-
     updatedSprint[event.target.name] = event.target.value;
-
     this.setState({ sprint: updatedSprint });
-    console.log(this.state);
   };
 
   onDateInputChange = event => {
     let sprint = this.state.sprint;
-    let splitDate = event.target.value.split("-");
-
-    sprint[
-      event.target.name
-    ] = `${splitDate[0]}-${splitDate[2]}-${splitDate[1]}`;
-
+    sprint[event.target.name] = event.target.value;
     this.setState({
       sprint: sprint
     });
@@ -226,14 +207,14 @@ class SprintDetails extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    let sprint = this.state.sprint;
+    sprint['startDate'] = this.formatDateUstoEn(sprint['startDate']);
+    sprint['endDate'] = this.formatDateUstoEn(sprint['endDate']);
     axios
-      .patch(`/sprint/` + this.state.sprint.id, this.state.sprint, {
+      .patch(`/sprint/` + this.state.sprint.id, sprint, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        console.log(res);
-        this.getSprint();
         this.setState({ isDisabled: true });
       })
       .catch(err => {
@@ -256,9 +237,13 @@ class SprintDetails extends Component {
     return `${eDate[2]}-${eDate[0]}-${eDate[1]}`;
   }
 
+  formatDateUstoEn = (date) => {
+    const eDate = date.split('-');
+    return `${eDate[1]}-${eDate[2]}-${eDate[0]}`;
+  } 
+
   render() {
     let tasks = null;
-
     if (this.state.sprint) {
       tasks = this.state.sprint.Tasks.map((element, i) => {
         return (
@@ -315,42 +300,46 @@ class SprintDetails extends Component {
               </div>
             )}
         </div>
-        <form>
-          <Input
-            nameField="title"
-            label="Title"
-            type="text"
-            placeholder=""
-            valueField={this.state.sprint ? this.state.sprint.title : ""}
-            changed={this.onInputChange}
-            isDisabled={this.state.isDisabled}
-          />
-          <Input
-            nameField="startDate"
-            label="StartDate"
-            valueField={this.state.sprint ? this.formatDateEntoUs(this.state.sprint.startDate) : ""}
-            isDisabled={this.state.isDisabled}
-            type="date"
-            placeholder=""
-            changed={this.onDateInputChange}
-          />
-          <Input
-            nameField="endDate"
-            label="EndDate"
-            valueField={this.state.sprint ? this.formatDateEntoUs(this.state.sprint.endDate) : ""}
-            isDisabled={this.state.isDisabled}
-            type="date"
-            placeholder=""
-            changed={this.onDateInputChange}
-          />
-          <Select
-            nameField="status"
-            values={statusList}
-            value={this.state.sprint ? this.state.sprint.status : ""}
-            label="Status"
-            changed={this.onSelectChangeSprint}
-          />
-        </form>
+        {this.state.sprint ? (
+          <form>
+            <Input
+              nameField="title"
+              label="Title"
+              type="text"
+              placeholder=""
+              valueField={this.state.sprint ? this.state.sprint.title : ""}
+              changed={this.onInputChange}
+              isDisabled={this.state.isDisabled}
+            />
+            <Input
+              nameField="startDate"
+              label="StartDate"
+              valueField={this.state.sprint.startDate || ""}
+              isDisabled={this.state.isDisabled}
+              type="date"
+              placeholder=""
+              changed={this.onDateInputChange}
+            />
+            <Input
+              nameField="endDate"
+              label="EndDate"
+              valueField={this.state.sprint.endDate || ""}
+              isDisabled={this.state.isDisabled}
+              type="date"
+              placeholder=""
+              changed={this.onDateInputChange}
+            />
+            <Select
+              nameField="status"
+              values={statusList}
+              value={this.state.sprint ? this.state.sprint.status : ""}
+              label="Status"
+              changed={this.onSelectChangeSprint}
+            />
+          </form>
+        ) : (
+            <></>
+          )}
         <div className="tasks">
           <div className="tasks__header">
             <h2>Tasks</h2>
