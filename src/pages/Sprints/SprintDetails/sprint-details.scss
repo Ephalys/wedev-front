@@ -27,12 +27,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .task-creation {
+      cursor: pointer;
+    }
   }
   &__list {
-    // display: flex;
-    // flex-wrap: wrap;
     list-style-type: none;
-    // justify-content: space-between;
   }
   .task {
     margin: 20px 0;

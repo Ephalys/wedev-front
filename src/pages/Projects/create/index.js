@@ -5,13 +5,7 @@ import Select from "../../../components/Select";
 import history from "../../../utils/history";
 import CustomModal from "../../../components/CustomModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faCheck,
-  faSpinner,
-  faCoins,
-  faTachometerAlt
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./createProject.scss";
 
 const statusList = [
@@ -111,6 +105,7 @@ class CreateProject extends Component {
             label: `${el.name} - ${el.contactFirstName} ${el.contactLastName}`,
             value: el.mail
           });
+          return true;
         });
         this.setState({ clientList: clientTab });
       });
@@ -135,7 +130,7 @@ class CreateProject extends Component {
             <>
               <div className="create__header">
                 <h1>Create a project</h1>
-                <a onClick={this.openModal}><FontAwesomeIcon icon={faPlus} /> From Github</a>
+                <div className="git-creation" onClick={this.openModal}><FontAwesomeIcon icon={faPlus} /> From Github</div>
               </div>
               <CustomModal
                 isOpen={this.state.isOpen}

@@ -315,9 +315,7 @@ class SprintDetails extends Component {
                 <div className="tasks">
                   <div className="tasks__header">
                     <h2>Tasks</h2>
-                    <a onClick={this.openCreateTaskModal}>
-                      <FontAwesomeIcon icon={faPlus} /> Create a new task
-                    </a>
+                    <div className="task-creation" onClick={this.openCreateTaskModal}><FontAwesomeIcon icon={faPlus} /> Create a new task</div>
                   </div>
                   <div className="tasks__list">
                     {

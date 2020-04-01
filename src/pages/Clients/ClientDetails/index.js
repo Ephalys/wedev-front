@@ -29,12 +29,12 @@ class DetailsClient extends Component {
 
   handleSubmit = () => {
     const datas = {
-      ['name']: this.state.name || this.state.client.name,
-      ['address']: this.state.address || this.state.client.address,
-      ['contactFirstName']: this.state.contactFirstName || this.state.client.contactFirstName,
-      ['contactLastName']: this.state.contactLastName || this.state.client.contactLastName,
-      ['phone']: this.state.phone || this.state.client.phone,
-      ['mail']: this.state.mail || this.state.client.mail,
+      'name': this.state.name || this.state.client.name,
+      'address': this.state.address || this.state.client.address,
+      'contactFirstName': this.state.contactFirstName || this.state.client.contactFirstName,
+      'contactLastName': this.state.contactLastName || this.state.client.contactLastName,
+      'phone': this.state.phone || this.state.client.phone,
+      'mail': this.state.mail || this.state.client.mail,
     };
     axios
       .patch('/client/' + this.props.match.params.id, datas, {

@@ -116,7 +116,7 @@ class DetailsProject extends Component {
                         title={element.title}
                         startDate={element.startDate}
                         endDate={element.endDate}
-                        status={element.status == "en_cours" ? "En cours" : (element.state == "a_faire" ? "A faire" : "Terminé")}
+                        status={element.status === "en_cours" ? "En cours" : (element.state === "a_faire" ? "A faire" : "Terminé")}
                     />
                 );
             });

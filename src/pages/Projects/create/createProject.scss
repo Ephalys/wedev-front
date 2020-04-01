@@ -1,7 +1,10 @@
 .create {
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .git-creation {
+      cursor: pointer;
     }
+  }
 }

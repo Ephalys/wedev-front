@@ -8,8 +8,6 @@ import animationData from '../../utils/loading-black-dots.json';
 import CountUp from 'react-countup';
 import Input from "../Input";
 import Select from "../Select";
-import history from "../../utils/history";
-
 import CustomModal from '../CustomModal';
 
 class IndexDashboard extends Component {
@@ -82,11 +80,11 @@ class IndexDashboard extends Component {
 
     handleSubmit = () => {
         const datas = {
-            ['pseudo']: this.state.pseudo,
-            ['password']: this.state.password,
-            ['title']: this.state.title,
-            ['body']: this.state.body,
-            ['labels']: this.state.labels,
+            'pseudo': this.state.pseudo,
+            'password': this.state.password,
+            'title': this.state.title,
+            'body': this.state.body,
+            'labels': this.state.labels,
         }
 
         axios
@@ -162,12 +160,8 @@ class IndexDashboard extends Component {
                     }
                 />
                 <div className="dashboard__header">
-                    <h1>
-                        Dashboard
-                    </h1>
-                    <a onClick={this.openModal}>
-                        <FontAwesomeIcon icon={faPlus} /> Create a new issue
-                    </a>
+                    <h1>Dashboard</h1>
+                    <div className="issue-creation" onClick={this.openModal}><FontAwesomeIcon icon={faPlus} /> Create a new issue</div>
                 </div>
                 <div className="metrics">
                     <div className="metrics__card">
